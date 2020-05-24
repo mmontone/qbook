@@ -16,13 +16,13 @@
                              (:file "stylesheets" :depends-on ("packages"))
 			     (:file "latex" :depends-on ("packages" "qbook"))
 			     (:file "packages")
-			     (:file "publish-op" :depends-on ("packages" "qbook"))
+			     (:file "asdf" :depends-on ("packages" "qbook"))
 			     (:file "qbook" :depends-on ("packages")))))
   :depends-on (:arnesi :iterate :cl-ppcre :yaclml))
 
 ;;;;@include "src/qbook.lisp"
 
-;;;;@include "src/publish-op.lisp"
+;;;;@include "src/asdf.lisp"
 
 ;;;;@include "src/code-analysis.lisp"
 

@@ -11,12 +11,12 @@
    (highlight-syntax :initarg :highlight-syntax
                      :accessor highlight-syntax
                      :type boolean
-                     :initform nil
+                     :initform t
                      :documentation "When T, highlight syntax using highlight.js library")))
 
 (defvar *latex-stream*)
 
-(defun \\command (name &rest args)
+(defun latex-command (name &rest args)
   (declare (special *latex-stream*))
   (write-string "\\" *latex-stream*)
   (write-string name *latex-stream*)
@@ -45,11 +45,11 @@
         (wl "\\usepackage{mdframed}"))
 
       (when (listings generator)
-        (\\command "usepackage" "listings")
-        (\\command "lstset" "language=lisp"))
+        (latex-command "usepackage" "listings")
+        (latex-command "lstset" "language=lisp"))
         
       (when (stringp (listings generator))
-        (\\command "lstset" (listings generator)))
+        (latex-command "lstset" (listings generator)))
 
       (wl "\\usepackage{courier}")
 
@@ -59,17 +59,19 @@
       (wl "\\parindent0pt  \\parskip10pt             % make block paragraphs")
       (wl "\\raggedright                            % do not right justify")
 
-      (\\command "title" (title generator))
+      (latex-command "title" (title generator))
       
-      (\\command "date" "")
-      (\\command "makeindex")
+      (latex-command "date" "")
+      (latex-command "makeindex")
       
-      (\\command "begin" "document")
-      (\\command "maketitle")
-      (\\command "tableofcontents")
+      (latex-command "begin" "document")
+      (latex-command "maketitle")
+      (latex-command "tableofcontents")
       (dolist (section (contents book))
         (dolist (part section)
           (generate-part part generator)))
+      (terpri *latex-stream*)
+      (wl "\\addtocontents{toc}{\\protect\\setcounter{tocdepth}{0}}")
       (wl "\\chapter{Reference}")
       (dolist (section (contents book))
         (dolist (part section)
@@ -78,27 +80,38 @@
       (terpri *latex-stream*)
       (wl "\\chapter{Index}")
       (wl "\\printindex")
-      (\\command "end" "document"))))
+      (latex-command "end" "document"))))
+
+(defun safe-latex-id (string)
+  (with-output-to-string (stream)
+    (iterate
+      (for char in-string string)
+      (case char
+        ((#\& #\$ #\% #\# #\_ #\{ #\} #\^ #\\ )
+         (write-char #\- stream))
+        (t (write-char char stream))))))
 
 (defun descriptor-ref-id (descriptor)
-  (strcat (string (label-prefix descriptor))
-          ":"
-          (princ-to-string (name descriptor))))
+  (safe-latex-id
+   (strcat (string (label-prefix descriptor))
+           ":"
+           (princ-to-string (name descriptor)))))
 
 (defun descriptor-link-id (descriptor)
-  (strcat "link:" (string (label-prefix descriptor))
-          ":" (princ-to-string (name descriptor))))
+  (safe-latex-id
+   (strcat "link:" (string (label-prefix descriptor))
+           ":" (princ-to-string (name descriptor)))))
 
 (defmethod generate-part ((part code-part) (generator latex-generator))
   "Generate link to the code"
   (if (descriptor part)
       (progn
-        (\\command "label" (descriptor-link-id (descriptor part)))
+        (latex-command "label" (descriptor-link-id (descriptor part)))
         (format *latex-stream*
                 "\\hyperref[~a]{~a ~a}"
                 (descriptor-ref-id (descriptor part))
                 (pretty-label-prefix (descriptor part))
-                (name (descriptor part)))
+                (safe-latex-id (princ-to-string (name (descriptor part)))))
         (terpri *latex-stream*)
         (when (docstring (descriptor part))
           (write-line " - " *latex-stream*)
@@ -108,10 +121,9 @@
 (defun write-source (source generator)
   (if (highlight-syntax generator)
       (write-line "\\begin{minted}[fontsize=\\footnotesize, framesep=2mm,baselinestretch=1.2, bgcolor=CodeBackground]{common-lisp}" *latex-stream*)
-      (\\command "begin" (if (listings generator) "lstlisting" "verbatim")))
-  (write-string source *latex-stream*)
-  (terpri *latex-stream*)
-  (\\command "end"
+      (latex-command "begin" (if (listings generator) "lstlisting" "verbatim")))
+  (write-line source *latex-stream*)
+  (latex-command "end"
              (cond
                ((highlight-syntax generator) "minted")
                ((listings generator) "lstlisting")
@@ -159,10 +171,11 @@
 
 (defmethod generate-part-reference :around ((part code-part) generator)
   (when (descriptor part)
-    (\\command "section" (strcat (pretty-label-prefix (descriptor part))
-                                 ": " (princ-to-string (name (descriptor part)))))
-    (\\command "label" (descriptor-ref-id (descriptor part)))
-    (\\command "index" (strcat (pretty-label-prefix (descriptor part)) " "
+    (latex-command "section" (strcat (pretty-label-prefix (descriptor part))
+                                 ": "
+                                 (safe-latex-id (princ-to-string (name (descriptor part))))))
+    (latex-command "label" (descriptor-ref-id (descriptor part)))
+    (latex-command "index" (strcat (pretty-label-prefix (descriptor part)) " "
                                    (princ-to-string (name (descriptor part)))))
     (call-next-method)))
 

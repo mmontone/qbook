@@ -11,6 +11,9 @@
 ;;;; from the ASDF system. Customizing the defaults is a simple matter
 ;;;; of passing the proper keywords to asdf:oos.
 
+;; ASDF integration is not working in current ASDF version, because initargs for operations are deprecated. See: https://common-lisp.net/project/asdf/asdf.html#Operations
+;; "The ability to pass initargs to make-operation is now deprecated, and will be removed."
+
 (defclass publish-op (asdf:operation)
   ((generator :initarg :generator :accessor generator)
    (input-file :initform nil :initarg :input-file :accessor input-file)))
@@ -27,6 +30,11 @@
 
 (defmethod asdf:operation-done-p ((op publish-op) (component t))
   nil)
+
+(defun publish-system-qbook (system-name generator-name &rest options)
+  (let ((generator (apply #'make-instance generator-name
+                          options)))
+    (publish-qbook (asdf:system-source-file system-name) generator)))
 
 ;; Copyright (c) 2005, Edward Marco Baringer
 ;; All rights reserved.
