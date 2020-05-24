@@ -1,0 +1,30 @@
+<html
+  ><head
+    ><title
+      >Method (INPUT-FILES PUBLISH-OP SYSTEM)</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Method: (INPUT-FILES PUBLISH-OP SYSTEM)</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defmethod input-files ((op publish-op) (system asdf:system))
+  (let ((x (or (input-file op) (asdf:system-source-file system))))
+    (and x (list x))))</code
+            ></pre
+          ><a href="../ASDF_0020Integration.html#method_005FIT.BESE.QBOOK_003A_003A_0028INPUT-FILES_0020PUBLISH-OP_0020SYSTEM_0029"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

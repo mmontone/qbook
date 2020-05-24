@@ -1,0 +1,37 @@
+<html
+  ><head
+    ><title
+      >Function WRITE-SOURCE</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: WRITE-SOURCE</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun write-source (source generator)
+  (if (highlight-syntax generator)
+      (write-line &quot;\\begin{minted}[fontsize=\\footnotesize, framesep=2mm,baselinestretch=1.2, bgcolor=CodeBackground]{common-lisp}&quot; *latex-stream*)
+      (latex-command &quot;begin&quot; (if (listings generator) &quot;lstlisting&quot; &quot;verbatim&quot;)))
+  (write-line source *latex-stream*)
+  (latex-command &quot;end&quot;
+             (cond
+               ((highlight-syntax generator) &quot;minted&quot;)
+               ((listings generator) &quot;lstlisting&quot;)
+               (t &quot;verbatim&quot;))))</code
+            ></pre
+          ><a href="../The_0020LaTeX_0020Generator.html#function_005FIT.BESE.QBOOK_003A_003AWRITE-SOURCE"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

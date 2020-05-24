@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defvar} \PYG{n+nv+vg}{*known\PYGZhy{}elements*} \PYG{p}{(}\PYG{n+nb}{make\PYGZhy{}hash\PYGZhy{}table} \PYG{l+s+ss}{:test} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nb}{equal}\PYG{p}{))}
+\end{Verbatim}

@@ -1,0 +1,43 @@
+<html
+  ><head
+    ><title
+      >Function MAKE-QBOOK-READTABLE</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: MAKE-QBOOK-READTABLE</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun make-qbook-readtable ()
+  (iterate
+    (with r = (copy-readtable nil))
+    (for i from 0 below 256)
+    (for char = (code-char i))
+    (when (get-macro-character char)
+      (multiple-value-bind (function non-terminating-p)
+          (get-macro-character char *readtable*)
+        (set-macro-character char
+                             (case char
+                               (#\; (make-part-reader 'qbook-semicolon-reader 'comment-part))
+                               (#\( (make-part-reader function 'code-part))
+                               (t (make-part-reader function 'code-part)))
+                             non-terminating-p
+                             r)))
+    (finally (return r))))</code
+            ></pre
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#function_005FIT.BESE.QBOOK_003A_003AMAKE-QBOOK-READTABLE"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

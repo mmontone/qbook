@@ -1,0 +1,35 @@
+<html
+  ><head
+    ><title
+      >Function FIND-DESCRIPTOR</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: FIND-DESCRIPTOR</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun find-descriptor (label name)
+  (when-bind elements-of-type (gethash label *known-elements*)
+    (cdr (assoc name elements-of-type
+                :test (lambda (a b)
+                        (if (symbolp a)
+                            (eq a b)
+                            (and (eq (first a) (first b))
+                                 (eq (second a) (second b)))))))))</code
+            ></pre
+          ><a href="../Extra_0020Code_0020Analysis.html#function_005FIT.BESE.QBOOK_003A_003AFIND-DESCRIPTOR"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

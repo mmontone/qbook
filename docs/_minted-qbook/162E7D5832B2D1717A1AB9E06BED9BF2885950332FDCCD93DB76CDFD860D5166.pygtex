@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{publish\PYGZhy{}qbook} \PYG{p}{(}\PYG{n+nv}{file\PYGZhy{}name} \PYG{n+nv}{generator}\PYG{p}{)}
+  \PYG{l+s}{\PYGZdq{}Convert FILE\PYGZhy{}NAME into a qbook html file named OUTPUT\PYGZhy{}FILE with title TITLE.\PYGZdq{}}
+  \PYG{p}{(}\PYG{k}{let} \PYG{p}{((}\PYG{n+nv}{book} \PYG{p}{(}\PYG{n+nb}{make\PYGZhy{}instance} \PYG{l+s+ss}{\PYGZsq{}book}
+                             \PYG{l+s+ss}{:title} \PYG{p}{(}\PYG{n+nv}{title} \PYG{n+nv}{generator}\PYG{p}{)}
+                             \PYG{l+s+ss}{:contents} \PYG{p}{(}\PYG{n+nv}{convert\PYGZhy{}to\PYGZhy{}sections}
+                                        \PYG{n+nv}{file\PYGZhy{}name}
+                                        \PYG{p}{(}\PYG{n+nv}{read\PYGZhy{}source\PYGZhy{}file} \PYG{n+nv}{file\PYGZhy{}name}\PYG{p}{)))))}
+    \PYG{p}{(}\PYG{n+nv}{bulid\PYGZhy{}indexes} \PYG{n+nv}{book}\PYG{p}{)}
+    \PYG{p}{(}\PYG{n+nv}{generate} \PYG{n+nv}{book} \PYG{n+nv}{generator}\PYG{p}{)))}
+\end{Verbatim}

@@ -1,0 +1,35 @@
+<html
+  ><head
+    ><title
+      >Function READ-WHITESPACE</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: READ-WHITESPACE</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun read-whitespace (stream)
+  (iterate
+    (with part = (make-instance 'whitespace-part))
+    (initially (setf (start-position part) (1+ (file-position stream))))
+    (while (whitespacep (peek-char nil stream nil nil)))
+    (read-char stream)
+    (finally (setf (end-position part) (file-position stream)))
+    (finally (return-from read-whitespace part))))</code
+            ></pre
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#function_005FIT.BESE.QBOOK_003A_003AREAD-WHITESPACE"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

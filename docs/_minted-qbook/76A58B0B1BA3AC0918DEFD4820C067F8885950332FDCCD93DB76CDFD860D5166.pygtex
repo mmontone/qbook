@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{make\PYGZhy{}qbook\PYGZhy{}readtable} \PYG{p}{()}
+  \PYG{p}{(}\PYG{n+nv}{iterate}
+    \PYG{p}{(}\PYG{n+nv}{with} \PYG{n+nv}{r} \PYG{n+nb}{=} \PYG{p}{(}\PYG{n+nb}{copy\PYGZhy{}readtable} \PYG{n+no}{nil}\PYG{p}{))}
+    \PYG{p}{(}\PYG{n+nv}{for} \PYG{n+nv}{i} \PYG{n+nv}{from} \PYG{l+m+mi}{0} \PYG{n+nv}{below} \PYG{l+m+mi}{256}\PYG{p}{)}
+    \PYG{p}{(}\PYG{n+nv}{for} \PYG{n+nb}{char} \PYG{n+nb}{=} \PYG{p}{(}\PYG{n+nb}{code\PYGZhy{}char} \PYG{n+nv}{i}\PYG{p}{))}
+    \PYG{p}{(}\PYG{n+nb}{when} \PYG{p}{(}\PYG{n+nb}{get\PYGZhy{}macro\PYGZhy{}character} \PYG{n+nb}{char}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nb}{multiple\PYGZhy{}value\PYGZhy{}bind} \PYG{p}{(}\PYG{k}{function} \PYG{n+nv}{non\PYGZhy{}terminating\PYGZhy{}p}\PYG{p}{)}
+          \PYG{p}{(}\PYG{n+nb}{get\PYGZhy{}macro\PYGZhy{}character} \PYG{n+nb}{char} \PYG{n+nv+vg}{*readtable*}\PYG{p}{)}
+        \PYG{p}{(}\PYG{n+nb}{set\PYGZhy{}macro\PYGZhy{}character} \PYG{n+nb}{char}
+                             \PYG{p}{(}\PYG{n+nb}{case} \PYG{n+nb}{char}
+                               \PYG{p}{(}\PYG{l+s+sc}{\PYGZsh{}\PYGZbs{};} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}part\PYGZhy{}reader} \PYG{l+s+ss}{\PYGZsq{}qbook\PYGZhy{}semicolon\PYGZhy{}reader} \PYG{l+s+ss}{\PYGZsq{}comment\PYGZhy{}part}\PYG{p}{))}
+                               \PYG{p}{(}\PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}(} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}part\PYGZhy{}reader} \PYG{k}{function} \PYG{l+s+ss}{\PYGZsq{}code\PYGZhy{}part}\PYG{p}{))}
+                               \PYG{p}{(}\PYG{n+no}{t} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}part\PYGZhy{}reader} \PYG{k}{function} \PYG{l+s+ss}{\PYGZsq{}code\PYGZhy{}part}\PYG{p}{)))}
+                             \PYG{n+nv}{non\PYGZhy{}terminating\PYGZhy{}p}
+                             \PYG{n+nv}{r}\PYG{p}{)))}
+    \PYG{p}{(}\PYG{n+nv}{finally} \PYG{p}{(}\PYG{n+nb}{return} \PYG{n+nv}{r}\PYG{p}{))))}
+\end{Verbatim}

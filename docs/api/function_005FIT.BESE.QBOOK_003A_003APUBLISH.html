@@ -1,0 +1,36 @@
+<html
+  ><head
+    ><title
+      >Function PUBLISH</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: PUBLISH</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun publish (parts)
+  (iterate
+    (with state = nil)
+    (for p in parts)
+    (setf (output-file p) (strcat (make-anchor-name (text (first parts))) &quot;.html&quot;))
+    (etypecase p
+      (comment-part (setf state (write-comment p state)))
+      (whitespace-part (setf state nil) (&lt;:as-html (text p)))
+      (code-part (setf state (write-code p state))))))</code
+            ></pre
+          ><a href="../The_0020HTML_0020Generator.html#function_005FIT.BESE.QBOOK_003A_003APUBLISH"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defmethod} \PYG{n+nv}{write\PYGZhy{}code\PYGZhy{}descriptor} \PYG{p}{((}\PYG{n+nv}{descriptor} \PYG{n+no}{t}\PYG{p}{)} \PYG{n+nv}{part}\PYG{p}{)}
+  \PYG{p}{(}\PYG{k}{let} \PYG{p}{((}\PYG{n+nv}{text} \PYG{p}{(}\PYG{n+nv}{text} \PYG{n+nv}{part}\PYG{p}{)))}
+    \PYG{p}{(}\PYG{n+nb}{setf} \PYG{n+nv}{text} \PYG{p}{(}\PYG{n+nv}{yaclml::escape\PYGZhy{}as\PYGZhy{}html} \PYG{n+nv}{text}\PYG{p}{))}
+    \PYG{p}{(}\PYG{n+nb}{setf} \PYG{n+nv}{text} \PYG{p}{(}\PYG{n+nv}{regex\PYGZhy{}replace\PYGZhy{}all} \PYG{l+s}{\PYGZdq{}(\PYGZbs{}\PYGZbs{}(|\PYGZbs{}\PYGZbs{}))\PYGZdq{}}
+                                  \PYG{n+nv}{text}
+                                  \PYG{l+s}{\PYGZdq{}\PYGZlt{}span class=\PYGZbs{}\PYGZdq{}paren\PYGZbs{}\PYGZdq{}\PYGZgt{}\PYGZbs{}\PYGZbs{}1\PYGZlt{}/span\PYGZgt{}\PYGZdq{}}\PYG{p}{))}
+    \PYG{p}{(}\PYG{n+nb}{setf} \PYG{n+nv}{text} \PYG{p}{(}\PYG{n+nv}{regex\PYGZhy{}replace} \PYG{l+s}{\PYGZdq{}\PYGZca{}.*\PYGZdq{}}
+                              \PYG{n+nv}{text}
+                              \PYG{p}{(}\PYG{n+nv}{strcat} \PYG{l+s}{\PYGZdq{}\PYGZlt{}span class=\PYGZbs{}\PYGZdq{}first\PYGZhy{}line\PYGZbs{}\PYGZdq{}\PYGZgt{}\PYGZbs{}\PYGZbs{}\PYGZam{}\PYGZlt{}/span\PYGZgt{}\PYGZlt{}span class\PYGZbs{}\PYGZdq{}body\PYGZbs{}\PYGZdq{}\PYGZgt{}\PYGZdq{}}\PYG{p}{)))}
+    \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:pre} \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:code} \PYG{l+s+ss}{:class} \PYG{l+s}{\PYGZdq{}code\PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}is} \PYG{n+nv}{text}\PYG{p}{)} \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}is} \PYG{l+s}{\PYGZdq{}\PYGZlt{}/span\PYGZgt{}\PYGZdq{}}\PYG{p}{)))))}
+\end{Verbatim}

@@ -1,0 +1,50 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{post\PYGZhy{}process} \PYG{p}{(}\PYG{n+nv}{parts}\PYG{p}{)}
+  \PYG{c+c1}{;; convert all the comments which are acutally headings to heading}
+  \PYG{c+c1}{;; objects}
+  \PYG{p}{(}\PYG{n+nb}{setf} \PYG{n+nv}{parts}
+        \PYG{p}{(}\PYG{n+nv}{iterate}
+          \PYG{p}{(}\PYG{n+nv}{for} \PYG{n+nv}{p} \PYG{n+nv}{in} \PYG{n+nv}{parts}\PYG{p}{)}
+          \PYG{p}{(}\PYG{n+nb}{typecase} \PYG{n+nv}{p}
+            \PYG{p}{(}\PYG{n+nv}{comment\PYGZhy{}part}
+             \PYG{p}{(}\PYG{n+nb}{multiple\PYGZhy{}value\PYGZhy{}bind} \PYG{p}{(}\PYG{n+nv}{match} \PYG{n+nv}{strings}\PYG{p}{)}
+                 \PYG{p}{(}\PYG{n+nv}{scan\PYGZhy{}to\PYGZhy{}strings} \PYG{p}{(}\PYG{k}{load\PYGZhy{}time\PYGZhy{}value}
+                                   \PYG{p}{(}\PYG{n+nv}{create\PYGZhy{}scanner} \PYG{l+s}{\PYGZdq{};;;;\PYGZbs{}\PYGZbs{}s*(\PYGZbs{}\PYGZbs{}*+)\PYGZbs{}\PYGZbs{}s*(.*)\PYGZdq{}} \PYG{l+s+ss}{:single\PYGZhy{}line\PYGZhy{}mode} \PYG{n+no}{nil}\PYG{p}{))}
+                                  \PYG{p}{(}\PYG{n+nv}{text} \PYG{n+nv}{p}\PYG{p}{))}
+               \PYG{p}{(}\PYG{k}{if} \PYG{n+nv}{match}
+                   \PYG{p}{(}\PYG{n+nv}{collect} \PYG{p}{(}\PYG{n+nb}{make\PYGZhy{}instance} \PYG{l+s+ss}{\PYGZsq{}heading\PYGZhy{}part}
+                                           \PYG{l+s+ss}{:depth} \PYG{p}{(}\PYG{n+nb}{length} \PYG{p}{(}\PYG{n+nb}{aref} \PYG{n+nv}{strings} \PYG{l+m+mi}{0}\PYG{p}{))}
+                                           \PYG{l+s+ss}{:text} \PYG{p}{(}\PYG{n+nb}{aref} \PYG{n+nv}{strings} \PYG{l+m+mi}{1}\PYG{p}{)}
+                                           \PYG{l+s+ss}{:start\PYGZhy{}position} \PYG{p}{(}\PYG{n+nv}{start\PYGZhy{}position} \PYG{n+nv}{p}\PYG{p}{)}
+                                           \PYG{l+s+ss}{:end\PYGZhy{}position} \PYG{p}{(}\PYG{n+nv}{end\PYGZhy{}position} \PYG{n+nv}{p}\PYG{p}{)}
+                                           \PYG{l+s+ss}{:origin\PYGZhy{}file} \PYG{p}{(}\PYG{n+nv}{origin\PYGZhy{}file} \PYG{n+nv}{p}\PYG{p}{)))}
+                   \PYG{p}{(}\PYG{n+nb}{multiple\PYGZhy{}value\PYGZhy{}bind} \PYG{p}{(}\PYG{n+nv}{match} \PYG{n+nv}{strings}\PYG{p}{)}
+                       \PYG{p}{(}\PYG{n+nv}{scan\PYGZhy{}to\PYGZhy{}strings} \PYG{p}{(}\PYG{k}{load\PYGZhy{}time\PYGZhy{}value}
+                                         \PYG{p}{(}\PYG{n+nv}{create\PYGZhy{}scanner} \PYG{l+s}{\PYGZdq{};;;;(.*)\PYGZdq{}} \PYG{l+s+ss}{:single\PYGZhy{}line\PYGZhy{}mode} \PYG{n+no}{t}\PYG{p}{))}
+                                        \PYG{p}{(}\PYG{n+nv}{text} \PYG{n+nv}{p}\PYG{p}{))}
+                     \PYG{p}{(}\PYG{k}{if} \PYG{n+nv}{match}
+                         \PYG{p}{(}\PYG{n+nv}{collect} \PYG{p}{(}\PYG{n+nb}{make\PYGZhy{}instance} \PYG{l+s+ss}{\PYGZsq{}comment\PYGZhy{}part}
+                                                 \PYG{l+s+ss}{:start\PYGZhy{}position} \PYG{p}{(}\PYG{n+nv}{start\PYGZhy{}position} \PYG{n+nv}{p}\PYG{p}{)}
+                                                 \PYG{l+s+ss}{:end\PYGZhy{}position} \PYG{p}{(}\PYG{n+nv}{end\PYGZhy{}position} \PYG{n+nv}{p}\PYG{p}{)}
+                                                 \PYG{l+s+ss}{:text} \PYG{p}{(}\PYG{n+nb}{aref} \PYG{n+nv}{strings} \PYG{l+m+mi}{0}\PYG{p}{)}
+                                                 \PYG{l+s+ss}{:origin\PYGZhy{}file} \PYG{p}{(}\PYG{n+nv}{origin\PYGZhy{}file} \PYG{n+nv}{p}\PYG{p}{))))))))}
+            \PYG{p}{((}\PYG{n+nb}{or} \PYG{n+nv}{code\PYGZhy{}part} \PYG{n+nv}{whitespace\PYGZhy{}part}\PYG{p}{)} \PYG{p}{(}\PYG{n+nv}{collect} \PYG{n+nv}{p}\PYG{p}{)))))}
+  \PYG{c+c1}{;;;; merge consequtive comments together}
+  \PYG{p}{(}\PYG{n+nb}{setf} \PYG{n+nv}{parts}
+        \PYG{p}{(}\PYG{n+nv}{iterate}
+          \PYG{p}{(}\PYG{n+nv}{with} \PYG{n+nv}{comment} \PYG{n+nb}{=} \PYG{p}{(}\PYG{n+nb}{make\PYGZhy{}string\PYGZhy{}output\PYGZhy{}stream}\PYG{p}{))}
+          \PYG{p}{(}\PYG{n+nv}{for} \PYG{p}{(}\PYG{n+nv}{p} \PYG{n+nv}{next}\PYG{p}{)} \PYG{n+nv}{on} \PYG{n+nv}{parts}\PYG{p}{)}
+          \PYG{p}{(}\PYG{n+nb}{cond}
+            \PYG{p}{((}\PYG{n+nv}{heading\PYGZhy{}part\PYGZhy{}p} \PYG{n+nv}{p}\PYG{p}{)} \PYG{p}{(}\PYG{n+nv}{collect} \PYG{n+nv}{p}\PYG{p}{))}
+            \PYG{p}{((}\PYG{n+nb}{and} \PYG{p}{(}\PYG{n+nv}{comment\PYGZhy{}part\PYGZhy{}p} \PYG{n+nv}{p}\PYG{p}{)}
+                  \PYG{p}{(}\PYG{n+nb}{or} \PYG{p}{(}\PYG{n+nb}{not} \PYG{p}{(}\PYG{n+nv}{comment\PYGZhy{}part\PYGZhy{}p} \PYG{n+nv}{next}\PYG{p}{))}
+                      \PYG{p}{(}\PYG{n+nv}{heading\PYGZhy{}part\PYGZhy{}p} \PYG{n+nv}{next}\PYG{p}{)}
+                      \PYG{p}{(}\PYG{n+nb}{null} \PYG{n+nv}{next}\PYG{p}{)))}
+             \PYG{p}{(}\PYG{n+nb}{write\PYGZhy{}string} \PYG{p}{(}\PYG{n+nv}{text} \PYG{n+nv}{p}\PYG{p}{)} \PYG{n+nv}{comment}\PYG{p}{)}
+             \PYG{p}{(}\PYG{n+nv}{collect} \PYG{p}{(}\PYG{n+nb}{make\PYGZhy{}instance} \PYG{l+s+ss}{\PYGZsq{}comment\PYGZhy{}part} \PYG{l+s+ss}{:text} \PYG{p}{(}\PYG{n+nb}{get\PYGZhy{}output\PYGZhy{}stream\PYGZhy{}string} \PYG{n+nv}{comment}\PYG{p}{)))}
+             \PYG{p}{(}\PYG{n+nb}{setf} \PYG{n+nv}{comment} \PYG{p}{(}\PYG{n+nb}{make\PYGZhy{}string\PYGZhy{}output\PYGZhy{}stream}\PYG{p}{)))}
+            \PYG{p}{((}\PYG{n+nv}{comment\PYGZhy{}part\PYGZhy{}p} \PYG{n+nv}{p}\PYG{p}{)}
+             \PYG{p}{(}\PYG{n+nb}{write\PYGZhy{}string} \PYG{p}{(}\PYG{n+nv}{text} \PYG{n+nv}{p}\PYG{p}{)} \PYG{n+nv}{comment}\PYG{p}{))}
+            \PYG{p}{(}\PYG{n+no}{t} \PYG{p}{(}\PYG{n+nv}{collect} \PYG{n+nv}{p}\PYG{p}{)))))}
+  \PYG{n+nv}{parts}\PYG{p}{)}
+\end{Verbatim}

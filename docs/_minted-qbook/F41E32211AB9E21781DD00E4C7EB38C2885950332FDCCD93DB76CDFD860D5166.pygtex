@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defmethod} \PYG{n+nv}{make\PYGZhy{}anchor\PYGZhy{}name} \PYG{p}{((}\PYG{n+nv}{method\PYGZhy{}descriptor} \PYG{n+nv}{defmethod\PYGZhy{}descriptor}\PYG{p}{))}
+  \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}anchor\PYGZhy{}name} \PYG{p}{(}\PYG{n+nv}{strcat} \PYG{p}{(}\PYG{n+nv}{label\PYGZhy{}prefix} \PYG{n+nv}{method\PYGZhy{}descriptor}\PYG{p}{)}
+                            \PYG{l+s}{\PYGZdq{}\PYGZus{}\PYGZdq{}}
+                            \PYG{p}{(}\PYG{n+nb}{package\PYGZhy{}name} \PYG{p}{(}\PYG{n+nb}{symbol\PYGZhy{}package} \PYG{p}{(}\PYG{n+nv}{effective\PYGZhy{}name} \PYG{p}{(}\PYG{n+nv}{name} \PYG{n+nv}{method\PYGZhy{}descriptor}\PYG{p}{))))}
+                            \PYG{l+s}{\PYGZdq{}::\PYGZdq{}}
+                            \PYG{p}{(}\PYG{n+nv}{html\PYGZhy{}name} \PYG{n+nv}{method\PYGZhy{}descriptor}\PYG{p}{))))}
+\end{Verbatim}

@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defmethod} \PYG{n+nv}{make\PYGZhy{}anchor\PYGZhy{}link} \PYG{p}{((}\PYG{n+nv}{d} \PYG{n+nv}{descriptor}\PYG{p}{))}
+  \PYG{p}{(}\PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{name} \PYG{n+nv}{d}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nb}{concatenate} \PYG{l+s+ss}{\PYGZsq{}string} \PYG{l+s}{\PYGZdq{}api/\PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}anchor\PYGZhy{}name} \PYG{n+nv}{d}\PYG{p}{)} \PYG{l+s}{\PYGZdq{}.html\PYGZdq{}}\PYG{p}{)}
+      \PYG{l+s}{\PYGZdq{}\PYGZsh{}\PYGZdq{}}\PYG{p}{))}
+\end{Verbatim}

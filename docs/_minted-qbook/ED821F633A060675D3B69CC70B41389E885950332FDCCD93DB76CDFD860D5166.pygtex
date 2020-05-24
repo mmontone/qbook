@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defmethod} \PYG{n+nv}{write\PYGZhy{}code\PYGZhy{}descriptor} \PYG{p}{((}\PYG{n+nv}{descriptor} \PYG{n+nv}{defclass\PYGZhy{}descriptor}\PYG{p}{)} \PYG{n+nv}{part}\PYG{p}{)}
+  \PYG{p}{(}\PYG{k}{declare} \PYG{p}{(}\PYG{k}{ignore} \PYG{n+nv}{part}\PYG{p}{))}
+  \PYG{p}{(}\PYG{n+nb}{when} \PYG{p}{(}\PYG{n+nv}{slots} \PYG{n+nv}{descriptor}\PYG{p}{)}
+    \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:h2} \PYG{l+s}{\PYGZdq{}Slots\PYGZdq{}}\PYG{p}{)}
+    \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:ul}
+     \PYG{p}{(}\PYG{n+nb}{dolist} \PYG{p}{(}\PYG{n+nv}{slot} \PYG{p}{(}\PYG{n+nv}{slots} \PYG{n+nv}{descriptor}\PYG{p}{))}
+       \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:li} \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{p}{(}\PYG{n+nv}{name} \PYG{n+nv}{slot}\PYG{p}{))}
+             \PYG{p}{(}\PYG{n+nb}{when} \PYG{p}{(}\PYG{n+nv}{docstring} \PYG{n+nv}{slot}\PYG{p}{)}
+               \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{l+s}{\PYGZdq{} \PYGZhy{} \PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{docstring} \PYG{n+nv}{slot}\PYG{p}{)))))))}
+  \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:h2} \PYG{l+s}{\PYGZdq{}Hierachy\PYGZdq{}}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:h3} \PYG{l+s}{\PYGZdq{}Precedence List\PYGZdq{}}\PYG{p}{)}
+  \PYG{p}{(}\PYG{k}{flet} \PYG{p}{((}\PYG{n+nv}{make\PYGZhy{}class\PYGZhy{}link} \PYG{p}{(}\PYG{n+nc}{class}\PYG{p}{)}
+           \PYG{p}{(}\PYG{n+nv}{aif} \PYG{p}{(}\PYG{n+nv}{find\PYGZhy{}descriptor} \PYG{l+s}{\PYGZdq{}class\PYGZdq{}} \PYG{p}{(}\PYG{n+nb}{class\PYGZhy{}name} \PYG{n+nc}{class}\PYG{p}{))}
+                \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:a} \PYG{l+s+ss}{:href} \PYG{p}{(}\PYG{n+nv}{strcat} \PYG{l+s}{\PYGZdq{}../\PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}anchor\PYGZhy{}link} \PYG{n+nv}{it}\PYG{p}{))}
+                     \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{p}{(}\PYG{n+nb}{class\PYGZhy{}name} \PYG{n+nc}{class}\PYG{p}{)))}
+                \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{p}{(}\PYG{n+nb}{class\PYGZhy{}name} \PYG{n+nc}{class}\PYG{p}{)))))}
+    \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:ul}
+     \PYG{p}{(}\PYG{n+nb}{dolist} \PYG{p}{(}\PYG{n+nc}{class} \PYG{p}{(}\PYG{n+nv}{mopp:class\PYGZhy{}direct\PYGZhy{}superclasses} \PYG{p}{(}\PYG{n+nb}{find\PYGZhy{}class} \PYG{p}{(}\PYG{n+nv}{name} \PYG{n+nv}{descriptor}\PYG{p}{))))}
+       \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:li} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}class\PYGZhy{}link} \PYG{n+nc}{class}\PYG{p}{))))}
+    \PYG{p}{(}\PYG{n+nv}{awhen} \PYG{p}{(}\PYG{n+nv}{mopp:class\PYGZhy{}direct\PYGZhy{}subclasses} \PYG{p}{(}\PYG{n+nb}{find\PYGZhy{}class} \PYG{p}{(}\PYG{n+nv}{name} \PYG{n+nv}{descriptor}\PYG{p}{)))}
+      \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:h3} \PYG{l+s}{\PYGZdq{}Sub Classes\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:ul}
+       \PYG{p}{(}\PYG{n+nb}{dolist} \PYG{p}{(}\PYG{n+nv}{sub} \PYG{n+nv}{it}\PYG{p}{)}
+         \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:li} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}class\PYGZhy{}link} \PYG{n+nv}{sub}\PYG{p}{)))))))}
+\end{Verbatim}

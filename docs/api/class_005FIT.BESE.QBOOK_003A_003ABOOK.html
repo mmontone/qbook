@@ -1,0 +1,50 @@
+<html
+  ><head
+    ><title
+      >Class BOOK</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Class: BOOK</h1
+        ><div class="contents"
+          ><h2
+  >Slots</h2
+><ul
+  ><li
+  >TITLE - The title of the book.</li
+><li
+  >CONTENTS</li
+><li
+  >INDEXES</li
+></ul
+><h2
+  >Hierachy</h2
+><h3
+  >Precedence List</h3
+><ul
+  ><li
+  >STANDARD-OBJECT</li
+></ul
+><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defclass book ()
+  ((title :accessor title :initarg :title
+          :documentation &quot;The title of the book.&quot;)
+   (contents :accessor contents :initarg :contents)
+   (indexes :accessor indexes :initarg :indexes :initform (make-hash-table :test 'eq))))</code
+            ></pre
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#class_005FIT.BESE.QBOOK_003A_003ABOOK"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

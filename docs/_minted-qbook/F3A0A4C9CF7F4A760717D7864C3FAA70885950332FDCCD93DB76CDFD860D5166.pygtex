@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{latex\PYGZhy{}command} \PYG{p}{(}\PYG{n+nv}{name} \PYG{k}{\PYGZam{}rest} \PYG{n+nv}{args}\PYG{p}{)}
+  \PYG{p}{(}\PYG{k}{declare} \PYG{p}{(}\PYG{k}{special} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*}\PYG{p}{))}
+  \PYG{p}{(}\PYG{n+nb}{write\PYGZhy{}string} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}\PYGZdq{}} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nb}{write\PYGZhy{}string} \PYG{n+nv}{name} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nb}{dolist} \PYG{p}{(}\PYG{n+nv}{arg} \PYG{n+nv}{args}\PYG{p}{)}
+    \PYG{p}{(}\PYG{n+nb}{write\PYGZhy{}string} \PYG{l+s}{\PYGZdq{}\PYGZob{}\PYGZdq{}} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*}\PYG{p}{)}
+    \PYG{p}{(}\PYG{n+nb}{write\PYGZhy{}string} \PYG{n+nv}{arg} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*}\PYG{p}{)}
+    \PYG{p}{(}\PYG{n+nb}{write\PYGZhy{}string} \PYG{l+s}{\PYGZdq{}\PYGZcb{}\PYGZdq{}} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*}\PYG{p}{))}
+  \PYG{p}{(}\PYG{n+nb}{terpri} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*}\PYG{p}{))}
+\end{Verbatim}

@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{num\PYGZhy{}lines} \PYG{p}{(}\PYG{n+nv}{text}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nv}{iterate}
+    \PYG{p}{(}\PYG{n+nv}{with} \PYG{n+nv}{num\PYGZhy{}lines} \PYG{n+nb}{=} \PYG{l+m+mi}{0}\PYG{p}{)}
+    \PYG{p}{(}\PYG{n+nv}{for} \PYG{n+nb}{char} \PYG{n+nv}{in\PYGZhy{}string} \PYG{n+nv}{text}\PYG{p}{)}
+    \PYG{p}{(}\PYG{n+nb}{when} \PYG{p}{(}\PYG{n+nb}{member} \PYG{n+nb}{char} \PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}Newline} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}Return} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}Linefeed}\PYG{p}{))}
+      \PYG{p}{(}\PYG{n+nb}{incf} \PYG{n+nv}{num\PYGZhy{}lines}\PYG{p}{))}
+    \PYG{p}{(}\PYG{n+nv}{finally} \PYG{p}{(}\PYG{n+nb}{return} \PYG{n+nv}{num\PYGZhy{}lines}\PYG{p}{))))}
+\end{Verbatim}

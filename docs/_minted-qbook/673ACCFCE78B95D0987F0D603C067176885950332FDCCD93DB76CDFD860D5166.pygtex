@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{generate\PYGZhy{}permuted\PYGZhy{}index} \PYG{p}{(}\PYG{n+nv}{generator} \PYG{n+nv}{book}\PYG{p}{)}
+  \PYG{p}{(}\PYG{k}{declare} \PYG{p}{(}\PYG{k}{ignore} \PYG{n+nv}{generator}\PYG{p}{))}
+  \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}qbook\PYGZhy{}page} \PYG{l+s+ss}{:title} \PYG{l+s}{\PYGZdq{}Permuted Index\PYGZdq{}}
+               \PYG{l+s+ss}{:file\PYGZhy{}name} \PYG{l+s}{\PYGZdq{}index/permutated.html\PYGZdq{}}
+               \PYG{l+s+ss}{:stylesheet} \PYG{l+s}{\PYGZdq{}../style.css\PYGZdq{}}
+               \PYG{l+s+ss}{:printsheet} \PYG{l+s}{\PYGZdq{}../print.css\PYGZdq{}}
+               \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:div} \PYG{l+s+ss}{:class} \PYG{l+s}{\PYGZdq{}api\PYGZhy{}index\PYGZdq{}}
+                      \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:h1} \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{l+s}{\PYGZdq{}Permuted Index\PYGZdq{}}\PYG{p}{))}
+                      \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:div} \PYG{l+s+ss}{:class} \PYG{l+s}{\PYGZdq{}contents\PYGZdq{}}
+                             \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:table} \PYG{l+s+ss}{:class} \PYG{l+s}{\PYGZdq{}permuted\PYGZhy{}index\PYGZhy{}table\PYGZdq{}}
+                                      \PYG{p}{(}\PYG{n+nv}{dolist*} \PYG{p}{((}\PYG{n+nv}{prefix} \PYG{n+nv}{suffix} \PYG{n+nv}{part}\PYG{p}{)} \PYG{p}{(}\PYG{n+nv}{permutated\PYGZhy{}global\PYGZhy{}index} \PYG{n+nv}{book}\PYG{p}{))}
+                                        \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:tr}
+                                         \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:td} \PYG{l+s+ss}{:align} \PYG{l+s}{\PYGZdq{}right\PYGZdq{}}
+                                               \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:a} \PYG{l+s+ss}{:href} \PYG{p}{(}\PYG{n+nv}{strcat} \PYG{l+s}{\PYGZdq{}../\PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}anchor\PYGZhy{}link} \PYG{p}{(}\PYG{n+nv}{descriptor} \PYG{n+nv}{part}\PYG{p}{)))}
+                                                    \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{n+nv}{prefix}\PYG{p}{)))}
+                                         \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:td} \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:a} \PYG{l+s+ss}{:href} \PYG{p}{(}\PYG{n+nv}{strcat} \PYG{l+s}{\PYGZdq{}../\PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}anchor\PYGZhy{}link} \PYG{p}{(}\PYG{n+nv}{descriptor} \PYG{n+nv}{part}\PYG{p}{)))}
+                                                    \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{n+nv}{suffix}\PYG{p}{)))}
+                                         \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:td} \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:a} \PYG{l+s+ss}{:href} \PYG{p}{(}\PYG{n+nv}{strcat} \PYG{l+s}{\PYGZdq{}../\PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}anchor\PYGZhy{}link} \PYG{p}{(}\PYG{n+nv}{descriptor} \PYG{n+nv}{part}\PYG{p}{)))}
+                                                    \PYG{l+s}{\PYGZdq{} [\PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{p}{(}\PYG{n+nv}{pretty\PYGZhy{}label\PYGZhy{}prefix} \PYG{p}{(}\PYG{n+nv}{descriptor} \PYG{n+nv}{part}\PYG{p}{)))} \PYG{l+s}{\PYGZdq{}] \PYGZdq{}}\PYG{p}{)))))))))}
+\end{Verbatim}

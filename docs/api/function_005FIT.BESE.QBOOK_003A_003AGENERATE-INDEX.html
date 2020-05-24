@@ -1,0 +1,45 @@
+<html
+  ><head
+    ><title
+      >Function GENERATE-INDEX</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: GENERATE-INDEX</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun generate-index (generator book index-class)
+  (declare (ignore generator))
+  (&lt;qbook-page :title (strcat (pretty-label-prefix (make-instance index-class))
+                              &quot; Index&quot;)
+               :file-name (strcat &quot;index/&quot; (label-prefix (make-instance index-class)) &quot;.html&quot;)
+               :stylesheet &quot;../style.css&quot;
+               :printsheet &quot;../print.css&quot;
+               (&lt;:div :class &quot;api-index&quot;
+                      (&lt;:h1 (&lt;:as-html (strcat (pretty-label-prefix (make-instance index-class))
+                                               &quot; Index&quot;)))
+                      (&lt;:div :class &quot;contents&quot;
+                             (&lt;:dl
+                              (dolist (part (sort-parts-with-descriptors (hash-table-values (gethash index-class (indexes book)))))
+                                (&lt;:dt (&lt;:a :href (strcat &quot;../&quot; (make-anchor-link (descriptor part)))
+                                           (&lt;:as-html (name (descriptor part)))))
+                                (when (docstring (descriptor part))
+                                  (&lt;:dd (&lt;:as-html (docstring-first-sentence (descriptor part))))))))))
+  t)</code
+            ></pre
+          ><a href="../The_0020HTML_0020Generator.html#function_005FIT.BESE.QBOOK_003A_003AGENERATE-INDEX"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

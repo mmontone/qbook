@@ -1,0 +1,77 @@
+<html
+  ><head
+    ><title
+      >Function READ-SOURCE-FILE</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: READ-SOURCE-FILE</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun read-source-file (file-name)
+  (let ((*evaling-readtable* (copy-readtable nil))
+        (*evaling-package* (find-package :common-lisp-user)))
+    (flet ((eval-part (part)
+             (etypecase part
+               (code-part
+                (let* ((*readtable* *evaling-readtable*)
+                       (*package* *evaling-package*)
+                       (*load-pathname* (pathname file-name))
+                       (*load-truename* (truename *load-pathname*)))
+                  (ignore-errors
+                   (setf (form part) (read-from-string (text part) nil))
+                   (eval (form part)))
+                  (setf *evaling-readtable* *readtable*)
+                  (setf *evaling-package* *package*)))
+               (t part))))
+      (let* ((*readtable* (make-qbook-readtable))
+             (*source-file* file-name)
+             (parts (with-input-from-file (stream file-name)
+                      (iterate
+                        (for part in-stream stream using #'read-preserving-whitespace)
+                        (collect part)
+                        (when (whitespacep (peek-char nil stream nil nil))
+                          (collect (read-whitespace stream)))))))
+        (declare (special *source-file*))
+        (with-input-from-file (stream file-name)
+          (let ((buffer nil))
+            (dolist (part parts)
+              (file-position stream (1- (start-position part)))
+              (setf buffer (make-array (1+ (- (end-position part) (start-position part)))
+                                       :element-type 'character))
+              (read-sequence buffer stream)
+              (setf (text part) buffer
+                    (origin-file part) file-name)
+              (eval-part part))))
+        ;; step 1: post process (merge sequential comments, setup headers, etc.)
+        (setf parts (post-process parts))
+        ;; step 2: handle any directives.
+        (setf parts (process-directives parts))
+        ;; step 3: gather any extra source code info
+        (setf parts (collect-code-info parts))
+        ;; step 4: setup navigation elements
+        (setf parts (post-process-navigation parts))
+        ;; step 5: remove all the parts before the first comment part
+        (setf parts (iterate
+                      (for p on parts)
+                      (until (comment-part-p (first p)))
+                      (finally (return p))))
+        ;; done!
+        parts))))</code
+            ></pre
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#function_005FIT.BESE.QBOOK_003A_003AREAD-SOURCE-FILE"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

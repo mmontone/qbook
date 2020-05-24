@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defmethod} \PYG{n+nv}{generate\PYGZhy{}part\PYGZhy{}reference} \PYG{p}{(}\PYG{n+nv}{part} \PYG{n+nv}{generator}\PYG{p}{)}
+  \PYG{p}{)}
+\end{Verbatim}

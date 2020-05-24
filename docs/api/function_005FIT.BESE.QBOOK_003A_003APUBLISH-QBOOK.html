@@ -1,0 +1,40 @@
+<html
+  ><head
+    ><title
+      >Function PUBLISH-QBOOK</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: PUBLISH-QBOOK</h1
+        ><div class="contents"
+          ><h2
+  >Documentation</h2
+><blockquote
+  >Convert FILE-NAME into a qbook html file named OUTPUT-FILE with title TITLE.</blockquote
+><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun publish-qbook (file-name generator)
+  &quot;Convert FILE-NAME into a qbook html file named OUTPUT-FILE with title TITLE.&quot;
+  (let ((book (make-instance 'book
+                             :title (title generator)
+                             :contents (convert-to-sections
+                                        file-name
+                                        (read-source-file file-name)))))
+    (bulid-indexes book)
+    (generate book generator)))</code
+            ></pre
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#function_005FIT.BESE.QBOOK_003A_003APUBLISH-QBOOK"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

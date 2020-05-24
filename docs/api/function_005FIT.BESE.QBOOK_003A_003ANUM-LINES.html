@@ -1,0 +1,34 @@
+<html
+  ><head
+    ><title
+      >Function NUM-LINES</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: NUM-LINES</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun num-lines (text)
+  (iterate
+    (with num-lines = 0)
+    (for char in-string text)
+    (when (member char '(#\Newline #\Return #\Linefeed))
+      (incf num-lines))
+    (finally (return num-lines))))</code
+            ></pre
+          ><a href="../The_0020HTML_0020Generator.html#function_005FIT.BESE.QBOOK_003A_003ANUM-LINES"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

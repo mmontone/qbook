@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defmethod} \PYG{n+nv}{make\PYGZhy{}anchor\PYGZhy{}name} \PYG{p}{((}\PYG{n+nv}{text} \PYG{n+nb}{string}\PYG{p}{))}
+  \PYG{p}{(}\PYG{n+nv}{regex\PYGZhy{}replace\PYGZhy{}all} \PYG{l+s}{\PYGZdq{}[\PYGZca{}A\PYGZhy{}Za\PYGZhy{}z.\PYGZhy{}]\PYGZdq{}} \PYG{n+nv}{text}
+                     \PYG{p}{(}\PYG{k}{lambda} \PYG{p}{(}\PYG{n+nv}{target\PYGZhy{}string} \PYG{n+nv}{start} \PYG{n+nv}{end} \PYG{n+nv}{match\PYGZhy{}start} \PYG{n+nv}{match\PYGZhy{}end} \PYG{n+nv}{reg\PYGZhy{}starts} \PYG{n+nv}{reg\PYGZhy{}ends}\PYG{p}{)}
+                       \PYG{p}{(}\PYG{k}{declare} \PYG{p}{(}\PYG{k}{ignore} \PYG{n+nv}{start} \PYG{n+nv}{end} \PYG{n+nv}{match\PYGZhy{}end} \PYG{n+nv}{reg\PYGZhy{}starts} \PYG{n+nv}{reg\PYGZhy{}ends}\PYG{p}{))}
+                       \PYG{p}{(}\PYG{n+nb}{format} \PYG{n+no}{nil} \PYG{l+s}{\PYGZdq{}\PYGZus{}\PYGZti{}4,\PYGZsq{}0X\PYGZdq{}} \PYG{p}{(}\PYG{n+nb}{char\PYGZhy{}code} \PYG{p}{(}\PYG{n+nb}{aref} \PYG{n+nv}{target\PYGZhy{}string} \PYG{n+nv}{match\PYGZhy{}start}\PYG{p}{))))))}
+\end{Verbatim}

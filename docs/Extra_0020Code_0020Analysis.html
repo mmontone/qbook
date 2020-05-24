@@ -1,0 +1,299 @@
+<html
+  ><head
+    ><title
+      >qbook</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="style.css" rel="stylesheet"
+    /><link title="Print" href="print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><h1 class="title"
+        >qbook</h1
+      ><div class="contents"
+        ><h2
+  ><a name="Extra_0020Code_0020Analysis"
+  >Extra Code Analysis</a
+>&nbsp;</h2
+><div class="nav-links"
+  ><a class="nav-link" href="ASDF_0020Integration.html"
+  >prev</a
+> | <span class="dead-nav-link"
+  >up</span
+> | <a href="The_0020HTML_0020Generator.html"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<div class="computational-element-link computational-element-link-variable"
+  ><p
+    ><a href="api/variable_005FIT.BESE.QBOOK_003A_003A_002ACODE-INFO-COLLECTORS_002A.html" name="variable_005FIT.BESE.QBOOK_003A_003A_002ACODE-INFO-COLLECTORS_002A"
+      >Variable *CODE-INFO-COLLECTORS*</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-variable"
+  ><p
+    ><a href="api/variable_005FIT.BESE.QBOOK_003A_003A_002AKNOWN-ELEMENTS_002A.html" name="variable_005FIT.BESE.QBOOK_003A_003A_002AKNOWN-ELEMENTS_002A"
+      >Variable *KNOWN-ELEMENTS*</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AREGISTER-DESCRIPTOR.html" name="function_005FIT.BESE.QBOOK_003A_003AREGISTER-DESCRIPTOR"
+      >Function REGISTER-DESCRIPTOR</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AFIND-DESCRIPTOR.html" name="function_005FIT.BESE.QBOOK_003A_003AFIND-DESCRIPTOR"
+      >Function FIND-DESCRIPTOR</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AANALYSE-CODE-PART.html" name="function_005FIT.BESE.QBOOK_003A_003AANALYSE-CODE-PART"
+      >Function ANALYSE-CODE-PART</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-macro"
+  ><p
+    ><a href="api/macro_005FIT.BESE.QBOOK_003A_003ADEFCODE-INFO-COLLECTOR.html" name="macro_005FIT.BESE.QBOOK_003A_003ADEFCODE-INFO-COLLECTOR"
+      >Macro DEFCODE-INFO-COLLECTOR</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003ADESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003ADESCRIPTOR"
+      >Class DESCRIPTOR</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003ASUBSEQ-FIRST-SENTENCE.html" name="function_005FIT.BESE.QBOOK_003A_003ASUBSEQ-FIRST-SENTENCE"
+      >Function SUBSEQ-FIRST-SENTENCE</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-generic function"
+  ><p
+    ><a href="api/generic_0020function_005FIT.BESE.QBOOK_003A_003ADOCSTRING-FIRST-SENTENCE.html" name="generic_0020function_005FIT.BESE.QBOOK_003A_003ADOCSTRING-FIRST-SENTENCE"
+      >Generic Function DOCSTRING-FIRST-SENTENCE</a
+    > Returns the first sentence of DESCRIPTOR's
+docstring.</p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003ADEFUN-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003ADEFUN-DESCRIPTOR"
+      >Class DEFUN-DESCRIPTOR</a
+    > </p
+  ></div
+>
+
+<pre
+  ><code class="code"
+    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defun <span class="paren">(</span>name lambda-list &amp;body body<span class="paren">)</span></span><span class"body">
+  <span class="paren">(</span>multiple-value-bind <span class="paren">(</span>lambda-list env<span class="paren">)</span>
+      <span class="paren">(</span>arnesi::walk-lambda-list lambda-list nil nil<span class="paren">)</span>
+    <span class="paren">(</span>multiple-value-bind <span class="paren">(</span>body docstring declarations<span class="paren">)</span>
+        <span class="paren">(</span>handler-bind <span class="paren">(</span><span class="paren">(</span>arnesi::return-from-unknown-block
+                         <span class="paren">(</span>lambda <span class="paren">(</span>c<span class="paren">)</span>
+                           <span class="paren">(</span>declare <span class="paren">(</span>ignore c<span class="paren">)</span><span class="paren">)</span>
+                           <span class="paren">(</span>invoke-restart 'arnesi::add-block<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span>
+          <span class="paren">(</span>arnesi::walk-implict-progn nil body env :docstring t :declare t<span class="paren">)</span><span class="paren">)</span>
+      <span class="paren">(</span>declare <span class="paren">(</span>ignore declarations<span class="paren">)</span><span class="paren">)</span>
+      <span class="paren">(</span>make-instance 'defun-descriptor
+                     :name name
+                     :lambda-list lambda-list
+                     :body body
+                     :docstring docstring<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span></span></code
+  ></pre
+>
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003ADEFMACRO-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003ADEFMACRO-DESCRIPTOR"
+      >Class DEFMACRO-DESCRIPTOR</a
+    > </p
+  ></div
+>
+
+<pre
+  ><code class="code"
+    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defmacro <span class="paren">(</span>name lambda-list &amp;body body<span class="paren">)</span></span><span class"body">
+  <span class="paren">(</span>multiple-value-bind <span class="paren">(</span>lambda-list env<span class="paren">)</span>
+      <span class="paren">(</span>arnesi::walk-lambda-list lambda-list nil nil<span class="paren">)</span>
+    <span class="paren">(</span>multiple-value-bind <span class="paren">(</span>body docstring declarations<span class="paren">)</span>
+        <span class="paren">(</span>handler-bind <span class="paren">(</span><span class="paren">(</span>arnesi::return-from-unknown-block
+                         <span class="paren">(</span>lambda <span class="paren">(</span>c<span class="paren">)</span>
+                           <span class="paren">(</span>declare <span class="paren">(</span>ignore c<span class="paren">)</span><span class="paren">)</span>
+                           <span class="paren">(</span>invoke-restart 'arnesi::add-block<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span>
+          <span class="paren">(</span>arnesi::walk-implict-progn nil body env :docstring t :declare t<span class="paren">)</span><span class="paren">)</span>
+      <span class="paren">(</span>declare <span class="paren">(</span>ignore declarations<span class="paren">)</span><span class="paren">)</span>
+      <span class="paren">(</span>make-instance 'defmacro-descriptor
+                     :name name
+                     :lambda-list lambda-list
+                     :body body
+                     :docstring docstring<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span></span></code
+  ></pre
+>
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003ADEFCLASS-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003ADEFCLASS-DESCRIPTOR"
+      >Class DEFCLASS-DESCRIPTOR</a
+    > </p
+  ></div
+>
+
+<pre
+  ><code class="code"
+    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defclass <span class="paren">(</span>name supers slots &amp;rest options<span class="paren">)</span></span><span class"body">
+  <span class="paren">(</span>make-instance 'defclass-descriptor
+                 :name name
+                 :supers supers
+                 :slots <span class="paren">(</span>mapcar #'make-slot-descriptor slots<span class="paren">)</span>
+                 :docstring <span class="paren">(</span>second <span class="paren">(</span>assoc :documentation options<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span></span></code
+  ></pre
+>
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003ACLASS-SLOT-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003ACLASS-SLOT-DESCRIPTOR"
+      >Class CLASS-SLOT-DESCRIPTOR</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AMAKE-SLOT-DESCRIPTOR.html" name="function_005FIT.BESE.QBOOK_003A_003AMAKE-SLOT-DESCRIPTOR"
+      >Function MAKE-SLOT-DESCRIPTOR</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003AGLOBAL-VARIABLE-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003AGLOBAL-VARIABLE-DESCRIPTOR"
+      >Class GLOBAL-VARIABLE-DESCRIPTOR</a
+    > </p
+  ></div
+>
+
+<pre
+  ><code class="code"
+    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defvar <span class="paren">(</span>name &amp;optional value documentation<span class="paren">)</span></span><span class"body">
+  <span class="paren">(</span>declare <span class="paren">(</span>ignore value<span class="paren">)</span><span class="paren">)</span>
+  <span class="paren">(</span>make-instance 'global-variable-descriptor
+                 :name name
+                 :docstring documentation<span class="paren">)</span><span class="paren">)</span></span></code
+  ></pre
+>
+
+<pre
+  ><code class="code"
+    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defparameter <span class="paren">(</span>name &amp;optional value documentation<span class="paren">)</span></span><span class"body">
+  <span class="paren">(</span>declare <span class="paren">(</span>ignore value<span class="paren">)</span><span class="paren">)</span>
+  <span class="paren">(</span>make-instance 'global-variable-descriptor
+                 :name name
+                 :docstring documentation<span class="paren">)</span><span class="paren">)</span></span></code
+  ></pre
+>
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003ADEFGENERIC-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003ADEFGENERIC-DESCRIPTOR"
+      >Class DEFGENERIC-DESCRIPTOR</a
+    > </p
+  ></div
+>
+
+<pre
+  ><code class="code"
+    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defgeneric <span class="paren">(</span>name arg-list &amp;rest options<span class="paren">)</span></span><span class"body">
+  <span class="paren">(</span>multiple-value-bind <span class="paren">(</span>lambda-list env<span class="paren">)</span>
+      <span class="paren">(</span>arnesi::walk-lambda-list arg-list nil nil :allow-specializers nil<span class="paren">)</span>
+    <span class="paren">(</span>declare <span class="paren">(</span>ignore env<span class="paren">)</span><span class="paren">)</span>
+    <span class="paren">(</span>make-instance 'defgeneric-descriptor
+                   :name name
+                   :lambda-list lambda-list
+                   :docstring <span class="paren">(</span>second <span class="paren">(</span>assoc :documentation options<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span></span></code
+  ></pre
+>
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003ADEFMETHOD-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003ADEFMETHOD-DESCRIPTOR"
+      >Class DEFMETHOD-DESCRIPTOR</a
+    > </p
+  ></div
+>
+
+<pre
+  ><code class="code"
+    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defmethod <span class="paren">(</span>name &amp;rest args<span class="paren">)</span></span><span class"body">
+  <span class="paren">(</span>let <span class="paren">(</span><span class="paren">(</span>qualifier nil<span class="paren">)</span>
+        arguments
+        body<span class="paren">)</span>
+    <span class="paren">(</span>when <span class="paren">(</span>symbolp <span class="paren">(</span>first args<span class="paren">)</span><span class="paren">)</span>
+      <span class="paren">(</span>setf qualifier <span class="paren">(</span>pop args<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span>
+    <span class="paren">(</span>setf arguments <span class="paren">(</span>pop args<span class="paren">)</span>
+          body args<span class="paren">)</span>
+    <span class="paren">(</span>multiple-value-bind <span class="paren">(</span>lambda-list env<span class="paren">)</span>
+        <span class="paren">(</span>arnesi::walk-lambda-list arguments nil nil :allow-specializers t<span class="paren">)</span>
+      <span class="paren">(</span>multiple-value-bind <span class="paren">(</span>body docstring declarations<span class="paren">)</span>
+          <span class="paren">(</span>handler-bind <span class="paren">(</span><span class="paren">(</span>arnesi::return-from-unknown-block
+                           <span class="paren">(</span>lambda <span class="paren">(</span>c<span class="paren">)</span>
+                             <span class="paren">(</span>declare <span class="paren">(</span>ignore c<span class="paren">)</span><span class="paren">)</span>
+                             <span class="paren">(</span>invoke-restart 'arnesi::add-block<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span>
+            <span class="paren">(</span>arnesi::walk-implict-progn nil body env :docstring t :declare t<span class="paren">)</span><span class="paren">)</span>
+        <span class="paren">(</span>declare <span class="paren">(</span>ignore declarations<span class="paren">)</span><span class="paren">)</span>
+        <span class="paren">(</span>make-instance 'defmethod-descriptor
+                       :name name
+                       :qualifier qualifier
+                       :lambda-list lambda-list
+                       :body body
+                       :docstring docstring<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span></span></code
+  ></pre
+>
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003ADEFCONSTANT-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003ADEFCONSTANT-DESCRIPTOR"
+      >Class DEFCONSTANT-DESCRIPTOR</a
+    > </p
+  ></div
+>
+
+<pre
+  ><code class="code"
+    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defconstant <span class="paren">(</span>name value &amp;optional docstring<span class="paren">)</span></span><span class"body">
+  <span class="paren">(</span>declare <span class="paren">(</span>ignore value<span class="paren">)</span><span class="paren">)</span>
+  <span class="paren">(</span>make-instance 'defconstant-descriptor
+                 :name name :docstring docstring<span class="paren">)</span><span class="paren">)</span></span></code
+  ></pre
+>
+
+</div
+      ></div
+    ></body
+  ></html
+>

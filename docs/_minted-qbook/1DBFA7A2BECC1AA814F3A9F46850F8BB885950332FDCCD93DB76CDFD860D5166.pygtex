@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defmethod} \PYG{n+nv}{write\PYGZhy{}code\PYGZhy{}descriptor} \PYG{l+s+ss}{:around} \PYG{p}{((}\PYG{n+nv}{descriptor} \PYG{n+nv}{descriptor}\PYG{p}{)} \PYG{n+nv}{part}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:div} \PYG{l+s+ss}{:class} \PYG{p}{(}\PYG{n+nv}{strcat} \PYG{l+s}{\PYGZdq{}computational\PYGZhy{}element\PYGZhy{}link \PYGZdq{}}
+                        \PYG{l+s}{\PYGZdq{}computational\PYGZhy{}element\PYGZhy{}link\PYGZhy{}\PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{label\PYGZhy{}prefix} \PYG{n+nv}{descriptor}\PYG{p}{))}
+         \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:p} \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:a} \PYG{l+s+ss}{:name} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}anchor\PYGZhy{}name} \PYG{n+nv}{descriptor}\PYG{p}{)}
+                   \PYG{l+s+ss}{:href} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}anchor\PYGZhy{}link} \PYG{n+nv}{descriptor}\PYG{p}{)}
+                   \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{p}{(}\PYG{n+nv}{pretty\PYGZhy{}label\PYGZhy{}prefix} \PYG{n+nv}{descriptor}\PYG{p}{))}
+                   \PYG{l+s}{\PYGZdq{} \PYGZdq{}}
+                   \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{p}{(}\PYG{n+nv}{html\PYGZhy{}name} \PYG{n+nv}{descriptor}\PYG{p}{)))}
+              \PYG{l+s}{\PYGZdq{} \PYGZdq{}}
+              \PYG{p}{(}\PYG{n+nv}{when\PYGZhy{}bind} \PYG{n+nv}{first\PYGZhy{}sentence} \PYG{p}{(}\PYG{n+nv}{docstring\PYGZhy{}first\PYGZhy{}sentence} \PYG{n+nv}{descriptor}\PYG{p}{)}
+                \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{n+nv}{first\PYGZhy{}sentence}\PYG{p}{))))}
+  \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}qbook\PYGZhy{}page} \PYG{l+s+ss}{:title} \PYG{p}{(}\PYG{n+nv}{strcat} \PYG{p}{(}\PYG{n+nv}{pretty\PYGZhy{}label\PYGZhy{}prefix} \PYG{n+nv}{descriptor}\PYG{p}{)} \PYG{l+s}{\PYGZdq{} \PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{html\PYGZhy{}name} \PYG{n+nv}{descriptor}\PYG{p}{))}
+               \PYG{l+s+ss}{:file\PYGZhy{}name} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}anchor\PYGZhy{}link} \PYG{n+nv}{descriptor}\PYG{p}{)}
+               \PYG{l+s+ss}{:stylesheet} \PYG{l+s}{\PYGZdq{}../style.css\PYGZdq{}}
+               \PYG{l+s+ss}{:printsheet} \PYG{l+s}{\PYGZdq{}../print.css\PYGZdq{}}
+               \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:div} \PYG{l+s+ss}{:class} \PYG{l+s}{\PYGZdq{}computational\PYGZhy{}element\PYGZdq{}}
+                      \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:h1} \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{p}{(}\PYG{n+nv}{pretty\PYGZhy{}label\PYGZhy{}prefix} \PYG{n+nv}{descriptor}\PYG{p}{))} \PYG{l+s}{\PYGZdq{}: \PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{p}{(}\PYG{n+nv}{html\PYGZhy{}name} \PYG{n+nv}{descriptor}\PYG{p}{)))}
+                      \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:div} \PYG{l+s+ss}{:class} \PYG{l+s}{\PYGZdq{}contents\PYGZdq{}}
+                             \PYG{p}{(}\PYG{n+nb}{when} \PYG{p}{(}\PYG{n+nv}{docstring} \PYG{n+nv}{descriptor}\PYG{p}{)}
+                               \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:h2} \PYG{l+s}{\PYGZdq{}Documentation\PYGZdq{}}\PYG{p}{)}
+                               \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:blockquote}
+                                \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{p}{(}\PYG{n+nv}{docstring} \PYG{n+nv}{descriptor}\PYG{p}{))))}
+                             \PYG{p}{(}\PYG{n+nb}{call\PYGZhy{}next\PYGZhy{}method}\PYG{p}{)}
+                             \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:h2} \PYG{l+s}{\PYGZdq{}Source\PYGZdq{}}\PYG{p}{)}
+                             \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:pre} \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:code} \PYG{l+s+ss}{:class} \PYG{l+s}{\PYGZdq{}code\PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{p}{(}\PYG{n+nv}{text} \PYG{n+nv}{part}\PYG{p}{))))}
+                             \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:a} \PYG{l+s+ss}{:href} \PYG{p}{(}\PYG{n+nv}{strcat} \PYG{l+s}{\PYGZdq{}../\PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{output\PYGZhy{}file} \PYG{n+nv}{part}\PYG{p}{)} \PYG{l+s}{\PYGZdq{}\PYGZsh{}\PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}anchor\PYGZhy{}name} \PYG{p}{(}\PYG{n+nv}{descriptor} \PYG{n+nv}{part}\PYG{p}{)))}
+                                  \PYG{l+s}{\PYGZdq{}Source Context\PYGZdq{}}\PYG{p}{)))))}
+\end{Verbatim}

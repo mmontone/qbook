@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defmethod} \PYG{n+nv}{permutated\PYGZhy{}global\PYGZhy{}index} \PYG{p}{((}\PYG{n+nv}{book} \PYG{n+nv}{book}\PYG{p}{))}
+  \PYG{p}{(}\PYG{k}{let} \PYG{p}{((}\PYG{n+nv}{entries} \PYG{o}{\PYGZsq{}}\PYG{p}{()))}
+    \PYG{p}{(}\PYG{n+nb}{dolist} \PYG{p}{(}\PYG{n+nv}{part} \PYG{p}{(}\PYG{n+nv}{all\PYGZhy{}code\PYGZhy{}parts} \PYG{n+nv}{book}\PYG{p}{))}
+      \PYG{p}{(}\PYG{n+nb}{when} \PYG{p}{(}\PYG{n+nv}{descriptor} \PYG{n+nv}{part}\PYG{p}{)}
+        \PYG{p}{(}\PYG{k}{let} \PYG{p}{((}\PYG{n+nv}{name\PYGZhy{}string} \PYG{p}{(}\PYG{n+nb}{symbol\PYGZhy{}name} \PYG{p}{(}\PYG{n+nv}{effective\PYGZhy{}name} \PYG{p}{(}\PYG{n+nv}{name} \PYG{p}{(}\PYG{n+nv}{descriptor} \PYG{n+nv}{part}\PYG{p}{))))))}
+          \PYG{p}{(}\PYG{n+nb}{dolist} \PYG{p}{(}\PYG{n+nv}{name\PYGZhy{}part} \PYG{p}{(}\PYG{n+nb}{remove\PYGZhy{}duplicates}
+                              \PYG{p}{(}\PYG{n+nb}{remove\PYGZhy{}if} \PYG{p}{(}\PYG{k}{lambda} \PYG{p}{(}\PYG{n+nb}{string}\PYG{p}{)}
+                                           \PYG{p}{(}\PYG{n+nb}{string=} \PYG{l+s}{\PYGZdq{}\PYGZdq{}} \PYG{n+nb}{string}\PYG{p}{))}
+                                         \PYG{p}{(}\PYG{n+nv}{cl\PYGZhy{}ppcre:split} \PYG{l+s}{\PYGZdq{}[\PYGZca{}a\PYGZhy{}zA\PYGZhy{}Z]\PYGZdq{}} \PYG{n+nv}{name\PYGZhy{}string}\PYG{p}{))}
+                              \PYG{l+s+ss}{:test} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nb}{string=}\PYG{p}{))}
+            \PYG{p}{(}\PYG{k}{let*} \PYG{p}{((}\PYG{n+nv}{offset} \PYG{p}{(}\PYG{n+nb}{search} \PYG{n+nv}{name\PYGZhy{}part} \PYG{n+nv}{name\PYGZhy{}string} \PYG{l+s+ss}{:test} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nb}{char=}\PYG{p}{))}
+                   \PYG{p}{(}\PYG{n+nv}{prefix} \PYG{p}{(}\PYG{n+nb}{subseq} \PYG{n+nv}{name\PYGZhy{}string} \PYG{l+m+mi}{0} \PYG{n+nv}{offset}\PYG{p}{))}
+                   \PYG{p}{(}\PYG{n+nv}{suffix} \PYG{p}{(}\PYG{n+nb}{subseq} \PYG{n+nv}{name\PYGZhy{}string} \PYG{n+nv}{offset}\PYG{p}{)))}
+              \PYG{p}{(}\PYG{k}{if} \PYG{p}{(}\PYG{n+nb}{symbolp} \PYG{p}{(}\PYG{n+nv}{name} \PYG{p}{(}\PYG{n+nv}{descriptor} \PYG{n+nv}{part}\PYG{p}{)))}
+                  \PYG{p}{(}\PYG{n+nb}{push} \PYG{p}{(}\PYG{n+nb}{list} \PYG{n+nv}{prefix} \PYG{n+nv}{suffix} \PYG{n+nv}{part}\PYG{p}{)}
+                        \PYG{n+nv}{entries}\PYG{p}{)}
+                  \PYG{p}{(}\PYG{n+nb}{push} \PYG{p}{(}\PYG{n+nb}{list} \PYG{p}{(}\PYG{n+nb}{format} \PYG{n+no}{nil} \PYG{l+s}{\PYGZdq{}(\PYGZti{}A \PYGZti{}A\PYGZdq{}}
+                                      \PYG{p}{(}\PYG{n+nb}{first} \PYG{p}{(}\PYG{n+nv}{name} \PYG{p}{(}\PYG{n+nv}{descriptor} \PYG{n+nv}{part}\PYG{p}{)))}
+                                      \PYG{n+nv}{prefix}\PYG{p}{)}
+                              \PYG{p}{(}\PYG{n+nb}{format} \PYG{n+no}{nil} \PYG{l+s}{\PYGZdq{}\PYGZti{}A)\PYGZdq{}} \PYG{n+nv}{suffix}\PYG{p}{)}
+                              \PYG{n+nv}{part}\PYG{p}{)}
+                        \PYG{n+nv}{entries}\PYG{p}{)))))))}
+    \PYG{p}{(}\PYG{n+nb}{sort} \PYG{n+nv}{entries} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nb}{string\PYGZlt{}} \PYG{l+s+ss}{:key} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nb}{second}\PYG{p}{)))}
+\end{Verbatim}

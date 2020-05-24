@@ -1,0 +1,56 @@
+<html
+  ><head
+    ><title
+      >Class LATEX-GENERATOR</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Class: LATEX-GENERATOR</h1
+        ><div class="contents"
+          ><h2
+  >Slots</h2
+><ul
+  ><li
+  >OUTPUT-FILE</li
+><li
+  >LISTINGS - When non-NIL, generate listings with LaTeX listings package.  When string, push \ltset{this string} in the preamble.</li
+><li
+  >HIGHLIGHT-SYNTAX - When T, highlight syntax using highlight.js library</li
+></ul
+><h2
+  >Hierachy</h2
+><h3
+  >Precedence List</h3
+><ul
+  ><li
+  ><a href="../api/class_005FIT.BESE.QBOOK_003A_003AGENERATOR.html"
+  >GENERATOR</a
+></li
+></ul
+><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defclass latex-generator (generator)
+  ((output-file :initarg :output-file :accessor output-file)
+   (listings :initarg :listings :accessor listings :initform nil
+             :documentation &quot;When non-NIL, generate listings with LaTeX listings package.  When string, push \\ltset{this string} in the preamble.&quot;)
+   (highlight-syntax :initarg :highlight-syntax
+                     :accessor highlight-syntax
+                     :type boolean
+                     :initform t
+                     :documentation &quot;When T, highlight syntax using highlight.js library&quot;)))</code
+            ></pre
+          ><a href="../The_0020LaTeX_0020Generator.html#class_005FIT.BESE.QBOOK_003A_003ALATEX-GENERATOR"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

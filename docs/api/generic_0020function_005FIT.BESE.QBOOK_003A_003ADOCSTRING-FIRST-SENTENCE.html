@@ -1,0 +1,44 @@
+<html
+  ><head
+    ><title
+      >Generic Function DOCSTRING-FIRST-SENTENCE</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Generic Function: DOCSTRING-FIRST-SENTENCE</h1
+        ><div class="contents"
+          ><h2
+  >Documentation</h2
+><blockquote
+  >Returns the first sentence of DESCRIPTOR's
+docstring. Returns at most LIMIT characters (if the first
+sentence is longer than LIMIT characters it will be simply
+truncated. If DESCRIPTOR's docstring is NIL this function
+returns nil.</blockquote
+><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defgeneric docstring-first-sentence (descriptor &amp;optional limit)
+  (:documentation &quot;Returns the first sentence of DESCRIPTOR's
+docstring. Returns at most LIMIT characters (if the first
+sentence is longer than LIMIT characters it will be simply
+truncated. If DESCRIPTOR's docstring is NIL this function
+returns nil.&quot;)
+  (:method ((descriptor descriptor) &amp;optional (limit 180))
+    (when (not (null (docstring descriptor)))
+      (subseq-first-sentence (docstring descriptor) limit))))</code
+            ></pre
+          ><a href="../Extra_0020Code_0020Analysis.html#generic_0020function_005FIT.BESE.QBOOK_003A_003ADOCSTRING-FIRST-SENTENCE"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

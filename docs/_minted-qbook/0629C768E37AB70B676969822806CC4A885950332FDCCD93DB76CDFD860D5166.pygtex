@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defclass} \PYG{n+nv}{generator} \PYG{p}{()}
+  \PYG{p}{((}\PYG{n+nv}{title} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{title} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:title}\PYG{p}{)}
+   \PYG{p}{(}\PYG{n+nv}{print\PYGZhy{}case} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:print\PYGZhy{}case}
+               \PYG{l+s+ss}{:accessor} \PYG{n+nv}{print\PYGZhy{}case}
+               \PYG{l+s+ss}{:initform} \PYG{n+nv+vg}{*print\PYGZhy{}case*}\PYG{p}{)))}
+\end{Verbatim}

@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{subseq\PYGZhy{}first\PYGZhy{}sentence} \PYG{p}{(}\PYG{n+nb}{string} \PYG{n+nv}{limit}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nb}{with\PYGZhy{}output\PYGZhy{}to\PYGZhy{}string} \PYG{p}{(}\PYG{n+nv}{first\PYGZhy{}sentence}\PYG{p}{)}
+    \PYG{p}{(}\PYG{k}{flet} \PYG{p}{((}\PYG{n+nv}{ret} \PYG{p}{()}
+             \PYG{p}{(}\PYG{k}{return\PYGZhy{}from} \PYG{n+nv}{subseq\PYGZhy{}first\PYGZhy{}sentence}
+               \PYG{p}{(}\PYG{n+nb}{get\PYGZhy{}output\PYGZhy{}stream\PYGZhy{}string} \PYG{n+nv}{first\PYGZhy{}sentence}\PYG{p}{))))}
+      \PYG{p}{(}\PYG{n+nb}{loop}
+        \PYG{n+nv}{for} \PYG{n+nb}{char} \PYG{n+nv}{across} \PYG{n+nb}{string}
+        \PYG{n+nv}{for} \PYG{n+nb}{count} \PYG{n+nv}{below} \PYG{n+nv}{limit}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n+nb}{member} \PYG{n+nb}{char} \PYG{p}{(}\PYG{n+nb}{list} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}.} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}?} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}!}\PYG{p}{))}
+          \PYG{n+nb}{do} \PYG{p}{(}\PYG{n+nb}{write\PYGZhy{}char} \PYG{n+nb}{char} \PYG{n+nv}{first\PYGZhy{}sentence}\PYG{p}{)}
+          \PYG{n+nb}{and} \PYG{n+nb}{do} \PYG{p}{(}\PYG{n+nv}{ret}\PYG{p}{)}
+        \PYG{n+nv}{else}
+          \PYG{n+nb}{do} \PYG{p}{(}\PYG{n+nb}{write\PYGZhy{}char} \PYG{n+nb}{char} \PYG{n+nv}{first\PYGZhy{}sentence}\PYG{p}{)}
+        \PYG{n+nv}{finally} \PYG{p}{(}\PYG{n+nv}{ret}\PYG{p}{)))))}
+\end{Verbatim}

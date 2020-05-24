@@ -1,0 +1,55 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defmethod} \PYG{n+nv}{generate} \PYG{p}{(}\PYG{n+nv}{book} \PYG{p}{(}\PYG{n+nv}{generator} \PYG{n+nv}{latex\PYGZhy{}generator}\PYG{p}{))}
+  \PYG{p}{(}\PYG{n+nv}{with\PYGZhy{}output\PYGZhy{}to\PYGZhy{}file} \PYG{p}{(}\PYG{n+nv+vg}{*latex\PYGZhy{}stream*} \PYG{p}{(}\PYG{n+nv}{output\PYGZhy{}file} \PYG{n+nv}{generator}\PYG{p}{)}
+                                       \PYG{l+s+ss}{:if\PYGZhy{}exists} \PYG{l+s+ss}{:supersede}
+                                       \PYG{l+s+ss}{:if\PYGZhy{}does\PYGZhy{}not\PYGZhy{}exist} \PYG{l+s+ss}{:create}\PYG{p}{)}
+    \PYG{p}{(}\PYG{k}{declare} \PYG{p}{(}\PYG{k}{special} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*}\PYG{p}{))}
+    \PYG{p}{(}\PYG{k}{flet} \PYG{p}{((}\PYG{n+nv}{wl} \PYG{p}{(}\PYG{n+nv}{s} \PYG{k}{\PYGZam{}rest} \PYG{n+nv}{args}\PYG{p}{)}
+             \PYG{p}{(}\PYG{n+nb}{write\PYGZhy{}line} \PYG{p}{(}\PYG{n+nb}{apply} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nb}{format} \PYG{n+no}{nil} \PYG{n+nv}{s} \PYG{n+nv}{args}\PYG{p}{)} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*}\PYG{p}{)))}
+      \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}documentclass[11pt,pdflatex,makeidx]\PYGZob{}scrbook\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}usepackage[margin=0.5in]\PYGZob{}geometry\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}usepackage\PYGZob{}xcolor\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}usepackage\PYGZob{}makeidx\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}usepackage\PYGZob{}hyperref\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nb}{when} \PYG{p}{(}\PYG{n+nv}{highlight\PYGZhy{}syntax} \PYG{n+nv}{generator}\PYG{p}{)}
+        \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}usepackage\PYGZob{}minted\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+        \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}usepackage\PYGZob{}mdframed\PYGZcb{}\PYGZdq{}}\PYG{p}{))}
+
+      \PYG{p}{(}\PYG{n+nb}{when} \PYG{p}{(}\PYG{n+nv}{listings} \PYG{n+nv}{generator}\PYG{p}{)}
+        \PYG{p}{(}\PYG{n+nv}{latex\PYGZhy{}command} \PYG{l+s}{\PYGZdq{}usepackage\PYGZdq{}} \PYG{l+s}{\PYGZdq{}listings\PYGZdq{}}\PYG{p}{)}
+        \PYG{p}{(}\PYG{n+nv}{latex\PYGZhy{}command} \PYG{l+s}{\PYGZdq{}lstset\PYGZdq{}} \PYG{l+s}{\PYGZdq{}language=lisp\PYGZdq{}}\PYG{p}{))}
+
+      \PYG{p}{(}\PYG{n+nb}{when} \PYG{p}{(}\PYG{n+nb}{stringp} \PYG{p}{(}\PYG{n+nv}{listings} \PYG{n+nv}{generator}\PYG{p}{))}
+        \PYG{p}{(}\PYG{n+nv}{latex\PYGZhy{}command} \PYG{l+s}{\PYGZdq{}lstset\PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{listings} \PYG{n+nv}{generator}\PYG{p}{)))}
+
+      \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}usepackage\PYGZob{}courier\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+
+      \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}definecolor\PYGZob{}CodeBackground\PYGZcb{}\PYGZob{}HTML\PYGZcb{}\PYGZob{}E9E9E9\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}hypersetup\PYGZob{}colorlinks=true,linkcolor=blue\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+
+      \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}parindent0pt  \PYGZbs{}\PYGZbs{}parskip10pt             \PYGZpc{} make block paragraphs\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}raggedright                            \PYGZpc{} do not right justify\PYGZdq{}}\PYG{p}{)}
+
+      \PYG{p}{(}\PYG{n+nv}{latex\PYGZhy{}command} \PYG{l+s}{\PYGZdq{}title\PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{title} \PYG{n+nv}{generator}\PYG{p}{))}
+
+      \PYG{p}{(}\PYG{n+nv}{latex\PYGZhy{}command} \PYG{l+s}{\PYGZdq{}date\PYGZdq{}} \PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{latex\PYGZhy{}command} \PYG{l+s}{\PYGZdq{}makeindex\PYGZdq{}}\PYG{p}{)}
+
+      \PYG{p}{(}\PYG{n+nv}{latex\PYGZhy{}command} \PYG{l+s}{\PYGZdq{}begin\PYGZdq{}} \PYG{l+s}{\PYGZdq{}document\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{latex\PYGZhy{}command} \PYG{l+s}{\PYGZdq{}maketitle\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{latex\PYGZhy{}command} \PYG{l+s}{\PYGZdq{}tableofcontents\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nb}{dolist} \PYG{p}{(}\PYG{n+nv}{section} \PYG{p}{(}\PYG{n+nv}{contents} \PYG{n+nv}{book}\PYG{p}{))}
+        \PYG{p}{(}\PYG{n+nb}{dolist} \PYG{p}{(}\PYG{n+nv}{part} \PYG{n+nv}{section}\PYG{p}{)}
+          \PYG{p}{(}\PYG{n+nv}{generate\PYGZhy{}part} \PYG{n+nv}{part} \PYG{n+nv}{generator}\PYG{p}{)))}
+      \PYG{p}{(}\PYG{n+nb}{terpri} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}addtocontents\PYGZob{}toc\PYGZcb{}\PYGZob{}\PYGZbs{}\PYGZbs{}protect\PYGZbs{}\PYGZbs{}setcounter\PYGZob{}tocdepth\PYGZcb{}\PYGZob{}0\PYGZcb{}\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}chapter\PYGZob{}Reference\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nb}{dolist} \PYG{p}{(}\PYG{n+nv}{section} \PYG{p}{(}\PYG{n+nv}{contents} \PYG{n+nv}{book}\PYG{p}{))}
+        \PYG{p}{(}\PYG{n+nb}{dolist} \PYG{p}{(}\PYG{n+nv}{part} \PYG{n+nv}{section}\PYG{p}{)}
+          \PYG{p}{(}\PYG{n+nv}{generate\PYGZhy{}part\PYGZhy{}reference} \PYG{n+nv}{part} \PYG{n+nv}{generator}\PYG{p}{)))}
+      \PYG{p}{(}\PYG{n+nb}{terpri} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nb}{terpri} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}chapter\PYGZob{}Index\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{wl} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}printindex\PYGZdq{}}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{latex\PYGZhy{}command} \PYG{l+s}{\PYGZdq{}end\PYGZdq{}} \PYG{l+s}{\PYGZdq{}document\PYGZdq{}}\PYG{p}{))))}
+\end{Verbatim}

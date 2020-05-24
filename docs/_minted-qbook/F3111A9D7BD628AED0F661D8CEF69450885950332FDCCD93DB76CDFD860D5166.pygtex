@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defclass} \PYG{n+nv}{latex\PYGZhy{}generator} \PYG{p}{(}\PYG{n+nv}{generator}\PYG{p}{)}
+  \PYG{p}{((}\PYG{n+nv}{output\PYGZhy{}file} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:output\PYGZhy{}file} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{output\PYGZhy{}file}\PYG{p}{)}
+   \PYG{p}{(}\PYG{n+nv}{listings} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:listings} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{listings} \PYG{l+s+ss}{:initform} \PYG{n+no}{nil}
+             \PYG{l+s+ss}{:documentation} \PYG{l+s}{\PYGZdq{}When non\PYGZhy{}NIL, generate listings with LaTeX listings package.  When string, push \PYGZbs{}\PYGZbs{}ltset\PYGZob{}this string\PYGZcb{} in the preamble.\PYGZdq{}}\PYG{p}{)}
+   \PYG{p}{(}\PYG{n+nv}{highlight\PYGZhy{}syntax} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:highlight\PYGZhy{}syntax}
+                     \PYG{l+s+ss}{:accessor} \PYG{n+nv}{highlight\PYGZhy{}syntax}
+                     \PYG{l+s+ss}{:type} \PYG{k+kt}{boolean}
+                     \PYG{l+s+ss}{:initform} \PYG{n+no}{t}
+                     \PYG{l+s+ss}{:documentation} \PYG{l+s}{\PYGZdq{}When T, highlight syntax using highlight.js library\PYGZdq{}}\PYG{p}{)))}
+\end{Verbatim}

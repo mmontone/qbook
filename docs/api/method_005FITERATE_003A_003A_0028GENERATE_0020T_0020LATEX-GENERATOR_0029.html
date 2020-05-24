@@ -1,0 +1,80 @@
+<html
+  ><head
+    ><title
+      >Method (GENERATE T LATEX-GENERATOR)</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Method: (GENERATE T LATEX-GENERATOR)</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defmethod generate (book (generator latex-generator))
+  (with-output-to-file (*latex-stream* (output-file generator)
+                                       :if-exists :supersede
+                                       :if-does-not-exist :create)
+    (declare (special *latex-stream*))
+    (flet ((wl (s &amp;rest args)
+             (write-line (apply #'format nil s args) *latex-stream*)))
+      (wl &quot;\\documentclass[11pt,pdflatex,makeidx]{scrbook}&quot;)
+      (wl &quot;\\usepackage[margin=0.5in]{geometry}&quot;)
+      (wl &quot;\\usepackage{xcolor}&quot;)
+      (wl &quot;\\usepackage{makeidx}&quot;)
+      (wl &quot;\\usepackage{hyperref}&quot;)
+      (when (highlight-syntax generator)
+        (wl &quot;\\usepackage{minted}&quot;)
+        (wl &quot;\\usepackage{mdframed}&quot;))
+
+      (when (listings generator)
+        (latex-command &quot;usepackage&quot; &quot;listings&quot;)
+        (latex-command &quot;lstset&quot; &quot;language=lisp&quot;))
+        
+      (when (stringp (listings generator))
+        (latex-command &quot;lstset&quot; (listings generator)))
+
+      (wl &quot;\\usepackage{courier}&quot;)
+
+      (wl &quot;\\definecolor{CodeBackground}{HTML}{E9E9E9}&quot;)
+      (wl &quot;\\hypersetup{colorlinks=true,linkcolor=blue}&quot;)
+
+      (wl &quot;\\parindent0pt  \\parskip10pt             % make block paragraphs&quot;)
+      (wl &quot;\\raggedright                            % do not right justify&quot;)
+
+      (latex-command &quot;title&quot; (title generator))
+      
+      (latex-command &quot;date&quot; &quot;&quot;)
+      (latex-command &quot;makeindex&quot;)
+      
+      (latex-command &quot;begin&quot; &quot;document&quot;)
+      (latex-command &quot;maketitle&quot;)
+      (latex-command &quot;tableofcontents&quot;)
+      (dolist (section (contents book))
+        (dolist (part section)
+          (generate-part part generator)))
+      (terpri *latex-stream*)
+      (wl &quot;\\addtocontents{toc}{\\protect\\setcounter{tocdepth}{0}}&quot;)
+      (wl &quot;\\chapter{Reference}&quot;)
+      (dolist (section (contents book))
+        (dolist (part section)
+          (generate-part-reference part generator)))
+      (terpri *latex-stream*)
+      (terpri *latex-stream*)
+      (wl &quot;\\chapter{Index}&quot;)
+      (wl &quot;\\printindex&quot;)
+      (latex-command &quot;end&quot; &quot;document&quot;))))</code
+            ></pre
+          ><a href="../The_0020LaTeX_0020Generator.html#method_005FITERATE_003A_003A_0028GENERATE_0020T_0020LATEX-GENERATOR_0029"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

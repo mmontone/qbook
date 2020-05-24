@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nv}{defcode\PYGZhy{}info\PYGZhy{}collector} \PYG{n+nv}{cl:defparameter} \PYG{p}{(}\PYG{n+nv}{name} \PYG{k}{\PYGZam{}optional} \PYG{n+nv}{value} \PYG{n+nb}{documentation}\PYG{p}{)}
+  \PYG{p}{(}\PYG{k}{declare} \PYG{p}{(}\PYG{k}{ignore} \PYG{n+nv}{value}\PYG{p}{))}
+  \PYG{p}{(}\PYG{n+nb}{make\PYGZhy{}instance} \PYG{l+s+ss}{\PYGZsq{}global\PYGZhy{}variable\PYGZhy{}descriptor}
+                 \PYG{l+s+ss}{:name} \PYG{n+nv}{name}
+                 \PYG{l+s+ss}{:docstring} \PYG{n+nb}{documentation}\PYG{p}{))}
+\end{Verbatim}

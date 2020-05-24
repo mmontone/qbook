@@ -1,0 +1,52 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{read\PYGZhy{}source\PYGZhy{}file} \PYG{p}{(}\PYG{n+nv}{file\PYGZhy{}name}\PYG{p}{)}
+  \PYG{p}{(}\PYG{k}{let} \PYG{p}{((}\PYG{n+nv+vg}{*evaling\PYGZhy{}readtable*} \PYG{p}{(}\PYG{n+nb}{copy\PYGZhy{}readtable} \PYG{n+no}{nil}\PYG{p}{))}
+        \PYG{p}{(}\PYG{n+nv+vg}{*evaling\PYGZhy{}package*} \PYG{p}{(}\PYG{n+nb}{find\PYGZhy{}package} \PYG{l+s+ss}{:common\PYGZhy{}lisp\PYGZhy{}user}\PYG{p}{)))}
+    \PYG{p}{(}\PYG{k}{flet} \PYG{p}{((}\PYG{n+nv}{eval\PYGZhy{}part} \PYG{p}{(}\PYG{n+nv}{part}\PYG{p}{)}
+             \PYG{p}{(}\PYG{n+nb}{etypecase} \PYG{n+nv}{part}
+               \PYG{p}{(}\PYG{n+nv}{code\PYGZhy{}part}
+                \PYG{p}{(}\PYG{k}{let*} \PYG{p}{((}\PYG{n+nv+vg}{*readtable*} \PYG{n+nv+vg}{*evaling\PYGZhy{}readtable*}\PYG{p}{)}
+                       \PYG{p}{(}\PYG{n+nv+vg}{*package*} \PYG{n+nv+vg}{*evaling\PYGZhy{}package*}\PYG{p}{)}
+                       \PYG{p}{(}\PYG{n+nv+vg}{*load\PYGZhy{}pathname*} \PYG{p}{(}\PYG{n+nb}{pathname} \PYG{n+nv}{file\PYGZhy{}name}\PYG{p}{))}
+                       \PYG{p}{(}\PYG{n+nv+vg}{*load\PYGZhy{}truename*} \PYG{p}{(}\PYG{n+nb}{truename} \PYG{n+nv+vg}{*load\PYGZhy{}pathname*}\PYG{p}{)))}
+                  \PYG{p}{(}\PYG{n+nb}{ignore\PYGZhy{}errors}
+                   \PYG{p}{(}\PYG{n+nb}{setf} \PYG{p}{(}\PYG{n+nv}{form} \PYG{n+nv}{part}\PYG{p}{)} \PYG{p}{(}\PYG{n+nb}{read\PYGZhy{}from\PYGZhy{}string} \PYG{p}{(}\PYG{n+nv}{text} \PYG{n+nv}{part}\PYG{p}{)} \PYG{n+no}{nil}\PYG{p}{))}
+                   \PYG{p}{(}\PYG{n+nb}{eval} \PYG{p}{(}\PYG{n+nv}{form} \PYG{n+nv}{part}\PYG{p}{)))}
+                  \PYG{p}{(}\PYG{n+nb}{setf} \PYG{n+nv+vg}{*evaling\PYGZhy{}readtable*} \PYG{n+nv+vg}{*readtable*}\PYG{p}{)}
+                  \PYG{p}{(}\PYG{n+nb}{setf} \PYG{n+nv+vg}{*evaling\PYGZhy{}package*} \PYG{n+nv+vg}{*package*}\PYG{p}{)))}
+               \PYG{p}{(}\PYG{n+no}{t} \PYG{n+nv}{part}\PYG{p}{))))}
+      \PYG{p}{(}\PYG{k}{let*} \PYG{p}{((}\PYG{n+nv+vg}{*readtable*} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}qbook\PYGZhy{}readtable}\PYG{p}{))}
+             \PYG{p}{(}\PYG{n+nv+vg}{*source\PYGZhy{}file*} \PYG{n+nv}{file\PYGZhy{}name}\PYG{p}{)}
+             \PYG{p}{(}\PYG{n+nv}{parts} \PYG{p}{(}\PYG{n+nv}{with\PYGZhy{}input\PYGZhy{}from\PYGZhy{}file} \PYG{p}{(}\PYG{n+nc}{stream} \PYG{n+nv}{file\PYGZhy{}name}\PYG{p}{)}
+                      \PYG{p}{(}\PYG{n+nv}{iterate}
+                        \PYG{p}{(}\PYG{n+nv}{for} \PYG{n+nv}{part} \PYG{n+nv}{in\PYGZhy{}stream} \PYG{n+nc}{stream} \PYG{n+nv}{using} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nb}{read\PYGZhy{}preserving\PYGZhy{}whitespace}\PYG{p}{)}
+                        \PYG{p}{(}\PYG{n+nv}{collect} \PYG{n+nv}{part}\PYG{p}{)}
+                        \PYG{p}{(}\PYG{n+nb}{when} \PYG{p}{(}\PYG{n+nv}{whitespacep} \PYG{p}{(}\PYG{n+nb}{peek\PYGZhy{}char} \PYG{n+no}{nil} \PYG{n+nc}{stream} \PYG{n+no}{nil} \PYG{n+no}{nil}\PYG{p}{))}
+                          \PYG{p}{(}\PYG{n+nv}{collect} \PYG{p}{(}\PYG{n+nv}{read\PYGZhy{}whitespace} \PYG{n+nc}{stream}\PYG{p}{)))))))}
+        \PYG{p}{(}\PYG{k}{declare} \PYG{p}{(}\PYG{k}{special} \PYG{n+nv+vg}{*source\PYGZhy{}file*}\PYG{p}{))}
+        \PYG{p}{(}\PYG{n+nv}{with\PYGZhy{}input\PYGZhy{}from\PYGZhy{}file} \PYG{p}{(}\PYG{n+nc}{stream} \PYG{n+nv}{file\PYGZhy{}name}\PYG{p}{)}
+          \PYG{p}{(}\PYG{k}{let} \PYG{p}{((}\PYG{n+nv}{buffer} \PYG{n+no}{nil}\PYG{p}{))}
+            \PYG{p}{(}\PYG{n+nb}{dolist} \PYG{p}{(}\PYG{n+nv}{part} \PYG{n+nv}{parts}\PYG{p}{)}
+              \PYG{p}{(}\PYG{n+nb}{file\PYGZhy{}position} \PYG{n+nc}{stream} \PYG{p}{(}\PYG{n+nb}{1\PYGZhy{}} \PYG{p}{(}\PYG{n+nv}{start\PYGZhy{}position} \PYG{n+nv}{part}\PYG{p}{)))}
+              \PYG{p}{(}\PYG{n+nb}{setf} \PYG{n+nv}{buffer} \PYG{p}{(}\PYG{n+nb}{make\PYGZhy{}array} \PYG{p}{(}\PYG{n+nb}{1+} \PYG{p}{(}\PYG{n+nb}{\PYGZhy{}} \PYG{p}{(}\PYG{n+nv}{end\PYGZhy{}position} \PYG{n+nv}{part}\PYG{p}{)} \PYG{p}{(}\PYG{n+nv}{start\PYGZhy{}position} \PYG{n+nv}{part}\PYG{p}{)))}
+                                       \PYG{l+s+ss}{:element\PYGZhy{}type} \PYG{l+s+ss}{\PYGZsq{}character}\PYG{p}{))}
+              \PYG{p}{(}\PYG{n+nb}{read\PYGZhy{}sequence} \PYG{n+nv}{buffer} \PYG{n+nc}{stream}\PYG{p}{)}
+              \PYG{p}{(}\PYG{n+nb}{setf} \PYG{p}{(}\PYG{n+nv}{text} \PYG{n+nv}{part}\PYG{p}{)} \PYG{n+nv}{buffer}
+                    \PYG{p}{(}\PYG{n+nv}{origin\PYGZhy{}file} \PYG{n+nv}{part}\PYG{p}{)} \PYG{n+nv}{file\PYGZhy{}name}\PYG{p}{)}
+              \PYG{p}{(}\PYG{n+nv}{eval\PYGZhy{}part} \PYG{n+nv}{part}\PYG{p}{))))}
+        \PYG{c+c1}{;; step 1: post process (merge sequential comments, setup headers, etc.)}
+        \PYG{p}{(}\PYG{n+nb}{setf} \PYG{n+nv}{parts} \PYG{p}{(}\PYG{n+nv}{post\PYGZhy{}process} \PYG{n+nv}{parts}\PYG{p}{))}
+        \PYG{c+c1}{;; step 2: handle any directives.}
+        \PYG{p}{(}\PYG{n+nb}{setf} \PYG{n+nv}{parts} \PYG{p}{(}\PYG{n+nv}{process\PYGZhy{}directives} \PYG{n+nv}{parts}\PYG{p}{))}
+        \PYG{c+c1}{;; step 3: gather any extra source code info}
+        \PYG{p}{(}\PYG{n+nb}{setf} \PYG{n+nv}{parts} \PYG{p}{(}\PYG{n+nv}{collect\PYGZhy{}code\PYGZhy{}info} \PYG{n+nv}{parts}\PYG{p}{))}
+        \PYG{c+c1}{;; step 4: setup navigation elements}
+        \PYG{p}{(}\PYG{n+nb}{setf} \PYG{n+nv}{parts} \PYG{p}{(}\PYG{n+nv}{post\PYGZhy{}process\PYGZhy{}navigation} \PYG{n+nv}{parts}\PYG{p}{))}
+        \PYG{c+c1}{;; step 5: remove all the parts before the first comment part}
+        \PYG{p}{(}\PYG{n+nb}{setf} \PYG{n+nv}{parts} \PYG{p}{(}\PYG{n+nv}{iterate}
+                      \PYG{p}{(}\PYG{n+nv}{for} \PYG{n+nv}{p} \PYG{n+nv}{on} \PYG{n+nv}{parts}\PYG{p}{)}
+                      \PYG{p}{(}\PYG{n+nv}{until} \PYG{p}{(}\PYG{n+nv}{comment\PYGZhy{}part\PYGZhy{}p} \PYG{p}{(}\PYG{n+nb}{first} \PYG{n+nv}{p}\PYG{p}{)))}
+                      \PYG{p}{(}\PYG{n+nv}{finally} \PYG{p}{(}\PYG{n+nb}{return} \PYG{n+nv}{p}\PYG{p}{))))}
+        \PYG{c+c1}{;; done!}
+        \PYG{n+nv}{parts}\PYG{p}{))))}
+\end{Verbatim}

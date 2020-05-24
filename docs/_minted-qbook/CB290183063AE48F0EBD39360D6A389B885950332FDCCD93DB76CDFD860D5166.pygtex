@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{safe\PYGZhy{}latex\PYGZhy{}id} \PYG{p}{(}\PYG{n+nb}{string}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nb}{with\PYGZhy{}output\PYGZhy{}to\PYGZhy{}string} \PYG{p}{(}\PYG{n+nc}{stream}\PYG{p}{)}
+    \PYG{p}{(}\PYG{n+nv}{iterate}
+      \PYG{p}{(}\PYG{n+nv}{for} \PYG{n+nb}{char} \PYG{n+nv}{in\PYGZhy{}string} \PYG{n+nb}{string}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nb}{case} \PYG{n+nb}{char}
+        \PYG{p}{((}\PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}\PYGZam{}} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}\PYGZdl{}} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}\PYGZpc{}} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}\PYGZsh{}} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}\PYGZus{}} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}\PYGZob{}} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}\PYGZcb{}} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}\PYGZca{}} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}\PYGZbs{}} \PYG{p}{)}
+         \PYG{p}{(}\PYG{n+nb}{write\PYGZhy{}char} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}\PYGZhy{}} \PYG{n+nc}{stream}\PYG{p}{))}
+        \PYG{p}{(}\PYG{n+no}{t} \PYG{p}{(}\PYG{n+nb}{write\PYGZhy{}char} \PYG{n+nb}{char} \PYG{n+nc}{stream}\PYG{p}{))))))}
+\end{Verbatim}

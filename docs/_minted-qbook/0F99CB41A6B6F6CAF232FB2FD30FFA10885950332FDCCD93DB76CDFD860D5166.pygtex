@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defclass} \PYG{n+nv}{defmethod\PYGZhy{}descriptor} \PYG{p}{(}\PYG{n+nv}{defun\PYGZhy{}descriptor}\PYG{p}{)}
+  \PYG{p}{((}\PYG{n+nv}{qualifier} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{qualifier} \PYG{l+s+ss}{:initform} \PYG{n+no}{nil} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:qualifier}\PYG{p}{))}
+  \PYG{p}{(}\PYG{l+s+ss}{:default\PYGZhy{}initargs}
+   \PYG{l+s+ss}{:label\PYGZhy{}prefix} \PYG{l+s}{\PYGZdq{}method\PYGZdq{}}
+   \PYG{l+s+ss}{:pretty\PYGZhy{}label\PYGZhy{}prefix} \PYG{l+s}{\PYGZdq{}Method\PYGZdq{}}\PYG{p}{))}
+\end{Verbatim}

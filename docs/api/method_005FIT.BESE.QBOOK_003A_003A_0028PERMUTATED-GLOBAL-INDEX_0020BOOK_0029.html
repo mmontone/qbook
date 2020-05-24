@@ -1,0 +1,50 @@
+<html
+  ><head
+    ><title
+      >Method (PERMUTATED-GLOBAL-INDEX BOOK)</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Method: (PERMUTATED-GLOBAL-INDEX BOOK)</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defmethod permutated-global-index ((book book))
+  (let ((entries '()))
+    (dolist (part (all-code-parts book))
+      (when (descriptor part)
+        (let ((name-string (symbol-name (effective-name (name (descriptor part))))))
+          (dolist (name-part (remove-duplicates
+                              (remove-if (lambda (string)
+                                           (string= &quot;&quot; string))
+                                         (cl-ppcre:split &quot;[^a-zA-Z]&quot; name-string))
+                              :test #'string=))
+            (let* ((offset (search name-part name-string :test #'char=))
+                   (prefix (subseq name-string 0 offset))
+                   (suffix (subseq name-string offset)))
+              (if (symbolp (name (descriptor part)))
+                  (push (list prefix suffix part)
+                        entries)
+                  (push (list (format nil &quot;(~A ~A&quot;
+                                      (first (name (descriptor part)))
+                                      prefix)
+                              (format nil &quot;~A)&quot; suffix)
+                              part)
+                        entries)))))))
+    (sort entries #'string&lt; :key #'second)))</code
+            ></pre
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#method_005FIT.BESE.QBOOK_003A_003A_0028PERMUTATED-GLOBAL-INDEX_0020BOOK_0029"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

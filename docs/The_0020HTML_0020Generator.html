@@ -1,0 +1,311 @@
+<html
+  ><head
+    ><title
+      >qbook</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="style.css" rel="stylesheet"
+    /><link title="Print" href="print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><h1 class="title"
+        >qbook</h1
+      ><div class="contents"
+        ><h2
+  ><a name="The_0020HTML_0020Generator"
+  >The HTML Generator</a
+>&nbsp;</h2
+><div class="nav-links"
+  ><a class="nav-link" href="Extra_0020Code_0020Analysis.html"
+  >prev</a
+> | <span class="dead-nav-link"
+  >up</span
+> | <a href="The_0020HTML_0020Generator.html#Writing_0020Comments"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003AHTML-GENERATOR.html" name="class_005FIT.BESE.QBOOK_003A_003AHTML-GENERATOR"
+      >Class HTML-GENERATOR</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-variable"
+  ><p
+    ><a href="api/variable_005FIT.BESE.QBOOK_003A_003A_002AGENERATOR_002A.html" name="variable_005FIT.BESE.QBOOK_003A_003A_002AGENERATOR_002A"
+      >Variable *GENERATOR*</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-variable"
+  ><p
+    ><a href="api/variable_005FIT.BESE.QBOOK_003A_003A_002ABOOK_002A.html" name="variable_005FIT.BESE.QBOOK_003A_003A_002ABOOK_002A"
+      >Variable *BOOK*</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FITERATE_003A_003A_0028GENERATE_0020T_0020HTML-GENERATOR_0029.html" name="method_005FITERATE_003A_003A_0028GENERATE_0020T_0020HTML-GENERATOR_0029"
+      >Method (GENERATE T HTML-GENERATOR)</a
+    > </p
+  ></div
+>
+
+<pre
+  ><code class="code"
+    ><span class="first-line"><span class="paren">(</span>eval-when <span class="paren">(</span>:compile-toplevel :load-toplevel :execute<span class="paren">)</span></span><span class"body">
+  <span class="paren">(</span>yaclml:deftag-macro &lt;qbook-page <span class="paren">(</span>&amp;attribute title file-name <span class="paren">(</span>stylesheet &quot;style.css&quot;<span class="paren">)</span>
+                                               <span class="paren">(</span>printsheet &quot;print.css&quot;<span class="paren">)</span>
+                                               &amp;body body<span class="paren">)</span>
+    `<span class="paren">(</span>with-output-to-file <span class="paren">(</span>*yaclml-stream*
+                           <span class="paren">(</span>ensure-directories-exist <span class="paren">(</span>merge-pathnames ,file-name <span class="paren">(</span>output-directory *generator*<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span>
+                           :if-exists :supersede
+                           :if-does-not-exist :create<span class="paren">)</span>
+       <span class="paren">(</span>&lt;:html
+        <span class="paren">(</span>&lt;:head
+         <span class="paren">(</span>&lt;:title <span class="paren">(</span>&lt;:as-html ,title<span class="paren">)</span><span class="paren">)</span>
+         <span class="paren">(</span>&lt;:meta :http-equiv &quot;Content-Type&quot; :content &quot;text/html; charset=utf-8&quot;<span class="paren">)</span>
+         <span class="paren">(</span>&lt;:stylesheet ,stylesheet<span class="paren">)</span>
+         <span class="paren">(</span>&lt;:link :rel &quot;alternate stylesheet&quot; :href ,printsheet :title &quot;Print&quot;<span class="paren">)</span>
+         <span class="paren">(</span>when <span class="paren">(</span>highlight-syntax *generator*<span class="paren">)</span>
+           <span class="paren">(</span>&lt;:link :rel &quot;stylesheet&quot;
+                   :href &quot;https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/styles/default.min.css&quot;<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span>
+        <span class="paren">(</span>&lt;:body
+         <span class="paren">(</span>&lt;:div :class &quot;qbook&quot; ,@body<span class="paren">)</span>
+         <span class="paren">(</span>when <span class="paren">(</span>highlight-syntax *generator*<span class="paren">)</span>
+           <span class="paren">(</span>&lt;:script :src &quot;https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/highlight.min.js&quot;<span class="paren">)</span>
+           <span class="paren">(</span>&lt;:script :src &quot;https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/languages/lisp.min.js&quot;<span class="paren">)</span>
+           <span class="paren">(</span>&lt;:script &quot;hljs.initHighlightingOnLoad<span class="paren">(</span><span class="paren">)</span>;&quot;<span class="paren">)</span><span class="paren">)</span>
+         <span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span></span></code
+  ></pre
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AGENERATE-TABLE-OF-CONTENTS.html" name="function_005FIT.BESE.QBOOK_003A_003AGENERATE-TABLE-OF-CONTENTS"
+      >Function GENERATE-TABLE-OF-CONTENTS</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AGENERATE-INDEX.html" name="function_005FIT.BESE.QBOOK_003A_003AGENERATE-INDEX"
+      >Function GENERATE-INDEX</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AGENERATE-PERMUTED-INDEX.html" name="function_005FIT.BESE.QBOOK_003A_003AGENERATE-PERMUTED-INDEX"
+      >Function GENERATE-PERMUTED-INDEX</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AGENERATE-SECTION.html" name="function_005FIT.BESE.QBOOK_003A_003AGENERATE-SECTION"
+      >Function GENERATE-SECTION</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028MAKE-ANCHOR-LINK_0020HEADING-PART_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028MAKE-ANCHOR-LINK_0020HEADING-PART_0029"
+      >Method (MAKE-ANCHOR-LINK HEADING-PART)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028MAKE-ANCHOR-LINK_0020DESCRIPTOR_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028MAKE-ANCHOR-LINK_0020DESCRIPTOR_0029"
+      >Method (MAKE-ANCHOR-LINK DESCRIPTOR)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028MAKE-ANCHOR-NAME_0020STRING_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028MAKE-ANCHOR-NAME_0020STRING_0029"
+      >Method (MAKE-ANCHOR-NAME STRING)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AEFFECTIVE-NAME.html" name="function_005FIT.BESE.QBOOK_003A_003AEFFECTIVE-NAME"
+      >Function EFFECTIVE-NAME</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028MAKE-ANCHOR-NAME_0020DESCRIPTOR_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028MAKE-ANCHOR-NAME_0020DESCRIPTOR_0029"
+      >Method (MAKE-ANCHOR-NAME DESCRIPTOR)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028MAKE-ANCHOR-NAME_0020DEFMETHOD-DESCRIPTOR_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028MAKE-ANCHOR-NAME_0020DEFMETHOD-DESCRIPTOR_0029"
+      >Method (MAKE-ANCHOR-NAME DEFMETHOD-DESCRIPTOR)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028HTML-NAME_0020DESCRIPTOR_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028HTML-NAME_0020DESCRIPTOR_0029"
+      >Method (HTML-NAME DESCRIPTOR)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028HTML-NAME_0020DEFMETHOD-DESCRIPTOR_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028HTML-NAME_0020DEFMETHOD-DESCRIPTOR_0029"
+      >Method (HTML-NAME DEFMETHOD-DESCRIPTOR)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003APUBLISH.html" name="function_005FIT.BESE.QBOOK_003A_003APUBLISH"
+      >Function PUBLISH</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003ANUM-LINES.html" name="function_005FIT.BESE.QBOOK_003A_003ANUM-LINES"
+      >Function NUM-LINES</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AWRITE-CODE.html" name="function_005FIT.BESE.QBOOK_003A_003AWRITE-CODE"
+      >Function WRITE-CODE</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-generic function"
+  ><p
+    ><a href="api/generic_0020function_005FIT.BESE.QBOOK_003A_003AWRITE-CODE-DESCRIPTOR.html" name="generic_0020function_005FIT.BESE.QBOOK_003A_003AWRITE-CODE-DESCRIPTOR"
+      >Generic Function WRITE-CODE-DESCRIPTOR</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028WRITE-CODE-DESCRIPTOR_0020T_0020T_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028WRITE-CODE-DESCRIPTOR_0020T_0020T_0029"
+      >Method (WRITE-CODE-DESCRIPTOR T T)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028WRITE-CODE-DESCRIPTOR_0020AROUND_0020DESCRIPTOR_0020T_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028WRITE-CODE-DESCRIPTOR_0020AROUND_0020DESCRIPTOR_0020T_0029"
+      >Method (WRITE-CODE-DESCRIPTOR AROUND DESCRIPTOR T)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028WRITE-CODE-DESCRIPTOR_0020DESCRIPTOR_0020T_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028WRITE-CODE-DESCRIPTOR_0020DESCRIPTOR_0020T_0029"
+      >Method (WRITE-CODE-DESCRIPTOR DESCRIPTOR T)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028WRITE-CODE-DESCRIPTOR_0020DEFCLASS-DESCRIPTOR_0020T_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028WRITE-CODE-DESCRIPTOR_0020DEFCLASS-DESCRIPTOR_0020T_0029"
+      >Method (WRITE-CODE-DESCRIPTOR DEFCLASS-DESCRIPTOR T)</a
+    > </p
+  ></div
+>
+
+<h3
+  ><a name="Writing_0020Comments"
+  >Writing Comments</a
+>&nbsp;</h3
+><div class="nav-links"
+  ><a class="nav-link" href="The_0020HTML_0020Generator.html"
+  >prev</a
+> | <a class="nav-link" href="The_0020HTML_0020Generator.html"
+  >up</a
+> | <a href="The_0020HTML_0020Generator.html#Standard_0020HTML_0020stylesheets"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AWRITE-COMMENT.html" name="function_005FIT.BESE.QBOOK_003A_003AWRITE-COMMENT"
+      >Function WRITE-COMMENT</a
+    > </p
+  ></div
+>
+
+
+<h3
+  ><a name="Standard_0020HTML_0020stylesheets"
+  >Standard HTML stylesheets</a
+>&nbsp;</h3
+><div class="nav-links"
+  ><a class="nav-link" href="The_0020HTML_0020Generator.html#Writing_0020Comments"
+  >prev</a
+> | <a class="nav-link" href="The_0020HTML_0020Generator.html"
+  >up</a
+> | <a href="The_0020LaTeX_0020Generator.html"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<p> We include these as variables so that whene generating an html
+ doc set we needn't know the location of qbook's source code.
+
+<div class="computational-element-link computational-element-link-variable"
+  ><p
+    ><a href="api/variable_005FIT.BESE.QBOOK_003A_003A_002APRINT.CSS_002A.html" name="variable_005FIT.BESE.QBOOK_003A_003A_002APRINT.CSS_002A"
+      >Variable *PRINT.CSS*</a
+    > The alternative (destined for hard copy) HTML stylesheet.</p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-variable"
+  ><p
+    ><a href="api/variable_005FIT.BESE.QBOOK_003A_003A_002ASTYLE.CSS_002A.html" name="variable_005FIT.BESE.QBOOK_003A_003A_002ASTYLE.CSS_002A"
+      >Variable *STYLE.CSS*</a
+    > The default stylesheet for qbook generated html documentation.</p
+  ></div
+>
+</div
+      ></div
+    ></body
+  ></html
+>

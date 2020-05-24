@@ -1,0 +1,75 @@
+<html
+  ><head
+    ><title
+      >Function POST-PROCESS</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: POST-PROCESS</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun post-process (parts)
+  ;; convert all the comments which are acutally headings to heading
+  ;; objects
+  (setf parts
+        (iterate
+          (for p in parts)
+          (typecase p
+            (comment-part
+             (multiple-value-bind (match strings)
+                 (scan-to-strings (load-time-value
+                                   (create-scanner &quot;;;;;\\s*(\\*+)\\s*(.*)&quot; :single-line-mode nil))
+                                  (text p))
+               (if match
+                   (collect (make-instance 'heading-part
+                                           :depth (length (aref strings 0))
+                                           :text (aref strings 1)
+                                           :start-position (start-position p)
+                                           :end-position (end-position p)
+                                           :origin-file (origin-file p)))
+                   (multiple-value-bind (match strings)
+                       (scan-to-strings (load-time-value
+                                         (create-scanner &quot;;;;;(.*)&quot; :single-line-mode t))
+                                        (text p))
+                     (if match
+                         (collect (make-instance 'comment-part
+                                                 :start-position (start-position p)
+                                                 :end-position (end-position p)
+                                                 :text (aref strings 0)
+                                                 :origin-file (origin-file p))))))))
+            ((or code-part whitespace-part) (collect p)))))
+  ;;;; merge consequtive comments together
+  (setf parts
+        (iterate
+          (with comment = (make-string-output-stream))
+          (for (p next) on parts)
+          (cond
+            ((heading-part-p p) (collect p))
+            ((and (comment-part-p p)
+                  (or (not (comment-part-p next))
+                      (heading-part-p next)
+                      (null next)))
+             (write-string (text p) comment)
+             (collect (make-instance 'comment-part :text (get-output-stream-string comment)))
+             (setf comment (make-string-output-stream)))
+            ((comment-part-p p)
+             (write-string (text p) comment))
+            (t (collect p)))))
+  parts)</code
+            ></pre
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#function_005FIT.BESE.QBOOK_003A_003APOST-PROCESS"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

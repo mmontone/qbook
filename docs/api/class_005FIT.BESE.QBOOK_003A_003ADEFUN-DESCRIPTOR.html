@@ -1,0 +1,67 @@
+<html
+  ><head
+    ><title
+      >Class DEFUN-DESCRIPTOR</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Class: DEFUN-DESCRIPTOR</h1
+        ><div class="contents"
+          ><h2
+  >Slots</h2
+><ul
+  ><li
+  >LAMBDA-LIST</li
+><li
+  >BODY</li
+></ul
+><h2
+  >Hierachy</h2
+><h3
+  >Precedence List</h3
+><ul
+  ><li
+  ><a href="../api/class_005FIT.BESE.QBOOK_003A_003ADESCRIPTOR.html"
+  >DESCRIPTOR</a
+></li
+></ul
+><h3
+  >Sub Classes</h3
+><ul
+  ><li
+  ><a href="../api/class_005FIT.BESE.QBOOK_003A_003ADEFMETHOD-DESCRIPTOR.html"
+  >DEFMETHOD-DESCRIPTOR</a
+></li
+><li
+  ><a href="../api/class_005FIT.BESE.QBOOK_003A_003ADEFGENERIC-DESCRIPTOR.html"
+  >DEFGENERIC-DESCRIPTOR</a
+></li
+><li
+  ><a href="../api/class_005FIT.BESE.QBOOK_003A_003ADEFMACRO-DESCRIPTOR.html"
+  >DEFMACRO-DESCRIPTOR</a
+></li
+></ul
+><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defclass defun-descriptor (descriptor)
+  ((lambda-list :accessor lambda-list :initarg :lambda-list)
+   (body :accessor body :initarg :body))
+  (:default-initargs
+   :label-prefix &quot;function&quot;
+   :pretty-label-prefix &quot;Function&quot;))</code
+            ></pre
+          ><a href="../Extra_0020Code_0020Analysis.html#class_005FIT.BESE.QBOOK_003A_003ADEFUN-DESCRIPTOR"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

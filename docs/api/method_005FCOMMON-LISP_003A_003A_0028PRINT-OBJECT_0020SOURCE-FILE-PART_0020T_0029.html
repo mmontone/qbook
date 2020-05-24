@@ -1,0 +1,32 @@
+<html
+  ><head
+    ><title
+      >Method (PRINT-OBJECT SOURCE-FILE-PART T)</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Method: (PRINT-OBJECT SOURCE-FILE-PART T)</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defmethod print-object ((part source-file-part) stream)
+  (print-unreadable-object (part stream :type t :identity t)
+    (format stream &quot;~S&quot; (if (&lt; (length (text part)) 10)
+                            (text part)
+                            (strcat (subseq (text part) 0 10) &quot;...&quot;)))))</code
+            ></pre
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#method_005FCOMMON-LISP_003A_003A_0028PRINT-OBJECT_0020SOURCE-FILE-PART_0020T_0029"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

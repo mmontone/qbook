@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{qbook\PYGZhy{}semicolon\PYGZhy{}reader} \PYG{p}{(}\PYG{n+nc}{stream} \PYG{n+nb}{char}\PYG{p}{)}
+  \PYG{p}{(}\PYG{k}{declare} \PYG{p}{(}\PYG{k}{ignore} \PYG{n+nb}{char}\PYG{p}{))}
+  \PYG{p}{(}\PYG{n+nb}{with\PYGZhy{}output\PYGZhy{}to\PYGZhy{}string} \PYG{p}{(}\PYG{n+nv}{line}\PYG{p}{)}
+    \PYG{p}{(}\PYG{n+nb}{loop}
+      \PYG{n+nv}{for} \PYG{n+nv}{next\PYGZhy{}char} \PYG{n+nb}{=} \PYG{p}{(}\PYG{n+nb}{read\PYGZhy{}char} \PYG{n+nc}{stream} \PYG{n+no}{nil} \PYG{n+nc}{stream} \PYG{n+no}{t}\PYG{p}{)}
+      \PYG{k}{if} \PYG{p}{(}\PYG{n+nb}{or} \PYG{p}{(}\PYG{n+nb}{eq} \PYG{n+nv}{next\PYGZhy{}char} \PYG{n+nc}{stream}\PYG{p}{)}
+             \PYG{p}{(}\PYG{n+nb}{char=} \PYG{n+nv}{next\PYGZhy{}char} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}Newline}\PYG{p}{))}
+        \PYG{n+nb}{do} \PYG{p}{(}\PYG{n+nb}{return}\PYG{p}{)}
+      \PYG{n+nv}{else}
+        \PYG{n+nb}{do} \PYG{p}{(}\PYG{n+nb}{write\PYGZhy{}char} \PYG{n+nv}{next\PYGZhy{}char} \PYG{n+nv}{line}\PYG{p}{))))}
+\end{Verbatim}

@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{collect\PYGZhy{}code\PYGZhy{}info} \PYG{p}{(}\PYG{n+nv}{parts}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nb}{mapcar} \PYG{p}{(}\PYG{k}{lambda} \PYG{p}{(}\PYG{n+nv}{part}\PYG{p}{)}
+            \PYG{p}{(}\PYG{n+nb}{typecase} \PYG{n+nv}{part}
+              \PYG{p}{(}\PYG{n+nv}{code\PYGZhy{}part}
+               \PYG{c+c1}{;; punt all the work to collect\PYGZhy{}code\PYGZhy{}info}
+               \PYG{p}{(}\PYG{n+nv}{analyse\PYGZhy{}code\PYGZhy{}part} \PYG{n+nv}{part}\PYG{p}{))}
+              \PYG{p}{(}\PYG{n+no}{t} \PYG{n+nv}{part}\PYG{p}{)))}
+          \PYG{n+nv}{parts}\PYG{p}{))}
+\end{Verbatim}

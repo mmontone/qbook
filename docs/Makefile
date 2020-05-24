@@ -7,26 +7,24 @@ SYSTEM=qbook
 docs: pdf html
 
 html:
-	mkdir -p html/
 	${LISP} ${EVAL} "(asdf:oos 'asdf:load-op :qbook)" \
 	        ${EVAL} "(asdf:oos 'asdf:load-op :${SYSTEM})" \
 		    ${EVAL} "(qbook:publish-system-qbook :qbook 'qbook:html-generator \
-                                           :output-directory \"./html/\" \
+                                           :output-directory \"./\" \
                                            :title \"${SYSTEM}\")" \
 		    ${EVAL} "${QUIT}"
 
 pdf:
-	mkdir -p pdf/
 	${LISP} ${EVAL} "(asdf:oos 'asdf:load-op :qbook)" \
             ${EVAL} "(asdf:oos 'asdf:load-op :${SYSTEM})" \
 		    ${EVAL} "(qbook:publish-system-qbook :qbook 'qbook:latex-generator \
-                                            :output-file \"./pdf/${SYSTEM}.tex\" \
+                                            :output-file \"./${SYSTEM}.tex\" \
                                             :title \"${SYSTEM}\")" \
 		    ${EVAL} "${QUIT}"
-	(cd pdf && pdflatex -shell-escape ${SYSTEM}.tex)
-	(cd pdf && makeindex ${SYSTEM}.idx)
-	(cd pdf && pdflatex -shell-escape ${SYSTEM}.tex)
-	rm pdf/${SYSTEM}.aux pdf/${SYSTEM}.log pdf/${SYSTEM}.toc pdf/${SYSTEM}.tex
+	pdflatex -shell-escape ${SYSTEM}.tex
+	makeindex ${SYSTEM}.idx
+	pdflatex -shell-escape ${SYSTEM}.tex
+	rm ${SYSTEM}.aux ${SYSTEM}.log ${SYSTEM}.toc ${SYSTEM}.tex
 
 clean:
-	rm -rf html pdf
+	rm *.html qbook.pdf

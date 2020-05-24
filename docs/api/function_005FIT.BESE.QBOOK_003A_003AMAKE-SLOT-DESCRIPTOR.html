@@ -1,0 +1,33 @@
+<html
+  ><head
+    ><title
+      >Function MAKE-SLOT-DESCRIPTOR</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: MAKE-SLOT-DESCRIPTOR</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun make-slot-descriptor (slot-spec)
+  (destructuring-bind (name &amp;rest options)
+      (ensure-list slot-spec)
+    (make-instance 'class-slot-descriptor
+                   :name name
+                   :docstring (getf options :documentation))))</code
+            ></pre
+          ><a href="../Extra_0020Code_0020Analysis.html#function_005FIT.BESE.QBOOK_003A_003AMAKE-SLOT-DESCRIPTOR"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

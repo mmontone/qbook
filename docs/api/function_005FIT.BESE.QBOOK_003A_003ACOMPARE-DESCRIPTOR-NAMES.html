@@ -1,0 +1,34 @@
+<html
+  ><head
+    ><title
+      >Function COMPARE-DESCRIPTOR-NAMES</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: COMPARE-DESCRIPTOR-NAMES</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun compare-descriptor-names (a b)
+  (string&lt; (regex-replace-all &quot;[^A-Za-z]&quot; (string (if (symbolp (name a))
+                                                      (name a)
+                                                      (second (name a)))) &quot;&quot;)
+           (regex-replace-all &quot;[^A-Za-z]&quot; (string (if (symbolp (name b))
+                                                      (name b)
+                                                      (second (name b)))) &quot;&quot;)))</code
+            ></pre
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#function_005FIT.BESE.QBOOK_003A_003ACOMPARE-DESCRIPTOR-NAMES"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

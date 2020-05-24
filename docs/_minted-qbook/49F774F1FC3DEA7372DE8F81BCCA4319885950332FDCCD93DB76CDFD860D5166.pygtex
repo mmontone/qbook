@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{descriptor\PYGZhy{}link\PYGZhy{}id} \PYG{p}{(}\PYG{n+nv}{descriptor}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nv}{safe\PYGZhy{}latex\PYGZhy{}id}
+   \PYG{p}{(}\PYG{n+nv}{strcat} \PYG{l+s}{\PYGZdq{}link:\PYGZdq{}} \PYG{p}{(}\PYG{n+nb}{string} \PYG{p}{(}\PYG{n+nv}{label\PYGZhy{}prefix} \PYG{n+nv}{descriptor}\PYG{p}{))}
+           \PYG{l+s}{\PYGZdq{}:\PYGZdq{}} \PYG{p}{(}\PYG{n+nb}{princ\PYGZhy{}to\PYGZhy{}string} \PYG{p}{(}\PYG{n+nv}{name} \PYG{n+nv}{descriptor}\PYG{p}{)))))}
+\end{Verbatim}

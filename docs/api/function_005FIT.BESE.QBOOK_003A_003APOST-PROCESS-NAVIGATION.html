@@ -1,0 +1,45 @@
+<html
+  ><head
+    ><title
+      >Function POST-PROCESS-NAVIGATION</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: POST-PROCESS-NAVIGATION</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun post-process-navigation (parts)
+    ;;;; setup the prev and next links in the header objects
+  (iterate
+    (with last-heading = nil)
+    (for part in parts)
+    (when (heading-part-p part)
+      (when last-heading
+        (setf (prev-part part) last-heading
+              (next-part last-heading) part))
+      (setf last-heading part)))
+  ;;;; setup the up links
+  (iterate
+    (for (this . rest) on (remove-if-not #'heading-part-p parts))
+    (iterate
+      (for r in rest)
+      (while (&lt; (depth this) (depth r)))
+      (setf (up-part r) this)))
+  parts)</code
+            ></pre
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#function_005FIT.BESE.QBOOK_003A_003APOST-PROCESS-NAVIGATION"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

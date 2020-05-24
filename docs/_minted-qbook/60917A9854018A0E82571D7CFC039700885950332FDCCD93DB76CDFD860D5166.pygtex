@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nv}{defcode\PYGZhy{}info\PYGZhy{}collector} \PYG{n+nv}{cl:defclass} \PYG{p}{(}\PYG{n+nv}{name} \PYG{n+nv}{supers} \PYG{n+nv}{slots} \PYG{k}{\PYGZam{}rest} \PYG{n+nv}{options}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nb}{make\PYGZhy{}instance} \PYG{l+s+ss}{\PYGZsq{}defclass\PYGZhy{}descriptor}
+                 \PYG{l+s+ss}{:name} \PYG{n+nv}{name}
+                 \PYG{l+s+ss}{:supers} \PYG{n+nv}{supers}
+                 \PYG{l+s+ss}{:slots} \PYG{p}{(}\PYG{n+nb}{mapcar} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nv}{make\PYGZhy{}slot\PYGZhy{}descriptor} \PYG{n+nv}{slots}\PYG{p}{)}
+                 \PYG{l+s+ss}{:docstring} \PYG{p}{(}\PYG{n+nb}{second} \PYG{p}{(}\PYG{n+nb}{assoc} \PYG{l+s+ss}{:documentation} \PYG{n+nv}{options}\PYG{p}{))))}
+\end{Verbatim}

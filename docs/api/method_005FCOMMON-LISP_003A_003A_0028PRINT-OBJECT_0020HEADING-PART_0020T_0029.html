@@ -1,0 +1,30 @@
+<html
+  ><head
+    ><title
+      >Method (PRINT-OBJECT HEADING-PART T)</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Method: (PRINT-OBJECT HEADING-PART T)</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defmethod print-object ((h heading-part) stream)
+  (print-unreadable-object (h stream :type t :identity nil)
+    (format stream &quot;~D ~S&quot; (depth h) (text h))))</code
+            ></pre
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#method_005FCOMMON-LISP_003A_003A_0028PRINT-OBJECT_0020HEADING-PART_0020T_0029"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

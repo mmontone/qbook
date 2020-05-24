@@ -1,0 +1,35 @@
+<html
+  ><head
+    ><title
+      >Function COLLECT-CODE-INFO</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: COLLECT-CODE-INFO</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun collect-code-info (parts)
+  (mapcar (lambda (part)
+            (typecase part
+              (code-part
+               ;; punt all the work to collect-code-info
+               (analyse-code-part part))
+              (t part)))
+          parts))</code
+            ></pre
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#function_005FIT.BESE.QBOOK_003A_003ACOLLECT-CODE-INFO"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

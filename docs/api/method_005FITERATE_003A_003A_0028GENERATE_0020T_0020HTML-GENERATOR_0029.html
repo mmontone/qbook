@@ -1,0 +1,46 @@
+<html
+  ><head
+    ><title
+      >Method (GENERATE T HTML-GENERATOR)</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Method: (GENERATE T HTML-GENERATOR)</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defmethod generate (book (generator html-generator))
+  (let ((*generator* generator)
+        (*book* book))
+    (let ((output-dir-truename (ensure-directories-exist
+                                (merge-pathnames (output-directory generator)))))
+      (write-string-to-file *print.css* (make-pathname :name &quot;print&quot; :type &quot;css&quot;
+                                                       :defaults output-dir-truename)
+                            :if-does-not-exist :create
+                            :if-exists :supersede)
+      (write-string-to-file *style.css* (make-pathname :name &quot;style&quot; :type &quot;css&quot;
+                                                       :defaults output-dir-truename)
+                            :if-does-not-exist :create
+                            :if-exists :supersede))
+    (generate-table-of-contents (contents book) generator)
+    (dolist (section (contents book))
+      (generate-section section generator))
+    (dolist (index-class (book-indexes-sorted book))
+      (generate-index generator book index-class))
+    (generate-permuted-index generator book)))</code
+            ></pre
+          ><a href="../The_0020HTML_0020Generator.html#method_005FITERATE_003A_003A_0028GENERATE_0020T_0020HTML-GENERATOR_0029"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

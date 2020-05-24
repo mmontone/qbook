@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{sort\PYGZhy{}parts\PYGZhy{}with\PYGZhy{}descriptors} \PYG{p}{(}\PYG{n+nv}{parts}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nb}{sort} \PYG{p}{(}\PYG{n+nb}{remove\PYGZhy{}if} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nb}{null} \PYG{n+nv}{parts} \PYG{l+s+ss}{:key} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nv}{descriptor}\PYG{p}{)}
+        \PYG{l+s+ss}{\PYGZsq{}compare\PYGZhy{}descriptor\PYGZhy{}names} \PYG{l+s+ss}{:key} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nv}{descriptor}\PYG{p}{))}
+\end{Verbatim}

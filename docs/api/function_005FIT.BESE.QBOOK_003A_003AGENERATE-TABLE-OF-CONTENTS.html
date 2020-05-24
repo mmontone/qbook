@@ -1,0 +1,47 @@
+<html
+  ><head
+    ><title
+      >Function GENERATE-TABLE-OF-CONTENTS</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: GENERATE-TABLE-OF-CONTENTS</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun generate-table-of-contents (sections generator)
+  (&lt;qbook-page :title (title generator)
+               :file-name &quot;index.html&quot;
+               (&lt;:div :class &quot;contents&quot;
+                      (&lt;:h1 :class &quot;title&quot; (&lt;:as-html (title generator)))
+                      (&lt;:h2 &quot;Table of Contents&quot;)
+                      (dolist (section sections)
+                        (dolist (part section)
+                          (when (heading-part-p part)
+                            (&lt;:div :class (strcat &quot;contents-heading-&quot; (depth part))
+                                   (&lt;:a :href (make-anchor-link part)
+                                        (&lt;:as-html (text part)))))))
+                      (&lt;:h2 &quot;Indexes&quot;)
+                      (dolist (index (book-indexes-sorted *book*))
+                        (&lt;:div :class &quot;contents-heading-1&quot;
+                               (&lt;:a :href (strcat &quot;index/&quot; (label-prefix (make-instance index)) &quot;.html&quot;)
+                                    (&lt;:as-html (pretty-label-prefix (make-instance index)))
+                                    &quot; Index&quot;)))
+                      (&lt;:div :class &quot;contents-heading-1&quot;
+                             (&lt;:a :href &quot;index/permutated.html&quot; &quot;Permuted Symbol Index&quot;)))))</code
+            ></pre
+          ><a href="../The_0020HTML_0020Generator.html#function_005FIT.BESE.QBOOK_003A_003AGENERATE-TABLE-OF-CONTENTS"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

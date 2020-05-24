@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{generate\PYGZhy{}section} \PYG{p}{(}\PYG{n+nv}{section} \PYG{n+nv}{generator}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}qbook\PYGZhy{}page} \PYG{l+s+ss}{:title} \PYG{p}{(}\PYG{n+nv}{title} \PYG{n+nv}{generator}\PYG{p}{)}
+               \PYG{l+s+ss}{:file\PYGZhy{}name} \PYG{p}{(}\PYG{n+nb}{make\PYGZhy{}pathname} \PYG{l+s+ss}{:name} \PYG{p}{(}\PYG{n+nv}{make\PYGZhy{}anchor\PYGZhy{}name} \PYG{p}{(}\PYG{n+nv}{text} \PYG{p}{(}\PYG{n+nb}{first} \PYG{n+nv}{section}\PYG{p}{)))}
+                                         \PYG{l+s+ss}{:type} \PYG{l+s}{\PYGZdq{}html\PYGZdq{}}\PYG{p}{)}
+               \PYG{p}{(}\PYG{n+nv}{output\PYGZhy{}directory} \PYG{n+nv}{generator}\PYG{p}{)}
+               \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:h1} \PYG{l+s+ss}{:class} \PYG{l+s}{\PYGZdq{}title\PYGZdq{}} \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:as\PYGZhy{}html} \PYG{p}{(}\PYG{n+nv}{title} \PYG{n+nv}{generator}\PYG{p}{)))}
+               \PYG{p}{(}\PYG{n+nv}{\PYGZlt{}:div} \PYG{l+s+ss}{:class} \PYG{l+s}{\PYGZdq{}contents\PYGZdq{}}
+                      \PYG{p}{(}\PYG{n+nv}{publish} \PYG{n+nv}{section}\PYG{p}{))))}
+\end{Verbatim}

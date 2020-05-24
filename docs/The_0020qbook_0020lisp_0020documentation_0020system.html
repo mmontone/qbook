@@ -1,0 +1,534 @@
+<html
+  ><head
+    ><title
+      >qbook</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="style.css" rel="stylesheet"
+    /><link title="Print" href="print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><h1 class="title"
+        >qbook</h1
+      ><div class="contents"
+        ><h2
+  ><a name="The_0020qbook_0020lisp_0020documentation_0020system"
+  >The qbook lisp documentation system</a
+>&nbsp;</h2
+><div class="nav-links"
+  ><span class="dead-nav-link"
+  >prev</span
+> | <span class="dead-nav-link"
+  >up</span
+> | <a href="The_0020qbook_0020lisp_0020documentation_0020system.html#Publishing"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<p> qbook generates html formatted code listings of common lisp
+ source files. Comments in the source code are rendered as html
+ paragraphs, text is rendered in &lt;pre&gt; blocks. Headings are
+ created by preceding the text of the comment with one or more #\*
+ chars.
+
+<p> This is inspired by Luke Gorrie's pbook.el.
+
+<h3
+  ><a name="Publishing"
+  >Publishing</a
+>&nbsp;</h3
+><div class="nav-links"
+  ><a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html"
+  >prev</a
+> | <a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html"
+  >up</a
+> | <a href="The_0020qbook_0020lisp_0020documentation_0020system.html#The_0020public_0020entry_0020point_003A_0020PUBLISH-QBOOK"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<p> This is the core of qbook, the driver code which takes a lisp
+ source file and generates an html file.
+
+<h4
+  ><a name="The_0020public_0020entry_0020point_003A_0020PUBLISH-QBOOK"
+  >The public entry point: PUBLISH-QBOOK</a
+>&nbsp;</h4
+><div class="nav-links"
+  ><a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html#Publishing"
+  >prev</a
+> | <a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html#Publishing"
+  >up</a
+> | <a href="The_0020qbook_0020lisp_0020documentation_0020system.html#Publishing_0020internals"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003AGENERATOR.html" name="class_005FIT.BESE.QBOOK_003A_003AGENERATOR"
+      >Class GENERATOR</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-generic function"
+  ><p
+    ><a href="api/generic_0020function_005FITERATE_003A_003AGENERATE.html" name="generic_0020function_005FITERATE_003A_003AGENERATE"
+      >Generic Function GENERATE</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FITERATE_003A_003A_0028GENERATE_0020AROUND_0020T_0020T_0029.html" name="method_005FITERATE_003A_003A_0028GENERATE_0020AROUND_0020T_0020T_0029"
+      >Method (GENERATE AROUND T T)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003ABOOK.html" name="class_005FIT.BESE.QBOOK_003A_003ABOOK"
+      >Class BOOK</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028BOOK-INDEXES-SORTED_0020BOOK_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028BOOK-INDEXES-SORTED_0020BOOK_0029"
+      >Method (BOOK-INDEXES-SORTED BOOK)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028ALL-CODE-PARTS_0020BOOK_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028ALL-CODE-PARTS_0020BOOK_0029"
+      >Method (ALL-CODE-PARTS BOOK)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028PERMUTATED-GLOBAL-INDEX_0020BOOK_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028PERMUTATED-GLOBAL-INDEX_0020BOOK_0029"
+      >Method (PERMUTATED-GLOBAL-INDEX BOOK)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003ACOMPARE-DESCRIPTOR-NAMES.html" name="function_005FIT.BESE.QBOOK_003A_003ACOMPARE-DESCRIPTOR-NAMES"
+      >Function COMPARE-DESCRIPTOR-NAMES</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003ASORT-DESCRIPTORS.html" name="function_005FIT.BESE.QBOOK_003A_003ASORT-DESCRIPTORS"
+      >Function SORT-DESCRIPTORS</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003ASORT-PARTS-WITH-DESCRIPTORS.html" name="function_005FIT.BESE.QBOOK_003A_003ASORT-PARTS-WITH-DESCRIPTORS"
+      >Function SORT-PARTS-WITH-DESCRIPTORS</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003ACONVERT-TO-SECTIONS.html" name="function_005FIT.BESE.QBOOK_003A_003ACONVERT-TO-SECTIONS"
+      >Function CONVERT-TO-SECTIONS</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003ABULID-INDEXES.html" name="function_005FIT.BESE.QBOOK_003A_003ABULID-INDEXES"
+      >Function BULID-INDEXES</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003APUBLISH-QBOOK.html" name="function_005FIT.BESE.QBOOK_003A_003APUBLISH-QBOOK"
+      >Function PUBLISH-QBOOK</a
+    > Convert FILE-NAME into a qbook html file named OUTPUT-FILE with title TITLE.</p
+  ></div
+>
+
+<h3
+  ><a name="Publishing_0020internals"
+  >Publishing internals</a
+>&nbsp;</h3
+><div class="nav-links"
+  ><a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html#The_0020public_0020entry_0020point_003A_0020PUBLISH-QBOOK"
+  >prev</a
+> | <a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html"
+  >up</a
+> | <a href="The_0020qbook_0020lisp_0020documentation_0020system.html#The_0020classes"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<h4
+  ><a name="The_0020classes"
+  >The classes</a
+>&nbsp;</h4
+><div class="nav-links"
+  ><a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html#Publishing_0020internals"
+  >prev</a
+> | <a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html#Publishing_0020internals"
+  >up</a
+> | <a href="The_0020qbook_0020lisp_0020documentation_0020system.html#The_0020publishing_0020engine"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<p> qbook parses lisp code into a list of source-file-part
+ objects. we have an object for code parts (each top level form is
+ considered as a single code object), for comments and for
+ headings.
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003ASOURCE-FILE-PART.html" name="class_005FIT.BESE.QBOOK_003A_003ASOURCE-FILE-PART"
+      >Class SOURCE-FILE-PART</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FCOMMON-LISP_003A_003A_0028PRINT-OBJECT_0020SOURCE-FILE-PART_0020T_0029.html" name="method_005FCOMMON-LISP_003A_003A_0028PRINT-OBJECT_0020SOURCE-FILE-PART_0020T_0029"
+      >Method (PRINT-OBJECT SOURCE-FILE-PART T)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003ACODE-PART.html" name="class_005FIT.BESE.QBOOK_003A_003ACODE-PART"
+      >Class CODE-PART</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-generic function"
+  ><p
+    ><a href="api/generic_0020function_005FIT.BESE.QBOOK_003A_003ACODE-PART-P.html" name="generic_0020function_005FIT.BESE.QBOOK_003A_003ACODE-PART-P"
+      >Generic Function CODE-PART-P</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003ACOMMENT-PART.html" name="class_005FIT.BESE.QBOOK_003A_003ACOMMENT-PART"
+      >Class COMMENT-PART</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-generic function"
+  ><p
+    ><a href="api/generic_0020function_005FIT.BESE.QBOOK_003A_003ACOMMENT-PART-P.html" name="generic_0020function_005FIT.BESE.QBOOK_003A_003ACOMMENT-PART-P"
+      >Generic Function COMMENT-PART-P</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003AHEADING-PART.html" name="class_005FIT.BESE.QBOOK_003A_003AHEADING-PART"
+      >Class HEADING-PART</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FCOMMON-LISP_003A_003A_0028PRINT-OBJECT_0020HEADING-PART_0020T_0029.html" name="method_005FCOMMON-LISP_003A_003A_0028PRINT-OBJECT_0020HEADING-PART_0020T_0029"
+      >Method (PRINT-OBJECT HEADING-PART T)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-generic function"
+  ><p
+    ><a href="api/generic_0020function_005FIT.BESE.QBOOK_003A_003AHEADING-PART-P.html" name="generic_0020function_005FIT.BESE.QBOOK_003A_003AHEADING-PART-P"
+      >Generic Function HEADING-PART-P</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003AWHITESPACE-PART.html" name="class_005FIT.BESE.QBOOK_003A_003AWHITESPACE-PART"
+      >Class WHITESPACE-PART</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FCOMMON-LISP_003A_003A_0028PRINT-OBJECT_0020WHITESPACE-PART_0020T_0029.html" name="method_005FCOMMON-LISP_003A_003A_0028PRINT-OBJECT_0020WHITESPACE-PART_0020T_0029"
+      >Method (PRINT-OBJECT WHITESPACE-PART T)</a
+    > </p
+  ></div
+>
+
+<h4
+  ><a name="The_0020publishing_0020engine"
+  >The publishing engine</a
+>&nbsp;</h4
+><div class="nav-links"
+  ><a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html#The_0020classes"
+  >prev</a
+> | <a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html#Publishing_0020internals"
+  >up</a
+> | <a href="The_0020qbook_0020lisp_0020documentation_0020system.html#Directives"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<h3
+  ><a name="Directives"
+  >Directives</a
+>&nbsp;</h3
+><div class="nav-links"
+  ><a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html#The_0020publishing_0020engine"
+  >prev</a
+> | <a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html"
+  >up</a
+> | <a href="The_0020qbook_0020lisp_0020documentation_0020system.html#Parsing"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<p> Directives are a way to control how qbook processes the lisp
+ code. We currently only support the '@include &quot;filename&quot;'
+ directive. @include allows multiple source files to be combined
+ to form a single html file.
+
+<div class="computational-element-link computational-element-link-generic function"
+  ><p
+    ><a href="api/generic_0020function_005FIT.BESE.QBOOK_003A_003APROCESS-DIRECTIVE.html" name="generic_0020function_005FIT.BESE.QBOOK_003A_003APROCESS-DIRECTIVE"
+      >Generic Function PROCESS-DIRECTIVE</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028PROCESS-DIRECTIVE_0020SOURCE-FILE-PART_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028PROCESS-DIRECTIVE_0020SOURCE-FILE-PART_0029"
+      >Method (PROCESS-DIRECTIVE SOURCE-FILE-PART)</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-method"
+  ><p
+    ><a href="api/method_005FIT.BESE.QBOOK_003A_003A_0028PROCESS-DIRECTIVE_0020COMMENT-PART_0029.html" name="method_005FIT.BESE.QBOOK_003A_003A_0028PROCESS-DIRECTIVE_0020COMMENT-PART_0029"
+      >Method (PROCESS-DIRECTIVE COMMENT-PART)</a
+    > </p
+  ></div
+>
+
+<h3
+  ><a name="Parsing"
+  >Parsing</a
+>&nbsp;</h3
+><div class="nav-links"
+  ><a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html#Directives"
+  >prev</a
+> | <a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html"
+  >up</a
+> | <a href="The_0020qbook_0020lisp_0020documentation_0020system.html#qbook_0020markup"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<p> A qbook source file is a lisp source file. Qbook uses the lisp's
+ reader to parse the code (so any valid lisp should be
+ usable). qbook looks for a few things in the lisp file:
+
+<p> 1) The code. Each top level form is wrapped in &lt;PRE&gt; tagged as
+    pased through to the HTML. The first line (not form) of the
+    top level form is presented in a bold font. If the form is
+    longer than 3 lines it will be truncated to 3 lines and
+    readers will have to click an the form to see the hidden text.
+
+<p> 2) ;;;; Comments - All lines which start with 4 #\; (&quot;^;;;;&quot;) and
+    aren't within a top level form are wrapped in a &lt;P&gt; tag and
+    passed through.
+
+<p> 3) ; Comments - All comment lines with less than 4 #\; characters
+    are ignored by qbook.
+
+<p> 4) @ directives - Lines which start with ;;;;@ are qbook
+    directives. These allow the developer to control how qbook
+    processes the source files. Currently the only supported
+    directive is include.
+
+<p> A decent example of a qbook'd lisp file is qbook
+ itself. qbook.asd contains the include directives which control
+ the order of the sections while the various .lisp files contain
+ qbook comments, qbook headings and ignored comments (every source
+ file contains a copyright message which we don't want to have
+ repeated multiple times in the html)
+
+<h4
+  ><a name="qbook_0020markup"
+  >qbook markup</a
+>&nbsp;</h4
+><div class="nav-links"
+  ><a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html#Parsing"
+  >prev</a
+> | <a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html#Parsing"
+  >up</a
+> | <a href="The_0020qbook_0020lisp_0020documentation_0020system.html#The_0020source_0020code_0020reader"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<p> There is none. You simply can't create tables or produce links or
+ bold text. Patches welcome.
+
+<h4
+  ><a name="The_0020source_0020code_0020reader"
+  >The source code reader</a
+>&nbsp;</h4
+><div class="nav-links"
+  ><a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html#qbook_0020markup"
+  >prev</a
+> | <a class="nav-link" href="The_0020qbook_0020lisp_0020documentation_0020system.html#Parsing"
+  >up</a
+> | <a href="ASDF_0020Integration.html"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AMAKE-PART-READER.html" name="function_005FIT.BESE.QBOOK_003A_003AMAKE-PART-READER"
+      >Function MAKE-PART-READER</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AQBOOK-SEMICOLON-READER.html" name="function_005FIT.BESE.QBOOK_003A_003AQBOOK-SEMICOLON-READER"
+      >Function QBOOK-SEMICOLON-READER</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AMAKE-QBOOK-READTABLE.html" name="function_005FIT.BESE.QBOOK_003A_003AMAKE-QBOOK-READTABLE"
+      >Function MAKE-QBOOK-READTABLE</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AWHITESPACEP.html" name="function_005FIT.BESE.QBOOK_003A_003AWHITESPACEP"
+      >Function WHITESPACEP</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AREAD-WHITESPACE.html" name="function_005FIT.BESE.QBOOK_003A_003AREAD-WHITESPACE"
+      >Function READ-WHITESPACE</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003APROCESS-DIRECTIVES.html" name="function_005FIT.BESE.QBOOK_003A_003APROCESS-DIRECTIVES"
+      >Function PROCESS-DIRECTIVES</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AREAD-SOURCE-FILE.html" name="function_005FIT.BESE.QBOOK_003A_003AREAD-SOURCE-FILE"
+      >Function READ-SOURCE-FILE</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AHEADING-TEXT-P.html" name="function_005FIT.BESE.QBOOK_003A_003AHEADING-TEXT-P"
+      >Function HEADING-TEXT-P</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003AREAL-COMMENT-P.html" name="function_005FIT.BESE.QBOOK_003A_003AREAL-COMMENT-P"
+      >Function REAL-COMMENT-P</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003ACOLLECT-CODE-INFO.html" name="function_005FIT.BESE.QBOOK_003A_003ACOLLECT-CODE-INFO"
+      >Function COLLECT-CODE-INFO</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003APOST-PROCESS.html" name="function_005FIT.BESE.QBOOK_003A_003APOST-PROCESS"
+      >Function POST-PROCESS</a
+    > </p
+  ></div
+>
+
+<div class="computational-element-link computational-element-link-function"
+  ><p
+    ><a href="api/function_005FIT.BESE.QBOOK_003A_003APOST-PROCESS-NAVIGATION.html" name="function_005FIT.BESE.QBOOK_003A_003APOST-PROCESS-NAVIGATION"
+      >Function POST-PROCESS-NAVIGATION</a
+    > </p
+  ></div
+>
+
+
+</div
+      ></div
+    ></body
+  ></html
+>

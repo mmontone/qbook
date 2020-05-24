@@ -1,0 +1,41 @@
+<html
+  ><head
+    ><title
+      >Function SUBSEQ-FIRST-SENTENCE</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: SUBSEQ-FIRST-SENTENCE</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun subseq-first-sentence (string limit)
+  (with-output-to-string (first-sentence)
+    (flet ((ret ()
+             (return-from subseq-first-sentence
+               (get-output-stream-string first-sentence))))
+      (loop
+        for char across string
+        for count below limit
+        if (member char (list #\. #\? #\!))
+          do (write-char char first-sentence)
+          and do (ret)
+        else
+          do (write-char char first-sentence)
+        finally (ret)))))</code
+            ></pre
+          ><a href="../Extra_0020Code_0020Analysis.html#function_005FIT.BESE.QBOOK_003A_003ASUBSEQ-FIRST-SENTENCE"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

@@ -1,0 +1,32 @@
+<html
+  ><head
+    ><title
+      >Function ANALYSE-CODE-PART</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: ANALYSE-CODE-PART</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun analyse-code-part (code-part)
+  (awhen (gethash (first (form code-part)) *code-info-collectors*)
+    (setf (descriptor code-part) (funcall it (cdr (form code-part))))
+    (register-descriptor (descriptor code-part)))
+  code-part)</code
+            ></pre
+          ><a href="../Extra_0020Code_0020Analysis.html#function_005FIT.BESE.QBOOK_003A_003AANALYSE-CODE-PART"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

@@ -1,0 +1,34 @@
+<html
+  ><head
+    ><title
+      >Function MAKE-PART-READER</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: MAKE-PART-READER</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun make-part-reader (function type)
+  (lambda (stream echar)
+    (let ((part (make-instance type)))
+      (setf (start-position part) (file-position stream))
+      (funcall function stream echar)
+      (setf (end-position part) (file-position stream))
+      part)))</code
+            ></pre
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#function_005FIT.BESE.QBOOK_003A_003AMAKE-PART-READER"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

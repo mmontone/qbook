@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{make\PYGZhy{}slot\PYGZhy{}descriptor} \PYG{p}{(}\PYG{n+nv}{slot\PYGZhy{}spec}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nb}{destructuring\PYGZhy{}bind} \PYG{p}{(}\PYG{n+nv}{name} \PYG{k}{\PYGZam{}rest} \PYG{n+nv}{options}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{ensure\PYGZhy{}list} \PYG{n+nv}{slot\PYGZhy{}spec}\PYG{p}{)}
+    \PYG{p}{(}\PYG{n+nb}{make\PYGZhy{}instance} \PYG{l+s+ss}{\PYGZsq{}class\PYGZhy{}slot\PYGZhy{}descriptor}
+                   \PYG{l+s+ss}{:name} \PYG{n+nv}{name}
+                   \PYG{l+s+ss}{:docstring} \PYG{p}{(}\PYG{n+nb}{getf} \PYG{n+nv}{options} \PYG{l+s+ss}{:documentation}\PYG{p}{))))}
+\end{Verbatim}

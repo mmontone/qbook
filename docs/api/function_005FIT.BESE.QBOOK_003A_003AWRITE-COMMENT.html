@@ -1,0 +1,73 @@
+<html
+  ><head
+    ><title
+      >Function WRITE-COMMENT</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: WRITE-COMMENT</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun write-comment (part state)
+  (etypecase part
+    (heading-part
+     (ecase state
+       ((nil))
+       (:in-comment
+        ;; heading during a comment, break the current comment
+        ;; and start a new one.
+        (write-string &quot;&lt;/p&gt;&quot; *yaclml-stream*)
+        (terpri *yaclml-stream*)))
+     (flet ((heading ()
+              (&lt;:a :name (make-anchor-name (text part)) (&lt;:as-html (text part)))
+              (&lt;:as-is &quot;&amp;nbsp;&quot;))
+            (nav-links ()
+              (&lt;:div :class &quot;nav-links&quot;
+                     (if (prev-part part)
+                         (&lt;:a :class &quot;nav-link&quot; :href (make-anchor-link (prev-part part)) &quot;prev&quot;)
+                         (&lt;:span :class &quot;dead-nav-link&quot; &quot;prev&quot;))
+                     &quot; | &quot;
+                     (if (up-part part)
+                         (&lt;:a :class &quot;nav-link&quot; :href (make-anchor-link (up-part part)) &quot;up&quot;)
+                         (&lt;:span :class &quot;dead-nav-link&quot; &quot;up&quot;))
+                     &quot; | &quot;
+                     (if (next-part part)
+                         (&lt;:a :href (make-anchor-link (next-part part)) &quot;next&quot;)
+                         (&lt;:span :class &quot;nav-link&quot; &quot;next&quot;))
+                     &quot; | &quot;
+                     (&lt;:a :href &quot;index.html&quot; &quot;toc&quot;))))
+       (case (depth part)
+         (1 (&lt;:h2 (heading)))
+         (2 (&lt;:h3 (heading)))
+         (3 (&lt;:h4 (heading)))
+         (4 (&lt;:h5 (heading)))
+         (5 (&lt;:h6 (heading)))
+         (t (error &quot;Nesting too deep: ~S.&quot; (text part))))
+       (nav-links))
+     nil)
+    (comment-part
+        ;;;; regular comment
+     (ecase state
+       ((nil) (write-string &quot;&lt;p&gt;&quot; *yaclml-stream*))
+       (:in-comment nil))
+     (if (escape-comments *generator*)
+         (&lt;:as-html (text part))
+         (&lt;:as-is (text part)))
+     :in-comment)))</code
+            ></pre
+          ><a href="../The_0020HTML_0020Generator.html#function_005FIT.BESE.QBOOK_003A_003AWRITE-COMMENT"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>

@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defgeneric} \PYG{n+nv}{heading\PYGZhy{}part\PYGZhy{}p} \PYG{p}{(}\PYG{n+nv}{obj}\PYG{p}{)}
+  \PYG{p}{(}\PYG{l+s+ss}{:method} \PYG{p}{((}\PYG{n+nv}{obj} \PYG{n+no}{t}\PYG{p}{))} \PYG{n+no}{nil}\PYG{p}{)}
+  \PYG{p}{(}\PYG{l+s+ss}{:method} \PYG{p}{((}\PYG{n+nv}{obj} \PYG{n+nv}{heading\PYGZhy{}part}\PYG{p}{))} \PYG{n+no}{t}\PYG{p}{))}
+\end{Verbatim}

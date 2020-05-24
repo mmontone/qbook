@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defmethod} \PYG{n+nv}{asdf:operation\PYGZhy{}done\PYGZhy{}p} \PYG{p}{((}\PYG{n+nv}{op} \PYG{n+nv}{publish\PYGZhy{}op}\PYG{p}{)} \PYG{p}{(}\PYG{n+nv}{component} \PYG{n+no}{t}\PYG{p}{))}
+  \PYG{n+no}{nil}\PYG{p}{)}
+\end{Verbatim}

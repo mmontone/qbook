@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{write\PYGZhy{}source} \PYG{p}{(}\PYG{n+nv}{source} \PYG{n+nv}{generator}\PYG{p}{)}
+  \PYG{p}{(}\PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{highlight\PYGZhy{}syntax} \PYG{n+nv}{generator}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nb}{write\PYGZhy{}line} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}begin\PYGZob{}minted\PYGZcb{}[fontsize=\PYGZbs{}\PYGZbs{}footnotesize, framesep=2mm,baselinestretch=1.2, bgcolor=CodeBackground]\PYGZob{}common\PYGZhy{}lisp\PYGZcb{}\PYGZdq{}} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*}\PYG{p}{)}
+      \PYG{p}{(}\PYG{n+nv}{latex\PYGZhy{}command} \PYG{l+s}{\PYGZdq{}begin\PYGZdq{}} \PYG{p}{(}\PYG{k}{if} \PYG{p}{(}\PYG{n+nv}{listings} \PYG{n+nv}{generator}\PYG{p}{)} \PYG{l+s}{\PYGZdq{}lstlisting\PYGZdq{}} \PYG{l+s}{\PYGZdq{}verbatim\PYGZdq{}}\PYG{p}{)))}
+  \PYG{p}{(}\PYG{n+nb}{write\PYGZhy{}line} \PYG{n+nv}{source} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*}\PYG{p}{)}
+  \PYG{p}{(}\PYG{n+nv}{latex\PYGZhy{}command} \PYG{l+s}{\PYGZdq{}end\PYGZdq{}}
+             \PYG{p}{(}\PYG{n+nb}{cond}
+               \PYG{p}{((}\PYG{n+nv}{highlight\PYGZhy{}syntax} \PYG{n+nv}{generator}\PYG{p}{)} \PYG{l+s}{\PYGZdq{}minted\PYGZdq{}}\PYG{p}{)}
+               \PYG{p}{((}\PYG{n+nv}{listings} \PYG{n+nv}{generator}\PYG{p}{)} \PYG{l+s}{\PYGZdq{}lstlisting\PYGZdq{}}\PYG{p}{)}
+               \PYG{p}{(}\PYG{n+no}{t} \PYG{l+s}{\PYGZdq{}verbatim\PYGZdq{}}\PYG{p}{))))}
+\end{Verbatim}

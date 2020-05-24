@@ -1,0 +1,37 @@
+<html
+  ><head
+    ><title
+      >Function QBOOK-SEMICOLON-READER</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: QBOOK-SEMICOLON-READER</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun qbook-semicolon-reader (stream char)
+  (declare (ignore char))
+  (with-output-to-string (line)
+    (loop
+      for next-char = (read-char stream nil stream t)
+      if (or (eq next-char stream)
+             (char= next-char #\Newline))
+        do (return)
+      else
+        do (write-char next-char line))))</code
+            ></pre
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#function_005FIT.BESE.QBOOK_003A_003AQBOOK-SEMICOLON-READER"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ></body
+  ></html
+>
