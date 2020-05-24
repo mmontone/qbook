@@ -11,6 +11,7 @@ html:
 	        ${EVAL} "(asdf:oos 'asdf:load-op :${SYSTEM})" \
 		    ${EVAL} "(qbook:publish-system-qbook :qbook 'qbook:html-generator \
                                            :output-directory \"./\" \
+                                           :highlight-syntax t \
                                            :title \"${SYSTEM}\")" \
 		    ${EVAL} "${QUIT}"
 
