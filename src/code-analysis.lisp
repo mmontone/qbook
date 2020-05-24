@@ -65,7 +65,8 @@ sentence is longer than LIMIT characters it will be simply
 truncated. If DESCRIPTOR's docstring is NIL this function
 returns nil.")
   (:method ((descriptor descriptor) &optional (limit 180))
-    (subseq-first-sentence (docstring descriptor) limit)))
+    (when (not (null (docstring descriptor)))
+      (subseq-first-sentence (docstring descriptor) limit))))
 
 (defclass defun-descriptor (descriptor)
   ((lambda-list :accessor lambda-list :initarg :lambda-list)
