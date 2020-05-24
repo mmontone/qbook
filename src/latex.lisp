@@ -46,39 +46,67 @@
 
       (when (listings generator)
         (\\command "usepackage" "listings")
-        (\\command "lstset" "language=lisp")
+        (\\command "lstset" "language=lisp"))
         
-        (when (stringp (listings generator))
-          (\\command "lstset" (listings generator)))
+      (when (stringp (listings generator))
+        (\\command "lstset" (listings generator)))
 
-        (wl "\\usepackage{hyperref}")
-        (wl "\\usepackage{courier}")
+      (wl "\\usepackage{courier}")
 
-        (wl "\\definecolor{CodeBackground}{HTML}{E9E9E9}")
-        (wl "\\hypersetup{colorlinks=true,linkcolor=blue}")
+      (wl "\\definecolor{CodeBackground}{HTML}{E9E9E9}")
+      (wl "\\hypersetup{colorlinks=true,linkcolor=blue}")
 
-        (wl "\\parindent0pt  \\parskip10pt             % make block paragraphs")
-        (wl "\\raggedright                            % do not right justify")
+      (wl "\\parindent0pt  \\parskip10pt             % make block paragraphs")
+      (wl "\\raggedright                            % do not right justify")
 
-        (\\command "title" (title generator))
+      (\\command "title" (title generator))
       
-        (\\command "date" "")
+      (\\command "date" "")
       
-        (\\command "begin" "document")
-        (\\command "maketitle")
-        (\\command "tableofcontents")
-        (dolist (section (contents book))
-          (dolist (part section)
-            (generate-part part generator)))
-        (wl "\\chapter{Index}")
-        (wl "\\printindex")
-        (\\command "end" "document")))))
+      (\\command "begin" "document")
+      (\\command "maketitle")
+      (\\command "tableofcontents")
+      (dolist (section (contents book))
+        (dolist (part section)
+          (generate-part part generator)))
+      (wl "\\chapter{Reference}")
+      (dolist (section (contents book))
+        (dolist (part section)
+          (generate-part-reference part generator)))
+      (wl "\\chapter{Index}")
+      (wl "\\printindex")
+      (\\command "end" "document"))))
+
+(defun descriptor-ref-id (descriptor)
+  (strcat (string (label-prefix descriptor))
+          ":"
+          (princ-to-string (name descriptor))))
+
+(defun descriptor-link-id (descriptor)
+  (strcat "link:" (string (label-prefix descriptor))
+          ":" (princ-to-string (name descriptor))))
 
 (defmethod generate-part ((part code-part) (generator latex-generator))
+  "Generate link to the code"
+  (if (descriptor part)
+      (progn
+        (\\command "label" (descriptor-link-id (descriptor part)))
+        (format *latex-stream*
+                "\\hyperref[~a]{~a ~a}"
+                (descriptor-ref-id (descriptor part))
+                (pretty-label-prefix (descriptor part))
+                (name (descriptor part)))
+        (terpri *latex-stream*)
+        (when (docstring (descriptor part))
+          (write-line " - " *latex-stream*)
+          (write-line (docstring-first-sentence (descriptor part)) *latex-stream*)))
+      (write-source (text part) generator)))
+      
+(defun write-source (source generator)
   (if (highlight-syntax generator)
       (write-line "\\begin{minted}[fontsize=\\footnotesize, framesep=2mm,baselinestretch=1.2, bgcolor=CodeBackground]{common-lisp}" *latex-stream*)
       (\\command "begin" (if (listings generator) "lstlisting" "verbatim")))
-  (write-string (text part) *latex-stream*)
+  (write-string source *latex-stream*)
   (terpri *latex-stream*)
   (\\command "end"
              (cond
@@ -114,6 +142,24 @@
        (write-string "{}" stream))
       (#\\ (write-string "$\\backslash$" stream))
       (t (write-char char stream)))))
+
+(defgeneric generate-part-reference (part generator))
+
+(defmethod generate-part-reference ((part code-part) (generator latex-generator))
+  (write-source (text part) generator)
+  (terpri *latex-stream*)
+  (format *latex-stream* "\\hyperref[~a]{[Source Context]}"
+          (descriptor-link-id (descriptor part))))
+
+(defmethod generate-part-reference (part generator)
+  )
+
+(defmethod generate-part-reference :around ((part code-part) generator)
+  (when (descriptor part)
+    (\\command "section" (strcat (pretty-label-prefix (descriptor part))
+                                 ": " (princ-to-string (name (descriptor part)))))
+    (\\command "label" (descriptor-ref-id (descriptor part)))
+    (call-next-method)))
 
 ;; Copyright (c) 2005, Edward Marco Baringer
 ;; All rights reserved.
