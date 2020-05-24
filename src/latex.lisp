@@ -7,7 +7,12 @@
 (defclass latex-generator (generator)
   ((output-file :initarg :output-file :accessor output-file)
    (listings :initarg :listings :accessor listings :initform nil
-             :documentation "When non-NIL, generate listings with LaTeX listings package.  When string, push \\ltset{this string} in the preamble.")))
+             :documentation "When non-NIL, generate listings with LaTeX listings package.  When string, push \\ltset{this string} in the preamble.")
+   (highlight-syntax :initarg :highlight-syntax
+                     :accessor highlight-syntax
+                     :type boolean
+                     :initform nil
+                     :documentation "When T, highlight syntax using highlight.js library")))
 
 (defvar *latex-stream*)
 
@@ -28,37 +33,69 @@
                                        :if-exists :supersede
                                        :if-does-not-exist :create)
     (declare (special *latex-stream*))
-    (write-line "\\documentclass[a4paper]{article}" *latex-stream*)
-    (when (listings generator)
-      (\\command "usepackage" "listings")
-      (\\command "lstset" "language=lisp")
-      (when (stringp (listings generator))
-        (\\command "lstset" (listings generator))))
-    (\\command "title" (title generator))
-    (\\command "date" "")
-    (\\command "begin" "document")
-    (\\command "maketitle")
-    (\\command "tableofcontents")
-    (dolist (section (contents book))
-      (dolist (part section)
-        (generate-part part generator)))
-    (\\command "end" "document")))
+    (flet ((wl (s &rest args)
+             (write-line (apply #'format nil s args) *latex-stream*)))
+      (wl "\\documentclass[11pt,pdflatex,makeidx]{scrbook}")
+      (wl "\\usepackage[margin=0.5in]{geometry}")
+      (wl "\\usepackage{xcolor}")
+      (wl "\\usepackage{makeidx}")
+      (wl "\\usepackage{hyperref}")
+      (when (highlight-syntax generator)
+        (wl "\\usepackage{minted}")
+        (wl "\\usepackage{mdframed}"))
+
+      (when (listings generator)
+        (\\command "usepackage" "listings")
+        (\\command "lstset" "language=lisp")
+        
+        (when (stringp (listings generator))
+          (\\command "lstset" (listings generator)))
+
+        (wl "\\usepackage{hyperref}")
+        (wl "\\usepackage{courier}")
+
+        (wl "\\definecolor{CodeBackground}{HTML}{E9E9E9}")
+        (wl "\\hypersetup{colorlinks=true,linkcolor=blue}")
+
+        (wl "\\parindent0pt  \\parskip10pt             % make block paragraphs")
+        (wl "\\raggedright                            % do not right justify")
+
+        (\\command "title" (title generator))
+      
+        (\\command "date" "")
+      
+        (\\command "begin" "document")
+        (\\command "maketitle")
+        (\\command "tableofcontents")
+        (dolist (section (contents book))
+          (dolist (part section)
+            (generate-part part generator)))
+        (wl "\\chapter{Index}")
+        (wl "\\printindex")
+        (\\command "end" "document")))))
 
 (defmethod generate-part ((part code-part) (generator latex-generator))
-  (\\command "begin" (if (listings generator) "lstlisting" "verbatim"))
+  (if (highlight-syntax generator)
+      (write-line "\\begin{minted}[fontsize=\\footnotesize, framesep=2mm,baselinestretch=1.2, bgcolor=CodeBackground]{common-lisp}" *latex-stream*)
+      (\\command "begin" (if (listings generator) "lstlisting" "verbatim")))
   (write-string (text part) *latex-stream*)
   (terpri *latex-stream*)
-  (\\command "end" (if (listings generator) "lstlisting" "verbatim")))
+  (\\command "end"
+             (cond
+               ((highlight-syntax generator) "minted")
+               ((listings generator) "lstlisting")
+               (t "verbatim"))))
 
 (defmethod generate-part ((part whitespace-part) (generator latex-generator))
   (write-string (text part) *latex-stream*))
 
 (defmethod generate-part ((part heading-part) (generator latex-generator))
   (write-string (ecase (depth part)
-                  (1 "\\section{")
-                  (2 "\\subsection{")
-                  (3 "\\subsubsection{")
-                  (4 "\\subsubsection*{"))
+                  (1 "\\chapter{")
+                  (2 "\\section{")
+                  (3 "\\subsection{")
+                  (4 "\\subsubsection{")
+                  (5 "\\subsubsection*{"))
                 *latex-stream*)
   (write-latex-escaped (text part) *latex-stream*)
   (write-string "}" *latex-stream*)
