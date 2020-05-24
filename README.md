@@ -1,6 +1,6 @@
 # The qbook lisp documentation system
 
-qbook generates HTML (or LaTeX) formatted code listings of Common Lisp source files. Comments in the source code are rendered as HTML paragraphs, text is rendered in <pre> blocks. Headings are created by preceding the text of the comment with one or more #\* chars.
+qbook generates HTML (or LaTeX) formatted code listings of Common Lisp source files. Comments in the source code are rendered as HTML paragraphs, text is rendered in <pre> blocks. Headings are created by preceding the text of the comment with one or more `*` chars.
 
 This is inspired by Luke Gorrie's pbook.el.
 
