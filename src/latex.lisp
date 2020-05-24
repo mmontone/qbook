@@ -62,6 +62,7 @@
       (\\command "title" (title generator))
       
       (\\command "date" "")
+      (\\command "makeindex")
       
       (\\command "begin" "document")
       (\\command "maketitle")
@@ -73,6 +74,8 @@
       (dolist (section (contents book))
         (dolist (part section)
           (generate-part-reference part generator)))
+      (terpri *latex-stream*)
+      (terpri *latex-stream*)
       (wl "\\chapter{Index}")
       (wl "\\printindex")
       (\\command "end" "document"))))
@@ -159,6 +162,8 @@
     (\\command "section" (strcat (pretty-label-prefix (descriptor part))
                                  ": " (princ-to-string (name (descriptor part)))))
     (\\command "label" (descriptor-ref-id (descriptor part)))
+    (\\command "index" (strcat (pretty-label-prefix (descriptor part)) " "
+                                   (princ-to-string (name (descriptor part)))))
     (call-next-method)))
 
 ;; Copyright (c) 2005, Edward Marco Baringer
