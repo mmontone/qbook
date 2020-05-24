@@ -10,6 +10,11 @@
                     :type boolean
                     :initform t
                     :documentation "If T, escape comments HTML. If NIL, output the comment as it is (useful for embedding HTML in code comments).")
+   (highlight-syntax :initarg :highlight-syntax
+                     :accessor highlight-syntax
+                     :type boolean
+                     :initform nil
+                     :documentation "When T, highlight syntax using highlight.js library")
    (output-directory :initarg :output-directory :accessor output-directory)))
 
 (defvar *generator*)
@@ -47,10 +52,19 @@
        (<:html
         (<:head
          (<:title (<:as-html ,title))
+         (<:meta :http-equiv "Content-Type" :content "text/html; charset=utf-8")
          (<:stylesheet ,stylesheet)
-         (<:link :rel "alternate stylesheet" :href ,printsheet :title "Print"))
+         (<:link :rel "alternate stylesheet" :href ,printsheet :title "Print")
+         (when (highlight-syntax *generator*)
+           (<:link :rel "stylesheet"
+                   :href "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/styles/default.min.css")))
         (<:body
-         (<:div :class "qbook" ,@body))))))
+         (<:div :class "qbook" ,@body)
+         (when (highlight-syntax *generator*)
+           (<:script :src "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/highlight.min.js")
+           (<:script :src "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/languages/lisp.min.js")
+           (<:script "hljs.initHighlightingOnLoad();"))
+         )))))
 
 (defun generate-table-of-contents (sections generator)
   (<qbook-page :title (title generator)
@@ -217,7 +231,7 @@
     (setf text (regex-replace "^.*"
                               text
                               (strcat "<span class=\"first-line\">\\&</span><span class\"body\">")))
-    (<:pre :class "code" (<:as-is text) (<:as-is "</span>"))))
+    (<:pre (<:code :class "code" (<:as-is text) (<:as-is "</span>")))))
 
 (defmethod write-code-descriptor :around ((descriptor descriptor) part)
   (<:div :class (strcat "computational-element-link "
@@ -243,7 +257,7 @@
                                 (<:as-html (docstring descriptor))))
                              (call-next-method)
                              (<:h2 "Source")
-                             (<:pre :class "code" (<:as-html (text part)))
+                             (<:pre (<:code :class "code" (<:as-html (text part))))
                              (<:a :href (strcat "../" (output-file part) "#" (make-anchor-name (descriptor part)))
                                   "Source Context")))))
 

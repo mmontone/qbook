@@ -1,7 +1,7 @@
 # Change this to whatever lisp you'r using
-LISP=openmcl
-EVAL=-e
-QUIT=(ccl:quit)
+LISP=sbcl
+EVAL=--eval
+QUIT=(uiop:quit)
 SYSTEM=qbook
 
 docs: pdf html
