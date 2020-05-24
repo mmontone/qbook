@@ -38,8 +38,8 @@
 
 (defmethod all-code-parts ((book book))
   (loop
-     for section in (contents book)
-     append (remove-if-not #'code-part-p section)))
+    for section in (contents book)
+    append (remove-if-not #'code-part-p section)))
 
 (defmethod permutated-global-index ((book book))
   (let ((entries '()))
@@ -97,13 +97,13 @@
 
 (defun bulid-indexes (book)
   (loop
-     for section in (contents book)
-     do (loop
-           for part in section
-           when (code-part-p part)
+    for section in (contents book)
+    do (loop
+         for part in section
+         when (code-part-p part)
            do (when (descriptor part)
                 (symbol-macrolet ((index-table
-                                   (gethash (class-of (descriptor part)) (indexes book))))
+                                    (gethash (class-of (descriptor part)) (indexes book))))
                   (unless index-table
                     (setf index-table (make-hash-table :test 'eql)))
                   (setf (gethash (name (descriptor part)) index-table) part)))))
@@ -196,11 +196,11 @@
       (cl-ppcre:scan-to-strings (load-time-value (cl-ppcre:create-scanner "^@include (.*)"))
                                 (text part))
     (if matchp
-	(return-from process-directive (read-source-file
-					(merge-pathnames (let ((*readtable* (copy-readtable nil)))
-							   (read-from-string (aref strings 0)))
-							 (truename *source-file*))))
-	(return-from process-directive (list part)))))
+        (return-from process-directive (read-source-file
+                                        (merge-pathnames (let ((*readtable* (copy-readtable nil)))
+                                                           (read-from-string (aref strings 0)))
+                                                         (truename *source-file*))))
+        (return-from process-directive (list part)))))
 
 ;;;; ** Parsing
 
@@ -252,12 +252,12 @@
   (declare (ignore char))
   (with-output-to-string (line)
     (loop
-       for next-char = (read-char stream nil stream t)
-       if (or (eq next-char stream)
-              (char= next-char #\Newline))
-         do (return)
-       else
-         do (write-char next-char line))))
+      for next-char = (read-char stream nil stream t)
+      if (or (eq next-char stream)
+             (char= next-char #\Newline))
+        do (return)
+      else
+        do (write-char next-char line))))
 
 (defun make-qbook-readtable ()
   (iterate
@@ -266,14 +266,14 @@
     (for char = (code-char i))
     (when (get-macro-character char)
       (multiple-value-bind (function non-terminating-p)
-	  (get-macro-character char *readtable*)
-	(set-macro-character char
-			     (case char
-			       (#\; (make-part-reader 'qbook-semicolon-reader 'comment-part))
-			       (#\( (make-part-reader function 'code-part))
-			       (t (make-part-reader function 'code-part)))
-			     non-terminating-p
-			     r)))
+          (get-macro-character char *readtable*)
+        (set-macro-character char
+                             (case char
+                               (#\; (make-part-reader 'qbook-semicolon-reader 'comment-part))
+                               (#\( (make-part-reader function 'code-part))
+                               (t (make-part-reader function 'code-part)))
+                             non-terminating-p
+                             r)))
     (finally (return r))))
 
 (defun whitespacep (char)
@@ -305,8 +305,8 @@
                        (*load-pathname* (pathname file-name))
                        (*load-truename* (truename *load-pathname*)))
                   (ignore-errors
-                    (setf (form part) (read-from-string (text part) nil))
-                    (eval (form part)))
+                   (setf (form part) (read-from-string (text part) nil))
+                   (eval (form part)))
                   (setf *evaling-readtable* *readtable*)
                   (setf *evaling-package* *package*)))
                (t part))))
@@ -336,7 +336,7 @@
         ;; step 3: gather any extra source code info
         (setf parts (collect-code-info parts))
         ;; step 4: setup navigation elements
-        (setf parts (post-process-navigation parts))    
+        (setf parts (post-process-navigation parts))
         ;; step 5: remove all the parts before the first comment part
         (setf parts (iterate
                       (for p on parts)
@@ -355,8 +355,8 @@
   (mapcar (lambda (part)
             (typecase part
               (code-part
-                ;; punt all the work to collect-code-info
-                (analyse-code-part part))
+               ;; punt all the work to collect-code-info
+               (analyse-code-part part))
               (t part)))
           parts))
 
@@ -364,49 +364,49 @@
   ;; convert all the comments which are acutally headings to heading
   ;; objects
   (setf parts
-	(iterate
-	  (for p in parts)
-	  (typecase p
-	    (comment-part
-	     (multiple-value-bind (match strings)
-		 (scan-to-strings (load-time-value
+        (iterate
+          (for p in parts)
+          (typecase p
+            (comment-part
+             (multiple-value-bind (match strings)
+                 (scan-to-strings (load-time-value
                                    (create-scanner ";;;;\\s*(\\*+)\\s*(.*)" :single-line-mode nil))
                                   (text p))
-	       (if match
-		   (collect (make-instance 'heading-part
-					   :depth (length (aref strings 0))
-					   :text (aref strings 1)
-					   :start-position (start-position p)
-					   :end-position (end-position p)
-					   :origin-file (origin-file p)))
-		   (multiple-value-bind (match strings)
-		       (scan-to-strings (load-time-value
+               (if match
+                   (collect (make-instance 'heading-part
+                                           :depth (length (aref strings 0))
+                                           :text (aref strings 1)
+                                           :start-position (start-position p)
+                                           :end-position (end-position p)
+                                           :origin-file (origin-file p)))
+                   (multiple-value-bind (match strings)
+                       (scan-to-strings (load-time-value
                                          (create-scanner ";;;;(.*)" :single-line-mode t))
                                         (text p))
-		     (if match
-			 (collect (make-instance 'comment-part
-						 :start-position (start-position p)
-						 :end-position (end-position p)
-						 :text (aref strings 0)
-						 :origin-file (origin-file p))))))))
-	    ((or code-part whitespace-part) (collect p)))))
+                     (if match
+                         (collect (make-instance 'comment-part
+                                                 :start-position (start-position p)
+                                                 :end-position (end-position p)
+                                                 :text (aref strings 0)
+                                                 :origin-file (origin-file p))))))))
+            ((or code-part whitespace-part) (collect p)))))
   ;;;; merge consequtive comments together
   (setf parts
-	(iterate
-	  (with comment = (make-string-output-stream))
-	  (for (p next) on parts)
-	  (cond
-	    ((heading-part-p p) (collect p))
-	    ((and (comment-part-p p)
-		  (or (not (comment-part-p next))
-		      (heading-part-p next)
-		      (null next)))
-	     (write-string (text p) comment)
-	     (collect (make-instance 'comment-part :text (get-output-stream-string comment)))
-	     (setf comment (make-string-output-stream)))
-	    ((comment-part-p p)
-	     (write-string (text p) comment))
-	    (t (collect p)))))
+        (iterate
+          (with comment = (make-string-output-stream))
+          (for (p next) on parts)
+          (cond
+            ((heading-part-p p) (collect p))
+            ((and (comment-part-p p)
+                  (or (not (comment-part-p next))
+                      (heading-part-p next)
+                      (null next)))
+             (write-string (text p) comment)
+             (collect (make-instance 'comment-part :text (get-output-stream-string comment)))
+             (setf comment (make-string-output-stream)))
+            ((comment-part-p p)
+             (write-string (text p) comment))
+            (t (collect p)))))
   parts)
 
 (defun post-process-navigation (parts)
@@ -416,8 +416,8 @@
     (for part in parts)
     (when (heading-part-p part)
       (when last-heading
-	(setf (prev-part part) last-heading
-	      (next-part last-heading) part))
+        (setf (prev-part part) last-heading
+              (next-part last-heading) part))
       (setf last-heading part)))
   ;;;; setup the up links
   (iterate
@@ -429,15 +429,15 @@
   parts)
 
 ;; Copyright (c) 2005, Edward Marco Baringer
-;; All rights reserved. 
-;; 
+;; All rights reserved.
+;;
 ;; Redistribution and use in source and binary forms, with or without
 ;; modification, are permitted provided that the following conditions are
 ;; met:
-;; 
+;;
 ;;  - Redistributions of source code must retain the above copyright
 ;;    notice, this list of conditions and the following disclaimer.
-;; 
+;;
 ;;  - Redistributions in binary form must reproduce the above copyright
 ;;    notice, this list of conditions and the following disclaimer in the
 ;;    documentation and/or other materials provided with the distribution.
@@ -445,7 +445,7 @@
 ;;  - Neither the name of Edward Marco Baringer, nor BESE, nor the names
 ;;    of its contributors may be used to endorse or promote products
 ;;    derived from this software without specific prior written permission.
-;; 
+;;
 ;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ;; "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 ;; LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR

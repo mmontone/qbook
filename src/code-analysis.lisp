@@ -49,14 +49,14 @@
              (return-from subseq-first-sentence
                (get-output-stream-string first-sentence))))
       (loop
-         for char across string
-         for count below limit
-         if (member char (list #\. #\? #\!))
-           do (write-char char first-sentence)
-           and do (ret)
-         else
-           do (write-char char first-sentence)
-         finally (ret)))))
+        for char across string
+        for count below limit
+        if (member char (list #\. #\? #\!))
+          do (write-char char first-sentence)
+          and do (ret)
+        else
+          do (write-char char first-sentence)
+        finally (ret)))))
 
 (defgeneric docstring-first-sentence (descriptor &optional limit)
   (:documentation "Returns the first sentence of DESCRIPTOR's
@@ -80,9 +80,9 @@ returns nil.")
       (arnesi::walk-lambda-list lambda-list nil nil)
     (multiple-value-bind (body docstring declarations)
         (handler-bind ((arnesi::return-from-unknown-block
-                                           (lambda (c)
-                                             (declare (ignore c))
-                                             (invoke-restart 'arnesi::add-block))))
+                         (lambda (c)
+                           (declare (ignore c))
+                           (invoke-restart 'arnesi::add-block))))
           (arnesi::walk-implict-progn nil body env :docstring t :declare t))
       (declare (ignore declarations))
       (make-instance 'defun-descriptor
@@ -102,9 +102,9 @@ returns nil.")
       (arnesi::walk-lambda-list lambda-list nil nil)
     (multiple-value-bind (body docstring declarations)
         (handler-bind ((arnesi::return-from-unknown-block
-                                           (lambda (c)
-                                             (declare (ignore c))
-                                             (invoke-restart 'arnesi::add-block))))
+                         (lambda (c)
+                           (declare (ignore c))
+                           (invoke-restart 'arnesi::add-block))))
           (arnesi::walk-implict-progn nil body env :docstring t :declare t))
       (declare (ignore declarations))
       (make-instance 'defmacro-descriptor
@@ -118,7 +118,7 @@ returns nil.")
    (supers :accessor supers :initarg :supers :initform '()))
   (:default-initargs
    :label-prefix "class"
-    :pretty-label-prefix "Class"))
+   :pretty-label-prefix "Class"))
 
 (defcode-info-collector cl:defclass (name supers slots &rest options)
   (make-instance 'defclass-descriptor
@@ -188,9 +188,9 @@ returns nil.")
         (arnesi::walk-lambda-list arguments nil nil :allow-specializers t)
       (multiple-value-bind (body docstring declarations)
           (handler-bind ((arnesi::return-from-unknown-block
-                          (lambda (c)
-                            (declare (ignore c))
-                            (invoke-restart 'arnesi::add-block))))
+                           (lambda (c)
+                             (declare (ignore c))
+                             (invoke-restart 'arnesi::add-block))))
             (arnesi::walk-implict-progn nil body env :docstring t :declare t))
         (declare (ignore declarations))
         (make-instance 'defmethod-descriptor
