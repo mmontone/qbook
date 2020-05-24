@@ -5,7 +5,12 @@
 ;;;; * The HTML Generator
 
 (defclass html-generator (generator)
-  ((output-directory :initarg :output-directory :accessor output-directory)))
+  ((escape-comments :initarg :escape-comments
+                    :accessor escape-comments
+                    :type boolean
+                    :initform t
+                    :documentation "If T, escape comments HTML. If NIL, output the comment as it is (useful for embedding HTML in code comments).")
+   (output-directory :initarg :output-directory :accessor output-directory)))
 
 (defvar *generator*)
 
@@ -315,7 +320,9 @@
      (ecase state
        ((nil) (write-string "<p>" *yaclml-stream*))
        (:in-comment nil))
-     (<:as-html (text part))
+     (if (escape-comments *generator*)
+         (<:as-html (text part))
+         (<:as-is (text part)))
      :in-comment)))
 
 ;; Copyright (c) 2005, Edward Marco Baringer
