@@ -20,9 +20,16 @@
 ;;;; *** The public entry point: PUBLISH-QBOOK
 
 (defclass generator ()
-  ((title :accessor title :initarg :title)))
+  ((title :accessor title :initarg :title)
+   (print-case :initarg :print-case
+               :accessor print-case
+               :initform *print-case*)))
 
 (defgeneric generate (book generator))
+
+(defmethod generate :around (book generator)
+  (let ((*print-case* (print-case generator)))
+    (call-next-method)))
 
 (defclass book ()
   ((title :accessor title :initarg :title
