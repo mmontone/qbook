@@ -25,7 +25,7 @@ pdf:
 	pdflatex -shell-escape ${SYSTEM}.tex
 	makeindex ${SYSTEM}.idx
 	pdflatex -shell-escape ${SYSTEM}.tex
-	rm ${SYSTEM}.aux ${SYSTEM}.log ${SYSTEM}.toc ${SYSTEM}.tex
+	rm ${SYSTEM}.aux ${SYSTEM}.log ${SYSTEM}.toc
 
 clean:
 	rm *.html qbook.pdf
