@@ -137,8 +137,8 @@
                   (1 "\\chapter{")
                   (2 "\\section{")
                   (3 "\\subsection{")
-                  (4 "\\subsubsection{")
-                  (5 "\\subsubsection*{"))
+                  (4 "\\subsubsection*{")
+                  (5 "\\subsubsubsection*{"))
                 *latex-stream*)
   (write-latex-escaped (text part) *latex-stream*)
   (write-string "}" *latex-stream*)
@@ -181,7 +181,7 @@
 
 (defmethod generate-part-reference :around ((part code-part) generator)
   (when (descriptor part)
-    (latex-command "section" (strcat (pretty-label-prefix (descriptor part))
+    (latex-command "section*" (strcat (pretty-label-prefix (descriptor part))
                                      ": "
                                      (safe-latex-id (princ-to-string (name (descriptor part))))))
     (latex-command "label" (descriptor-ref-id (descriptor part)))
