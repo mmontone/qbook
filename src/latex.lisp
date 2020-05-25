@@ -47,7 +47,7 @@
       (when (listings generator)
         (latex-command "usepackage" "listings")
         (latex-command "lstset" "language=lisp"))
-        
+
       (when (stringp (listings generator))
         (latex-command "lstset" (listings generator)))
 
@@ -60,10 +60,10 @@
       (wl "\\raggedright                            % do not right justify")
 
       (latex-command "title" (title generator))
-      
+
       (latex-command "date" "")
       (latex-command "makeindex")
-      
+
       (latex-command "begin" "document")
       (latex-command "maketitle")
       (latex-command "tableofcontents")
@@ -117,17 +117,17 @@
           (write-line " - " *latex-stream*)
           (write-line (docstring-first-sentence (descriptor part)) *latex-stream*)))
       (write-source (text part) generator)))
-      
+
 (defun write-source (source generator)
   (if (highlight-syntax generator)
       (write-line "\\begin{minted}[fontsize=\\footnotesize, framesep=2mm,baselinestretch=1.2, bgcolor=CodeBackground]{common-lisp}" *latex-stream*)
       (latex-command "begin" (if (listings generator) "lstlisting" "verbatim")))
   (write-line source *latex-stream*)
   (latex-command "end"
-             (cond
-               ((highlight-syntax generator) "minted")
-               ((listings generator) "lstlisting")
-               (t "verbatim"))))
+                 (cond
+                   ((highlight-syntax generator) "minted")
+                   ((listings generator) "lstlisting")
+                   (t "verbatim"))))
 
 (defmethod generate-part ((part whitespace-part) (generator latex-generator))
   (write-string (text part) *latex-stream*))
@@ -161,14 +161,14 @@
 (defgeneric generate-part-reference (part generator))
 
 (defmethod generate-part-reference ((part code-part) (generator latex-generator))
-  
+
   (when (docstring (descriptor part))
     (write-latex-escaped (docstring (descriptor part)) *latex-stream*)
     (terpri *latex-stream*)
     (write-line "\\vskip 0.1in" *latex-stream*))
 
   (write-latex-code-descriptor (descriptor part) generator)
-  
+
   (write-source (text part) generator)
   (terpri *latex-stream*)
   (format *latex-stream* "\\hyperref[~a]{[Source Context]}"
@@ -182,8 +182,8 @@
 (defmethod generate-part-reference :around ((part code-part) generator)
   (when (descriptor part)
     (latex-command "section" (strcat (pretty-label-prefix (descriptor part))
-                                 ": "
-                                 (safe-latex-id (princ-to-string (name (descriptor part))))))
+                                     ": "
+                                     (safe-latex-id (princ-to-string (name (descriptor part))))))
     (latex-command "label" (descriptor-ref-id (descriptor part)))
     (latex-command "index" (strcat (pretty-label-prefix (descriptor part)) " "
                                    (princ-to-string (name (descriptor part)))))
@@ -195,36 +195,41 @@
   )
 
 (defmethod write-latex-code-descriptor ((descriptor defclass-descriptor) generator)
-  (when (slots descriptor)
-    (latex-command "subsection*" "Slots")
-    (latex-command "begin" "itemize")
-    (dolist (slot (slots descriptor))
-      (write-string "\\item " *latex-stream*)
-      (princ (name slot) *latex-stream*)
-      (when (docstring slot)
-        (write-string " - " *latex-stream*)
-        (write-string (docstring slot) *latex-stream*))
-      (terpri *latex-stream*))
-    (latex-command "end" "itemize"))
+  (flet ((write-class-link (class)
+           (format *latex-stream*
+                   "\\hyperref[class:~a]{~a}"
+                   (class-name class)
+                   (class-name class))))
+    (when (slots descriptor)
+      (latex-command "subsection*" "Slots")
+      (latex-command "begin" "itemize")
+      (dolist (slot (slots descriptor))
+        (write-string "\\item " *latex-stream*)
+        (princ (name slot) *latex-stream*)
+        (when (docstring slot)
+          (write-string " - " *latex-stream*)
+          (write-string (docstring slot) *latex-stream*))
+        (terpri *latex-stream*))
+      (latex-command "end" "itemize"))
 
-  (latex-command "subsection*" "Hierarchy")
-  (latex-command "subsubsection*" "Precedence list")
-  
-  (latex-command "begin" "itemize")
-  (dolist (class (mopp:class-direct-superclasses (find-class (name descriptor))))
-    (write-string "\\item " *latex-stream*)
-    (princ (class-name class) *latex-stream*)
-    (terpri *latex-stream*))
-  (latex-command "end" "itemize")
+    (latex-command "subsection*" "Hierarchy")
+    (latex-command "subsubsection*" "Precedence list")
 
-  (awhen (mopp:class-direct-subclasses (find-class (name descriptor)))
-    (latex-command "subsection*" "Sub Classes")
     (latex-command "begin" "itemize")
-    (dolist (sub it)
+    (dolist (class (mopp:class-direct-superclasses (find-class (name descriptor))))
       (write-string "\\item " *latex-stream*)
-      (princ (class-name sub) *latex-stream*)
+      (write-class-link class)
       (terpri *latex-stream*))
-    (latex-command "end" "itemize")))
+    (latex-command "end" "itemize")
+
+    (awhen (mopp:class-direct-subclasses (find-class (name descriptor)))
+      (latex-command "subsection*" "Sub Classes")
+      (latex-command "begin" "itemize")
+      (dolist (sub it)
+        (write-string "\\item " *latex-stream*)
+        (write-class-link sub)
+        (terpri *latex-stream*))
+      (latex-command "end" "itemize"))))
 
 ;; Copyright (c) 2005, Edward Marco Baringer
 ;; All rights reserved.
