@@ -161,6 +161,12 @@
 (defgeneric generate-part-reference (part generator))
 
 (defmethod generate-part-reference ((part code-part) (generator latex-generator))
+  
+  (when (docstring (descriptor part))
+    (write-latex-escaped (docstring (descriptor part)) *latex-stream*)
+    (terpri *latex-stream*)
+    (write-line "\\vskip 0.2in" *latex-stream*))
+  
   (write-source (text part) generator)
   (terpri *latex-stream*)
   (format *latex-stream* "\\hyperref[~a]{[Source Context]}"
