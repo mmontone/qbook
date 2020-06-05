@@ -186,7 +186,7 @@
                                      (safe-latex-id (princ-to-string (name (descriptor part))))))
     (latex-command "label" (descriptor-ref-id (descriptor part)))
     (latex-command "index" (strcat (pretty-label-prefix (descriptor part)) " "
-                                   (princ-to-string (name (descriptor part)))))
+                                   (safe-latex-id (princ-to-string (name (descriptor part))))))
     (call-next-method)))
 
 (defgeneric write-latex-code-descriptor (descriptor generator))
