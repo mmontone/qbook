@@ -203,10 +203,11 @@
       (cl-ppcre:scan-to-strings (load-time-value (cl-ppcre:create-scanner "^@include (.*)"))
                                 (text part))
     (if matchp
-        (return-from process-directive (read-source-file
-                                        (merge-pathnames (let ((*readtable* (copy-readtable nil)))
-                                                           (read-from-string (aref strings 0)))
-                                                         (truename *source-file*))))
+        (return-from process-directive
+          (read-source-file
+           (merge-pathnames (let ((*readtable* (copy-readtable nil)))
+                              (read-from-string (aref strings 0)))
+                            (truename *source-file*))))
         (return-from process-directive (list part)))))
 
 ;;;; ** Parsing
@@ -266,6 +267,7 @@
       else
         do (write-char next-char line))))
 
+#+nil
 (defun make-qbook-readtable ()
   (iterate
     (with r = (copy-readtable nil))
@@ -277,11 +279,22 @@
         (set-macro-character char
                              (case char
                                (#\; (make-part-reader 'qbook-semicolon-reader 'comment-part))
+                               (#\# (break "dispatch"))
                                (#\( (make-part-reader function 'code-part))
                                (t (make-part-reader function 'code-part)))
                              non-terminating-p
                              r)))
     (finally (return r))))
+
+(defun make-qbook-readtable ()
+  (let ((r (copy-readtable nil)))
+    (multiple-value-bind (function non-terminating-p)
+        (get-macro-character #\( *readtable*)
+      (set-macro-character #\( (make-part-reader function 'code-part) non-terminating-p r))
+    (multiple-value-bind (function non-terminating-p)
+        (get-macro-character #\; *readtable*)
+      (set-macro-character #\; (make-part-reader 'qbook-semicolon-reader 'comment-part) non-terminating-p r))
+    r))
 
 (defun whitespacep (char)
   (and char
