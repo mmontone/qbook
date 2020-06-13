@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{defclass} \PYG{n+nv}{book} \PYG{p}{()}
-  \PYG{p}{((}\PYG{n+nv}{title} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{title} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:title}
-          \PYG{l+s+ss}{:documentation} \PYG{l+s}{\PYGZdq{}The title of the book.\PYGZdq{}}\PYG{p}{)}
-   \PYG{p}{(}\PYG{n+nv}{contents} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{contents} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:contents}\PYG{p}{)}
-   \PYG{p}{(}\PYG{n+nv}{indexes} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{indexes} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:indexes} \PYG{l+s+ss}{:initform} \PYG{p}{(}\PYG{n+nb}{make\PYGZhy{}hash\PYGZhy{}table} \PYG{l+s+ss}{:test} \PYG{l+s+ss}{\PYGZsq{}eq}\PYG{p}{))))}
-\end{Verbatim}

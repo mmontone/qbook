@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{analyse\PYGZhy{}code\PYGZhy{}part} \PYG{p}{(}\PYG{n+nv}{code\PYGZhy{}part}\PYG{p}{)}
-  \PYG{p}{(}\PYG{n+nv}{awhen} \PYG{p}{(}\PYG{n+nb}{gethash} \PYG{p}{(}\PYG{n+nb}{first} \PYG{p}{(}\PYG{n+nv}{form} \PYG{n+nv}{code\PYGZhy{}part}\PYG{p}{))} \PYG{n+nv+vg}{*code\PYGZhy{}info\PYGZhy{}collectors*}\PYG{p}{)}
-    \PYG{p}{(}\PYG{n+nb}{setf} \PYG{p}{(}\PYG{n+nv}{descriptor} \PYG{n+nv}{code\PYGZhy{}part}\PYG{p}{)} \PYG{p}{(}\PYG{n+nb}{funcall} \PYG{n+nv}{it} \PYG{p}{(}\PYG{n+nb}{cdr} \PYG{p}{(}\PYG{n+nv}{form} \PYG{n+nv}{code\PYGZhy{}part}\PYG{p}{))))}
-    \PYG{p}{(}\PYG{n+nv}{register\PYGZhy{}descriptor} \PYG{p}{(}\PYG{n+nv}{descriptor} \PYG{n+nv}{code\PYGZhy{}part}\PYG{p}{)))}
-  \PYG{n+nv}{code\PYGZhy{}part}\PYG{p}{)}
-\end{Verbatim}

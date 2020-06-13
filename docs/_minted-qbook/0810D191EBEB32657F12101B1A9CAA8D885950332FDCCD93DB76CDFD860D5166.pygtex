@@ -1,6 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{publish\PYGZhy{}system\PYGZhy{}qbook} \PYG{p}{(}\PYG{n+nv}{system\PYGZhy{}name} \PYG{n+nv}{generator\PYGZhy{}name} \PYG{k}{\PYGZam{}rest} \PYG{n+nv}{options}\PYG{p}{)}
-  \PYG{p}{(}\PYG{k}{let} \PYG{p}{((}\PYG{n+nv}{generator} \PYG{p}{(}\PYG{n+nb}{apply} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nb}{make\PYGZhy{}instance} \PYG{n+nv}{generator\PYGZhy{}name}
-                          \PYG{n+nv}{options}\PYG{p}{)))}
-    \PYG{p}{(}\PYG{n+nv}{publish\PYGZhy{}qbook} \PYG{p}{(}\PYG{n+nv}{asdf:system\PYGZhy{}source\PYGZhy{}file} \PYG{n+nv}{system\PYGZhy{}name}\PYG{p}{)} \PYG{n+nv}{generator}\PYG{p}{)))}
-\end{Verbatim}

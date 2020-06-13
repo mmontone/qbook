@@ -1,9 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{compare\PYGZhy{}descriptor\PYGZhy{}names} \PYG{p}{(}\PYG{n+nv}{a} \PYG{n+nv}{b}\PYG{p}{)}
-  \PYG{p}{(}\PYG{n+nb}{string\PYGZlt{}} \PYG{p}{(}\PYG{n+nv}{regex\PYGZhy{}replace\PYGZhy{}all} \PYG{l+s}{\PYGZdq{}[\PYGZca{}A\PYGZhy{}Za\PYGZhy{}z]\PYGZdq{}} \PYG{p}{(}\PYG{n+nb}{string} \PYG{p}{(}\PYG{k}{if} \PYG{p}{(}\PYG{n+nb}{symbolp} \PYG{p}{(}\PYG{n+nv}{name} \PYG{n+nv}{a}\PYG{p}{))}
-                                                      \PYG{p}{(}\PYG{n+nv}{name} \PYG{n+nv}{a}\PYG{p}{)}
-                                                      \PYG{p}{(}\PYG{n+nb}{second} \PYG{p}{(}\PYG{n+nv}{name} \PYG{n+nv}{a}\PYG{p}{))))} \PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}
-           \PYG{p}{(}\PYG{n+nv}{regex\PYGZhy{}replace\PYGZhy{}all} \PYG{l+s}{\PYGZdq{}[\PYGZca{}A\PYGZhy{}Za\PYGZhy{}z]\PYGZdq{}} \PYG{p}{(}\PYG{n+nb}{string} \PYG{p}{(}\PYG{k}{if} \PYG{p}{(}\PYG{n+nb}{symbolp} \PYG{p}{(}\PYG{n+nv}{name} \PYG{n+nv}{b}\PYG{p}{))}
-                                                      \PYG{p}{(}\PYG{n+nv}{name} \PYG{n+nv}{b}\PYG{p}{)}
-                                                      \PYG{p}{(}\PYG{n+nb}{second} \PYG{p}{(}\PYG{n+nv}{name} \PYG{n+nv}{b}\PYG{p}{))))} \PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)))}
-\end{Verbatim}

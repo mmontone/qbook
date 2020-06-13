@@ -1,8 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{defclass} \PYG{n+nv}{source\PYGZhy{}file\PYGZhy{}part} \PYG{p}{()}
-  \PYG{p}{((}\PYG{n+nv}{start\PYGZhy{}position} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{start\PYGZhy{}position} \PYG{l+s+ss}{:initform} \PYG{n+no}{nil} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:start\PYGZhy{}position}\PYG{p}{)}
-   \PYG{p}{(}\PYG{n+nv}{end\PYGZhy{}position} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{end\PYGZhy{}position} \PYG{l+s+ss}{:initform} \PYG{n+no}{nil} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:end\PYGZhy{}position}\PYG{p}{)}
-   \PYG{p}{(}\PYG{n+nv}{text} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{text} \PYG{l+s+ss}{:initform} \PYG{n+no}{nil} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:text}\PYG{p}{)}
-   \PYG{p}{(}\PYG{n+nv}{origin\PYGZhy{}file} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{origin\PYGZhy{}file} \PYG{l+s+ss}{:initform} \PYG{n+no}{nil} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:origin\PYGZhy{}file}\PYG{p}{)}
-   \PYG{p}{(}\PYG{n+nv}{output\PYGZhy{}file} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{output\PYGZhy{}file} \PYG{l+s+ss}{:initform} \PYG{n+no}{nil}\PYG{p}{)))}
-\end{Verbatim}

@@ -1,5 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{defun} \PYG{n+nv}{whitespacep} \PYG{p}{(}\PYG{n+nb}{char}\PYG{p}{)}
-  \PYG{p}{(}\PYG{n+nb}{and} \PYG{n+nb}{char}
-       \PYG{p}{(}\PYG{n+nb}{member} \PYG{n+nb}{char} \PYG{o}{\PYGZsq{}}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}Space} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}Tab} \PYG{l+s+sc}{\PYGZsh{}\PYGZbs{}Newline}\PYG{p}{)} \PYG{l+s+ss}{:test} \PYG{n+nf}{\PYGZsh{}\PYGZsq{}}\PYG{n+nb}{char=}\PYG{p}{)))}
-\end{Verbatim}

@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{defclass} \PYG{n+nv}{global\PYGZhy{}variable\PYGZhy{}descriptor} \PYG{p}{(}\PYG{n+nv}{descriptor}\PYG{p}{)}
-  \PYG{p}{()}
-  \PYG{p}{(}\PYG{l+s+ss}{:default\PYGZhy{}initargs}
-   \PYG{l+s+ss}{:label\PYGZhy{}prefix} \PYG{l+s}{\PYGZdq{}variable\PYGZdq{}}
-   \PYG{l+s+ss}{:pretty\PYGZhy{}label\PYGZhy{}prefix} \PYG{l+s}{\PYGZdq{}Variable\PYGZdq{}}\PYG{p}{))}
-\end{Verbatim}

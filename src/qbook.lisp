@@ -102,7 +102,7 @@
       (setf (car section) (nreverse (car section))))
     (nreverse sections)))
 
-(defun bulid-indexes (book)
+(defun build-indexes (book)
   (loop
     for section in (contents book)
     do (loop
@@ -123,7 +123,7 @@
                              :contents (convert-to-sections
                                         file-name
                                         (read-source-file file-name)))))
-    (bulid-indexes book)
+    (build-indexes book)
     (generate book generator)))
 
 ;;;; ** Publishing internals

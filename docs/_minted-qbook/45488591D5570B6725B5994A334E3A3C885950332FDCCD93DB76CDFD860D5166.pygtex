@@ -1,8 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{defclass} \PYG{n+nv}{defclass\PYGZhy{}descriptor} \PYG{p}{(}\PYG{n+nv}{descriptor}\PYG{p}{)}
-  \PYG{p}{((}\PYG{n+nv}{slots} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{slots} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:slots} \PYG{l+s+ss}{:initform} \PYG{o}{\PYGZsq{}}\PYG{p}{())}
-   \PYG{p}{(}\PYG{n+nv}{supers} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{supers} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:supers} \PYG{l+s+ss}{:initform} \PYG{o}{\PYGZsq{}}\PYG{p}{()))}
-  \PYG{p}{(}\PYG{l+s+ss}{:default\PYGZhy{}initargs}
-   \PYG{l+s+ss}{:label\PYGZhy{}prefix} \PYG{l+s}{\PYGZdq{}class\PYGZdq{}}
-   \PYG{l+s+ss}{:pretty\PYGZhy{}label\PYGZhy{}prefix} \PYG{l+s}{\PYGZdq{}Class\PYGZdq{}}\PYG{p}{))}
-\end{Verbatim}

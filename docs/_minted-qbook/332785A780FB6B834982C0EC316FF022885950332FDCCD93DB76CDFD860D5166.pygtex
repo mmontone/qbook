@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{defclass} \PYG{n+nv}{descriptor} \PYG{p}{()}
-  \PYG{p}{((}\PYG{n+nv}{name} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{name} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:name}\PYG{p}{)}
-   \PYG{p}{(}\PYG{n+nv}{docstring} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{docstring} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:docstring}\PYG{p}{)}
-   \PYG{p}{(}\PYG{n+nv}{label\PYGZhy{}prefix} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{label\PYGZhy{}prefix} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:label\PYGZhy{}prefix}\PYG{p}{)}
-   \PYG{p}{(}\PYG{n+nv}{pretty\PYGZhy{}label\PYGZhy{}prefix} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{pretty\PYGZhy{}label\PYGZhy{}prefix} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:pretty\PYGZhy{}label\PYGZhy{}prefix}\PYG{p}{)))}
-\end{Verbatim}

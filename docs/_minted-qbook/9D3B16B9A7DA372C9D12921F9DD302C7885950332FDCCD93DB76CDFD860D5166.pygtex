@@ -1,5 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{defclass} \PYG{n+nv}{publish\PYGZhy{}op} \PYG{p}{(}\PYG{n+nv}{asdf:operation}\PYG{p}{)}
-  \PYG{p}{((}\PYG{n+nv}{generator} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:generator} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{generator}\PYG{p}{)}
-   \PYG{p}{(}\PYG{n+nv}{input\PYGZhy{}file} \PYG{l+s+ss}{:initform} \PYG{n+no}{nil} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:input\PYGZhy{}file} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{input\PYGZhy{}file}\PYG{p}{)))}
-\end{Verbatim}

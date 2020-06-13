@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{defmethod} \PYG{n+nv}{generate\PYGZhy{}part\PYGZhy{}reference} \PYG{p}{((}\PYG{n+nv}{part} \PYG{n+nv}{code\PYGZhy{}part}\PYG{p}{)} \PYG{p}{(}\PYG{n+nv}{generator} \PYG{n+nv}{latex\PYGZhy{}generator}\PYG{p}{))}
-  \PYG{p}{(}\PYG{n+nv}{write\PYGZhy{}source} \PYG{p}{(}\PYG{n+nv}{text} \PYG{n+nv}{part}\PYG{p}{)} \PYG{n+nv}{generator}\PYG{p}{)}
-  \PYG{p}{(}\PYG{n+nb}{terpri} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*}\PYG{p}{)}
-  \PYG{p}{(}\PYG{n+nb}{format} \PYG{n+nv+vg}{*latex\PYGZhy{}stream*} \PYG{l+s}{\PYGZdq{}\PYGZbs{}\PYGZbs{}hyperref[\PYGZti{}a]\PYGZob{}[Source Context]\PYGZcb{}\PYGZdq{}}
-          \PYG{p}{(}\PYG{n+nv}{descriptor\PYGZhy{}link\PYGZhy{}id} \PYG{p}{(}\PYG{n+nv}{descriptor} \PYG{n+nv}{part}\PYG{p}{))))}
-\end{Verbatim}

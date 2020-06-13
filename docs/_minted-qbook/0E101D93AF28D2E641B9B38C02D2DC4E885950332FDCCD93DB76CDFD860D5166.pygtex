@@ -1,3 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{defgeneric} \PYG{n+nv}{generate} \PYG{p}{(}\PYG{n+nv}{book} \PYG{n+nv}{generator}\PYG{p}{))}
-\end{Verbatim}

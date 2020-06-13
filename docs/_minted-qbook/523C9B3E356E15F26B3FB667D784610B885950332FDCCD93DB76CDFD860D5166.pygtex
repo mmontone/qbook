@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{defmethod} \PYG{n+nb}{print\PYGZhy{}object} \PYG{p}{((}\PYG{n+nv}{part} \PYG{n+nv}{source\PYGZhy{}file\PYGZhy{}part}\PYG{p}{)} \PYG{n+nc}{stream}\PYG{p}{)}
-  \PYG{p}{(}\PYG{n+nb}{print\PYGZhy{}unreadable\PYGZhy{}object} \PYG{p}{(}\PYG{n+nv}{part} \PYG{n+nc}{stream} \PYG{l+s+ss}{:type} \PYG{n+no}{t} \PYG{l+s+ss}{:identity} \PYG{n+no}{t}\PYG{p}{)}
-    \PYG{p}{(}\PYG{n+nb}{format} \PYG{n+nc}{stream} \PYG{l+s}{\PYGZdq{}\PYGZti{}S\PYGZdq{}} \PYG{p}{(}\PYG{k}{if} \PYG{p}{(}\PYG{n+nb}{\PYGZlt{}} \PYG{p}{(}\PYG{n+nb}{length} \PYG{p}{(}\PYG{n+nv}{text} \PYG{n+nv}{part}\PYG{p}{))} \PYG{l+m+mi}{10}\PYG{p}{)}
-                            \PYG{p}{(}\PYG{n+nv}{text} \PYG{n+nv}{part}\PYG{p}{)}
-                            \PYG{p}{(}\PYG{n+nv}{strcat} \PYG{p}{(}\PYG{n+nb}{subseq} \PYG{p}{(}\PYG{n+nv}{text} \PYG{n+nv}{part}\PYG{p}{)} \PYG{l+m+mi}{0} \PYG{l+m+mi}{10}\PYG{p}{)} \PYG{l+s}{\PYGZdq{}...\PYGZdq{}}\PYG{p}{)))))}
-\end{Verbatim}

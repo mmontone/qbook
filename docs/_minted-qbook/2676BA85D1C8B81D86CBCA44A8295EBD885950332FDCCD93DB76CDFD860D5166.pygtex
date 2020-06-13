@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{p}{(}\PYG{n+nb}{defclass} \PYG{n+nv}{heading\PYGZhy{}part} \PYG{p}{(}\PYG{n+nv}{comment\PYGZhy{}part}\PYG{p}{)}
-  \PYG{p}{((}\PYG{n+nv}{depth} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{depth} \PYG{l+s+ss}{:initarg} \PYG{l+s+ss}{:depth}\PYG{p}{)}
-   \PYG{p}{(}\PYG{n+nv}{next\PYGZhy{}part} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{next\PYGZhy{}part} \PYG{l+s+ss}{:initform} \PYG{n+no}{nil}\PYG{p}{)}
-   \PYG{p}{(}\PYG{n+nv}{prev\PYGZhy{}part} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{prev\PYGZhy{}part} \PYG{l+s+ss}{:initform} \PYG{n+no}{nil}\PYG{p}{)}
-   \PYG{p}{(}\PYG{n+nv}{up\PYGZhy{}part} \PYG{l+s+ss}{:accessor} \PYG{n+nv}{up\PYGZhy{}part} \PYG{l+s+ss}{:initform} \PYG{n+no}{nil}\PYG{p}{)))}
-\end{Verbatim}

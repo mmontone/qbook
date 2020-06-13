@@ -1,7 +1,7 @@
 <html
   ><head
     ><title
-      >Function BULID-INDEXES</title
+      >Function BUILD-INDEXES</title
     ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
     /><link href="../style.css" rel="stylesheet"
     /><link title="Print" href="../print.css" rel="alternate stylesheet"
@@ -11,13 +11,13 @@
     ><div class="qbook"
       ><div class="computational-element"
         ><h1
-          >Function: BULID-INDEXES</h1
+          >Function: BUILD-INDEXES</h1
         ><div class="contents"
           ><h2
             >Source</h2
           ><pre
             ><code class="code"
-              >(defun bulid-indexes (book)
+              >(defun build-indexes (book)
   (loop
     for section in (contents book)
     do (loop
@@ -31,7 +31,7 @@
                   (setf (gethash (name (descriptor part)) index-table) part)))))
   book)</code
             ></pre
-          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#function_005FIT.BESE.QBOOK_003A_003ABULID-INDEXES"
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#function_005FIT.BESE.QBOOK_003A_003ABUILD-INDEXES"
             >Source Context</a
           ></div
         ></div
