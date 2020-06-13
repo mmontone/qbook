@@ -4,6 +4,8 @@
 
 ;;;; * Extra Code Analysis
 
+;;;; In the extra code analysis phase each parsed code part is enriched with a descriptor that contains specific information of the code part depending on its type (function, class, method, etc).
+
 (defvar *code-info-collectors* (make-hash-table))
 
 (defvar *known-elements* (make-hash-table :test #'equal))
@@ -22,12 +24,15 @@
                                  (eq (second a) (second b)))))))))
 
 (defun analyse-code-part (code-part)
+  "Match an info collection from *CODE-INFO-COLLECTORS* and evaluate it to fill up the code part descriptor."
   (awhen (gethash (first (form code-part)) *code-info-collectors*)
     (setf (descriptor code-part) (funcall it (cdr (form code-part))))
     (register-descriptor (descriptor code-part)))
   code-part)
 
 (defmacro defcode-info-collector (operator args &body body)
+  "Macro for defining code parts info collectors.
+You can use it to generate descriptors for your custom macros."
   (with-unique-names (form)
     (let ((function-name (intern (strcat operator :-descriptor) (find-package :it.bese.qbook))))
       `(progn
@@ -68,6 +73,12 @@ returns nil.")
     (when (not (null (docstring descriptor)))
       (subseq-first-sentence (docstring descriptor) limit))))
 
+;;;; *** Info collectors
+
+;;;; Define an info collector for each type of code part (function, method, defclass, macro, etc)
+
+;;;; **** Functions info collector
+
 (defclass defun-descriptor (descriptor)
   ((lambda-list :accessor lambda-list :initarg :lambda-list)
    (body :accessor body :initarg :body))
@@ -91,6 +102,8 @@ returns nil.")
                      :body body
                      :docstring docstring))))
 
+;;;; **** Macros info collector
+
 (defclass defmacro-descriptor (defun-descriptor)
   ()
   (:default-initargs
@@ -113,6 +126,8 @@ returns nil.")
                      :body body
                      :docstring docstring))))
 
+;;;; **** Classes info collector
+
 (defclass defclass-descriptor (descriptor)
   ((slots :accessor slots :initarg :slots :initform '())
    (supers :accessor supers :initarg :supers :initform '()))
@@ -127,6 +142,8 @@ returns nil.")
                  :slots (mapcar #'make-slot-descriptor slots)
                  :docstring (second (assoc :documentation options))))
 
+;;;; **** Slots info collector
+
 (defclass class-slot-descriptor (descriptor)
   ())
 
@@ -136,6 +153,8 @@ returns nil.")
     (make-instance 'class-slot-descriptor
                    :name name
                    :docstring (getf options :documentation))))
+
+;;;; **** Global variables info collector
 
 (defclass global-variable-descriptor (descriptor)
   ()
@@ -154,6 +173,8 @@ returns nil.")
   (make-instance 'global-variable-descriptor
                  :name name
                  :docstring documentation))
+
+;;;; **** Generic functions info collector
 
 (defclass defgeneric-descriptor (defun-descriptor)
   ()
@@ -199,6 +220,8 @@ returns nil.")
                        :lambda-list lambda-list
                        :body body
                        :docstring docstring)))))
+
+;;;; **** Constants info collector
 
 (defclass defconstant-descriptor (global-variable-descriptor)
   ()

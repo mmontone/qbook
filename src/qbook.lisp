@@ -140,7 +140,9 @@
    (end-position :accessor end-position :initform nil :initarg :end-position)
    (text :accessor text :initform nil :initarg :text)
    (origin-file :accessor origin-file :initform nil :initarg :origin-file)
-   (output-file :accessor output-file :initform nil)))
+   (output-file :accessor output-file :initform nil))
+  (:documentation "A part of a source file. 
+Can be code, comment, heading, etc.."))
 
 (defmethod print-object ((part source-file-part) stream)
   (print-unreadable-object (part stream :type t :identity t)
@@ -150,7 +152,8 @@
 
 (defclass code-part (source-file-part)
   ((form :accessor form :initform nil :initarg :form)
-   (descriptor :accessor descriptor :initform nil :initarg :descriptor)))
+   (descriptor :accessor descriptor :initform nil :initarg :descriptor))
+  (:documentation ""))
 
 (defgeneric code-part-p (object)
   (:method ((object t)) nil)
@@ -314,7 +317,16 @@
     (for part in parts)
     (appending (process-directive part))))
 
+;;;; Source code reading consists of the following steps:
+;;;; 1) Read source into parts
+;;;; 2) Post process (merge sequential comments, setup headers, etc.)
+;;;; 3) Handle any directives.
+;;;; 4) Gather any extra source code info
+;;;; 5) Setup navigation elements
+;;;; 6) Remove all the parts before the first comment part
+
 (defun read-source-file (file-name)
+  "Parse a Lisp source code file into parts"
   (let ((*evaling-readtable* (copy-readtable nil))
         (*evaling-package* (find-package :common-lisp-user)))
     (flet ((eval-part (part)
@@ -372,6 +384,7 @@
   (scan "^;;;;" text))
 
 (defun collect-code-info (parts)
+  "Collect specific info for each source code part using ANALYSE-CODE-PART."
   (mapcar (lambda (part)
             (typecase part
               (code-part

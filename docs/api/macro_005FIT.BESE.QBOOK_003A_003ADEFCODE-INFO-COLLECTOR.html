@@ -14,10 +14,17 @@
           >Macro: DEFCODE-INFO-COLLECTOR</h1
         ><div class="contents"
           ><h2
+  >Documentation</h2
+><blockquote
+  >Macro for defining code parts info collectors.
+You can use it to generate descriptors for your custom macros.</blockquote
+><h2
             >Source</h2
           ><pre
             ><code class="code"
               >(defmacro defcode-info-collector (operator args &amp;body body)
+  &quot;Macro for defining code parts info collectors.
+You can use it to generate descriptors for your custom macros.&quot;
   (with-unique-names (form)
     (let ((function-name (intern (strcat operator :-descriptor) (find-package :it.bese.qbook))))
       `(progn

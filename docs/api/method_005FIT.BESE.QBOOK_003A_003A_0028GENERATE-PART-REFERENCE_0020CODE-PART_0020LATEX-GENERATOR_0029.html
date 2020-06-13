@@ -18,10 +18,20 @@
           ><pre
             ><code class="code"
               >(defmethod generate-part-reference ((part code-part) (generator latex-generator))
+
+  (when (docstring (descriptor part))
+    (write-latex-escaped (docstring (descriptor part)) *latex-stream*)
+    (terpri *latex-stream*)
+    (write-line &quot;\\vskip 0.1in&quot; *latex-stream*))
+
+  (write-latex-code-descriptor (descriptor part) generator)
+
   (write-source (text part) generator)
   (terpri *latex-stream*)
   (format *latex-stream* &quot;\\hyperref[~a]{[Source Context]}&quot;
-          (descriptor-link-id (descriptor part))))</code
+          (descriptor-link-id (descriptor part)))
+  (terpri *latex-stream*)
+  (terpri *latex-stream*))</code
             ></pre
           ><a href="../The_0020LaTeX_0020Generator.html#method_005FIT.BESE.QBOOK_003A_003A_0028GENERATE-PART-REFERENCE_0020CODE-PART_0020LATEX-GENERATOR_0029"
             >Source Context</a

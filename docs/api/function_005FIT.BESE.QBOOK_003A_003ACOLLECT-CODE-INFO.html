@@ -14,10 +14,15 @@
           >Function: COLLECT-CODE-INFO</h1
         ><div class="contents"
           ><h2
+  >Documentation</h2
+><blockquote
+  >Collect specific info for each source code part using ANALYSE-CODE-PART.</blockquote
+><h2
             >Source</h2
           ><pre
             ><code class="code"
               >(defun collect-code-info (parts)
+  &quot;Collect specific info for each source code part using ANALYSE-CODE-PART.&quot;
   (mapcar (lambda (part)
             (typecase part
               (code-part

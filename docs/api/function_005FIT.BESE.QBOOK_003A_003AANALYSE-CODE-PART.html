@@ -14,10 +14,15 @@
           >Function: ANALYSE-CODE-PART</h1
         ><div class="contents"
           ><h2
+  >Documentation</h2
+><blockquote
+  >Match an info collection from *CODE-INFO-COLLECTORS* and evaluate it to fill up the code part descriptor.</blockquote
+><h2
             >Source</h2
           ><pre
             ><code class="code"
               >(defun analyse-code-part (code-part)
+  &quot;Match an info collection from *CODE-INFO-COLLECTORS* and evaluate it to fill up the code part descriptor.&quot;
   (awhen (gethash (first (form code-part)) *code-info-collectors*)
     (setf (descriptor code-part) (funcall it (cdr (form code-part))))
     (register-descriptor (descriptor code-part)))

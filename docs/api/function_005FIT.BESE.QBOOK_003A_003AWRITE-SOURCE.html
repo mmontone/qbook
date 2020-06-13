@@ -23,10 +23,10 @@
       (latex-command &quot;begin&quot; (if (listings generator) &quot;lstlisting&quot; &quot;verbatim&quot;)))
   (write-line source *latex-stream*)
   (latex-command &quot;end&quot;
-             (cond
-               ((highlight-syntax generator) &quot;minted&quot;)
-               ((listings generator) &quot;lstlisting&quot;)
-               (t &quot;verbatim&quot;))))</code
+                 (cond
+                   ((highlight-syntax generator) &quot;minted&quot;)
+                   ((listings generator) &quot;lstlisting&quot;)
+                   (t &quot;verbatim&quot;))))</code
             ></pre
           ><a href="../The_0020LaTeX_0020Generator.html#function_005FIT.BESE.QBOOK_003A_003AWRITE-SOURCE"
             >Source Context</a

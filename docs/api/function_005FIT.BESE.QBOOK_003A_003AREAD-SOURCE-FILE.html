@@ -14,10 +14,15 @@
           >Function: READ-SOURCE-FILE</h1
         ><div class="contents"
           ><h2
+  >Documentation</h2
+><blockquote
+  >Parse a Lisp source code file into parts</blockquote
+><h2
             >Source</h2
           ><pre
             ><code class="code"
               >(defun read-source-file (file-name)
+  &quot;Parse a Lisp source code file into parts&quot;
   (let ((*evaling-readtable* (copy-readtable nil))
         (*evaling-package* (find-package :common-lisp-user)))
     (flet ((eval-part (part)

@@ -21,12 +21,14 @@
   >prev</a
 > | <span class="dead-nav-link"
   >up</span
-> | <a href="The_0020HTML_0020Generator.html"
+> | <a href="Extra_0020Code_0020Analysis.html#Info_0020collectors"
   >next</a
 > | <a href="index.html"
     >toc</a
   ></div
 >
+<p> In the extra code analysis phase each parsed code part is enriched with a descriptor that contains specific information of the code part depending on its type (function, class, method, etc).
+
 <div class="computational-element-link computational-element-link-variable"
   ><p
     ><a href="api/variable_005FIT.BESE.QBOOK_003A_003A_002ACODE-INFO-COLLECTORS_002A.html" name="variable_005FIT.BESE.QBOOK_003A_003A_002ACODE-INFO-COLLECTORS_002A"
@@ -63,7 +65,7 @@
   ><p
     ><a href="api/function_005FIT.BESE.QBOOK_003A_003AANALYSE-CODE-PART.html" name="function_005FIT.BESE.QBOOK_003A_003AANALYSE-CODE-PART"
       >Function ANALYSE-CODE-PART</a
-    > </p
+    > Match an info collection from *CODE-INFO-COLLECTORS* and evaluate it to fill up the code part descriptor.</p
   ></div
 >
 
@@ -71,7 +73,7 @@
   ><p
     ><a href="api/macro_005FIT.BESE.QBOOK_003A_003ADEFCODE-INFO-COLLECTOR.html" name="macro_005FIT.BESE.QBOOK_003A_003ADEFCODE-INFO-COLLECTOR"
       >Macro DEFCODE-INFO-COLLECTOR</a
-    > </p
+    > Macro for defining code parts info collectors.</p
   ></div
 >
 
@@ -100,6 +102,38 @@ docstring.</p
   ></div
 >
 
+<h4
+  ><a name="Info_0020collectors"
+  >Info collectors</a
+>&nbsp;</h4
+><div class="nav-links"
+  ><a class="nav-link" href="Extra_0020Code_0020Analysis.html"
+  >prev</a
+> | <a class="nav-link" href="Extra_0020Code_0020Analysis.html"
+  >up</a
+> | <a href="Extra_0020Code_0020Analysis.html#Functions_0020info_0020collector"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<p> Define an info collector for each type of code part (function, method, defclass, macro, etc)
+
+<h5
+  ><a name="Functions_0020info_0020collector"
+  >Functions info collector</a
+>&nbsp;</h5
+><div class="nav-links"
+  ><a class="nav-link" href="Extra_0020Code_0020Analysis.html#Info_0020collectors"
+  >prev</a
+> | <a class="nav-link" href="Extra_0020Code_0020Analysis.html#Info_0020collectors"
+  >up</a
+> | <a href="Extra_0020Code_0020Analysis.html#Macros_0020info_0020collector"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
 <div class="computational-element-link computational-element-link-class"
   ><p
     ><a href="api/class_005FIT.BESE.QBOOK_003A_003ADEFUN-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003ADEFUN-DESCRIPTOR"
@@ -128,6 +162,21 @@ docstring.</p
   ></pre
 >
 
+<h5
+  ><a name="Macros_0020info_0020collector"
+  >Macros info collector</a
+>&nbsp;</h5
+><div class="nav-links"
+  ><a class="nav-link" href="Extra_0020Code_0020Analysis.html#Functions_0020info_0020collector"
+  >prev</a
+> | <a class="nav-link" href="Extra_0020Code_0020Analysis.html#Info_0020collectors"
+  >up</a
+> | <a href="Extra_0020Code_0020Analysis.html#Classes_0020info_0020collector"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
 <div class="computational-element-link computational-element-link-class"
   ><p
     ><a href="api/class_005FIT.BESE.QBOOK_003A_003ADEFMACRO-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003ADEFMACRO-DESCRIPTOR"
@@ -156,6 +205,21 @@ docstring.</p
   ></pre
 >
 
+<h5
+  ><a name="Classes_0020info_0020collector"
+  >Classes info collector</a
+>&nbsp;</h5
+><div class="nav-links"
+  ><a class="nav-link" href="Extra_0020Code_0020Analysis.html#Macros_0020info_0020collector"
+  >prev</a
+> | <a class="nav-link" href="Extra_0020Code_0020Analysis.html#Info_0020collectors"
+  >up</a
+> | <a href="Extra_0020Code_0020Analysis.html#Slots_0020info_0020collector"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
 <div class="computational-element-link computational-element-link-class"
   ><p
     ><a href="api/class_005FIT.BESE.QBOOK_003A_003ADEFCLASS-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003ADEFCLASS-DESCRIPTOR"
@@ -175,6 +239,21 @@ docstring.</p
   ></pre
 >
 
+<h5
+  ><a name="Slots_0020info_0020collector"
+  >Slots info collector</a
+>&nbsp;</h5
+><div class="nav-links"
+  ><a class="nav-link" href="Extra_0020Code_0020Analysis.html#Classes_0020info_0020collector"
+  >prev</a
+> | <a class="nav-link" href="Extra_0020Code_0020Analysis.html#Info_0020collectors"
+  >up</a
+> | <a href="Extra_0020Code_0020Analysis.html#Global_0020variables_0020info_0020collector"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
 <div class="computational-element-link computational-element-link-class"
   ><p
     ><a href="api/class_005FIT.BESE.QBOOK_003A_003ACLASS-SLOT-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003ACLASS-SLOT-DESCRIPTOR"
@@ -191,6 +270,21 @@ docstring.</p
   ></div
 >
 
+<h5
+  ><a name="Global_0020variables_0020info_0020collector"
+  >Global variables info collector</a
+>&nbsp;</h5
+><div class="nav-links"
+  ><a class="nav-link" href="Extra_0020Code_0020Analysis.html#Slots_0020info_0020collector"
+  >prev</a
+> | <a class="nav-link" href="Extra_0020Code_0020Analysis.html#Info_0020collectors"
+  >up</a
+> | <a href="Extra_0020Code_0020Analysis.html#Generic_0020functions_0020info_0020collector"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
 <div class="computational-element-link computational-element-link-class"
   ><p
     ><a href="api/class_005FIT.BESE.QBOOK_003A_003AGLOBAL-VARIABLE-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003AGLOBAL-VARIABLE-DESCRIPTOR"
@@ -219,6 +313,21 @@ docstring.</p
   ></pre
 >
 
+<h5
+  ><a name="Generic_0020functions_0020info_0020collector"
+  >Generic functions info collector</a
+>&nbsp;</h5
+><div class="nav-links"
+  ><a class="nav-link" href="Extra_0020Code_0020Analysis.html#Global_0020variables_0020info_0020collector"
+  >prev</a
+> | <a class="nav-link" href="Extra_0020Code_0020Analysis.html#Info_0020collectors"
+  >up</a
+> | <a href="Extra_0020Code_0020Analysis.html#Constants_0020info_0020collector"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
 <div class="computational-element-link computational-element-link-class"
   ><p
     ><a href="api/class_005FIT.BESE.QBOOK_003A_003ADEFGENERIC-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003ADEFGENERIC-DESCRIPTOR"
@@ -276,6 +385,21 @@ docstring.</p
   ></pre
 >
 
+<h5
+  ><a name="Constants_0020info_0020collector"
+  >Constants info collector</a
+>&nbsp;</h5
+><div class="nav-links"
+  ><a class="nav-link" href="Extra_0020Code_0020Analysis.html#Generic_0020functions_0020info_0020collector"
+  >prev</a
+> | <a class="nav-link" href="Extra_0020Code_0020Analysis.html#Info_0020collectors"
+  >up</a
+> | <a href="The_0020HTML_0020Generator.html"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
 <div class="computational-element-link computational-element-link-class"
   ><p
     ><a href="api/class_005FIT.BESE.QBOOK_003A_003ADEFCONSTANT-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003ADEFCONSTANT-DESCRIPTOR"

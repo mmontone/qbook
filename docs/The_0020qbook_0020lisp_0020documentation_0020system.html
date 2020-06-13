@@ -211,7 +211,7 @@
   ><p
     ><a href="api/class_005FIT.BESE.QBOOK_003A_003ASOURCE-FILE-PART.html" name="class_005FIT.BESE.QBOOK_003A_003ASOURCE-FILE-PART"
       >Class SOURCE-FILE-PART</a
-    > </p
+    > A part of a source file.</p
   ></div
 >
 
@@ -479,11 +479,19 @@
   ></div
 >
 
+<p> Source code reading consists of the following steps:
+ 1) Read source into parts
+ 2) Post process (merge sequential comments, setup headers, etc.)
+ 3) Handle any directives.
+ 4) Gather any extra source code info
+ 5) Setup navigation elements
+ 6) Remove all the parts before the first comment part
+
 <div class="computational-element-link computational-element-link-function"
   ><p
     ><a href="api/function_005FIT.BESE.QBOOK_003A_003AREAD-SOURCE-FILE.html" name="function_005FIT.BESE.QBOOK_003A_003AREAD-SOURCE-FILE"
       >Function READ-SOURCE-FILE</a
-    > </p
+    > Parse a Lisp source code file into parts</p
   ></div
 >
 
@@ -507,7 +515,7 @@
   ><p
     ><a href="api/function_005FIT.BESE.QBOOK_003A_003ACOLLECT-CODE-INFO.html" name="function_005FIT.BESE.QBOOK_003A_003ACOLLECT-CODE-INFO"
       >Function COLLECT-CODE-INFO</a
-    > </p
+    > Collect specific info for each source code part using ANALYSE-CODE-PART.</p
   ></div
 >
 

@@ -19,7 +19,7 @@
   ><li
   >OUTPUT-FILE</li
 ><li
-  >LISTINGS - When non-NIL, generate listings with LaTeX listings package.  When string, push \ltset{this string} in the preamble.</li
+  >LISTINGS - When non-NIL, generate listings with LaTeX listings package.</li
 ><li
   >HIGHLIGHT-SYNTAX - When T, highlight syntax using highlight.js library</li
 ></ul
@@ -40,7 +40,7 @@
               >(defclass latex-generator (generator)
   ((output-file :initarg :output-file :accessor output-file)
    (listings :initarg :listings :accessor listings :initform nil
-             :documentation &quot;When non-NIL, generate listings with LaTeX listings package.  When string, push \\ltset{this string} in the preamble.&quot;)
+             :documentation &quot;When non-NIL, generate listings with LaTeX listings package.&quot;)
    (highlight-syntax :initarg :highlight-syntax
                      :accessor highlight-syntax
                      :type boolean

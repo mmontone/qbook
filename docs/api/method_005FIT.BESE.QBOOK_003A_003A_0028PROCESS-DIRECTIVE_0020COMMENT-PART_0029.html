@@ -23,10 +23,11 @@
       (cl-ppcre:scan-to-strings (load-time-value (cl-ppcre:create-scanner &quot;^@include (.*)&quot;))
                                 (text part))
     (if matchp
-        (return-from process-directive (read-source-file
-                                        (merge-pathnames (let ((*readtable* (copy-readtable nil)))
-                                                           (read-from-string (aref strings 0)))
-                                                         (truename *source-file*))))
+        (return-from process-directive
+          (read-source-file
+           (merge-pathnames (let ((*readtable* (copy-readtable nil)))
+                              (read-from-string (aref strings 0)))
+                            (truename *source-file*))))
         (return-from process-directive (list part)))))</code
             ></pre
           ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#method_005FIT.BESE.QBOOK_003A_003A_0028PROCESS-DIRECTIVE_0020COMMENT-PART_0029"

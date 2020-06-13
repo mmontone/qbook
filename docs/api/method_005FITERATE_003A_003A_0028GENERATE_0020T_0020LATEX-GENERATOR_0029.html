@@ -36,7 +36,7 @@
       (when (listings generator)
         (latex-command &quot;usepackage&quot; &quot;listings&quot;)
         (latex-command &quot;lstset&quot; &quot;language=lisp&quot;))
-        
+
       (when (stringp (listings generator))
         (latex-command &quot;lstset&quot; (listings generator)))
 
@@ -49,10 +49,10 @@
       (wl &quot;\\raggedright                            % do not right justify&quot;)
 
       (latex-command &quot;title&quot; (title generator))
-      
+
       (latex-command &quot;date&quot; &quot;&quot;)
       (latex-command &quot;makeindex&quot;)
-      
+
       (latex-command &quot;begin&quot; &quot;document&quot;)
       (latex-command &quot;maketitle&quot;)
       (latex-command &quot;tableofcontents&quot;)
