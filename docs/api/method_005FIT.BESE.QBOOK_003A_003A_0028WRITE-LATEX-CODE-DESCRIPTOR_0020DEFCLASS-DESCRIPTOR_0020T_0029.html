@@ -1,0 +1,70 @@
+<html
+  ><head
+    ><title
+      >Method (WRITE-LATEX-CODE-DESCRIPTOR DEFCLASS-DESCRIPTOR T)</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /><link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/styles/default.min.css" rel="stylesheet"
+/></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Method: (WRITE-LATEX-CODE-DESCRIPTOR DEFCLASS-DESCRIPTOR T)</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defmethod write-latex-code-descriptor ((descriptor defclass-descriptor) generator)
+  (flet ((write-class-link (class)
+           (format *latex-stream*
+                   &quot;\\hyperref[class:~a]{~a}&quot;
+                   (class-name class)
+                   (class-name class))))
+    (when (slots descriptor)
+      (latex-command &quot;subsection*&quot; &quot;Slots&quot;)
+      (latex-command &quot;begin&quot; &quot;itemize&quot;)
+      (dolist (slot (slots descriptor))
+        (write-string &quot;\\item &quot; *latex-stream*)
+        (princ (name slot) *latex-stream*)
+        (when (docstring slot)
+          (write-string &quot; - &quot; *latex-stream*)
+          (write-string (docstring slot) *latex-stream*))
+        (terpri *latex-stream*))
+      (latex-command &quot;end&quot; &quot;itemize&quot;))
+
+    (latex-command &quot;subsection*&quot; &quot;Hierarchy&quot;)
+    (latex-command &quot;subsubsection*&quot; &quot;Precedence list&quot;)
+
+    (latex-command &quot;begin&quot; &quot;itemize&quot;)
+    (dolist (class (mopp:class-direct-superclasses (find-class (name descriptor))))
+      (write-string &quot;\\item &quot; *latex-stream*)
+      (write-class-link class)
+      (terpri *latex-stream*))
+    (latex-command &quot;end&quot; &quot;itemize&quot;)
+
+    (awhen (mopp:class-direct-subclasses (find-class (name descriptor)))
+      (latex-command &quot;subsection*&quot; &quot;Sub Classes&quot;)
+      (latex-command &quot;begin&quot; &quot;itemize&quot;)
+      (dolist (sub it)
+        (write-string &quot;\\item &quot; *latex-stream*)
+        (write-class-link sub)
+        (terpri *latex-stream*))
+      (latex-command &quot;end&quot; &quot;itemize&quot;))))</code
+            ></pre
+          ><a href="../The_0020LaTeX_0020Generator.html#method_005FIT.BESE.QBOOK_003A_003A_0028WRITE-LATEX-CODE-DESCRIPTOR_0020DEFCLASS-DESCRIPTOR_0020T_0029"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/highlight.min.js"
+  ></script
+><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/languages/lisp.min.js"
+  ></script
+><script
+  >hljs.initHighlightingOnLoad();</script
+></body
+  ></html
+>

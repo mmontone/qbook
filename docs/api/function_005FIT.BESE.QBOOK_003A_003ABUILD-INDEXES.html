@@ -1,0 +1,47 @@
+<html
+  ><head
+    ><title
+      >Function BUILD-INDEXES</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /><link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/styles/default.min.css" rel="stylesheet"
+/></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: BUILD-INDEXES</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defun build-indexes (book)
+  (loop
+    for section in (contents book)
+    do (loop
+         for part in section
+         when (code-part-p part)
+           do (when (descriptor part)
+                (symbol-macrolet ((index-table
+                                    (gethash (class-of (descriptor part)) (indexes book))))
+                  (unless index-table
+                    (setf index-table (make-hash-table :test 'eql)))
+                  (setf (gethash (name (descriptor part)) index-table) part)))))
+  book)</code
+            ></pre
+          ><a href="../The_0020qbook_0020lisp_0020documentation_0020system.html#function_005FIT.BESE.QBOOK_003A_003ABUILD-INDEXES"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/highlight.min.js"
+  ></script
+><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/languages/lisp.min.js"
+  ></script
+><script
+  >hljs.initHighlightingOnLoad();</script
+></body
+  ></html
+>

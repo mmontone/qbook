@@ -142,24 +142,12 @@ docstring.</p
   ></div
 >
 
-<pre
-  ><code class="code"
-    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defun <span class="paren">(</span>name lambda-list &amp;body body<span class="paren">)</span></span><span class"body">
-  <span class="paren">(</span>multiple-value-bind <span class="paren">(</span>lambda-list env<span class="paren">)</span>
-      <span class="paren">(</span>arnesi::walk-lambda-list lambda-list nil nil<span class="paren">)</span>
-    <span class="paren">(</span>multiple-value-bind <span class="paren">(</span>body docstring declarations<span class="paren">)</span>
-        <span class="paren">(</span>handler-bind <span class="paren">(</span><span class="paren">(</span>arnesi::return-from-unknown-block
-                         <span class="paren">(</span>lambda <span class="paren">(</span>c<span class="paren">)</span>
-                           <span class="paren">(</span>declare <span class="paren">(</span>ignore c<span class="paren">)</span><span class="paren">)</span>
-                           <span class="paren">(</span>invoke-restart 'arnesi::add-block<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span>
-          <span class="paren">(</span>arnesi::walk-implict-progn nil body env :docstring t :declare t<span class="paren">)</span><span class="paren">)</span>
-      <span class="paren">(</span>declare <span class="paren">(</span>ignore declarations<span class="paren">)</span><span class="paren">)</span>
-      <span class="paren">(</span>make-instance 'defun-descriptor
-                     :name name
-                     :lambda-list lambda-list
-                     :body body
-                     :docstring docstring<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span></span></code
-  ></pre
+<div class="computational-element-link computational-element-link-code-info-collector"
+  ><p
+    ><a href="api/code-info-collector_005FCOMMON-LISP_003A_003ADEFUN.html" name="code-info-collector_005FCOMMON-LISP_003A_003ADEFUN"
+      >Code Info Collector DEFUN</a
+    > </p
+  ></div
 >
 
 <h5
@@ -185,24 +173,12 @@ docstring.</p
   ></div
 >
 
-<pre
-  ><code class="code"
-    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defmacro <span class="paren">(</span>name lambda-list &amp;body body<span class="paren">)</span></span><span class"body">
-  <span class="paren">(</span>multiple-value-bind <span class="paren">(</span>lambda-list env<span class="paren">)</span>
-      <span class="paren">(</span>arnesi::walk-lambda-list lambda-list nil nil<span class="paren">)</span>
-    <span class="paren">(</span>multiple-value-bind <span class="paren">(</span>body docstring declarations<span class="paren">)</span>
-        <span class="paren">(</span>handler-bind <span class="paren">(</span><span class="paren">(</span>arnesi::return-from-unknown-block
-                         <span class="paren">(</span>lambda <span class="paren">(</span>c<span class="paren">)</span>
-                           <span class="paren">(</span>declare <span class="paren">(</span>ignore c<span class="paren">)</span><span class="paren">)</span>
-                           <span class="paren">(</span>invoke-restart 'arnesi::add-block<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span>
-          <span class="paren">(</span>arnesi::walk-implict-progn nil body env :docstring t :declare t<span class="paren">)</span><span class="paren">)</span>
-      <span class="paren">(</span>declare <span class="paren">(</span>ignore declarations<span class="paren">)</span><span class="paren">)</span>
-      <span class="paren">(</span>make-instance 'defmacro-descriptor
-                     :name name
-                     :lambda-list lambda-list
-                     :body body
-                     :docstring docstring<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span></span></code
-  ></pre
+<div class="computational-element-link computational-element-link-code-info-collector"
+  ><p
+    ><a href="api/code-info-collector_005FCOMMON-LISP_003A_003ADEFMACRO.html" name="code-info-collector_005FCOMMON-LISP_003A_003ADEFMACRO"
+      >Code Info Collector DEFMACRO</a
+    > </p
+  ></div
 >
 
 <h5
@@ -228,15 +204,12 @@ docstring.</p
   ></div
 >
 
-<pre
-  ><code class="code"
-    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defclass <span class="paren">(</span>name supers slots &amp;rest options<span class="paren">)</span></span><span class"body">
-  <span class="paren">(</span>make-instance 'defclass-descriptor
-                 :name name
-                 :supers supers
-                 :slots <span class="paren">(</span>mapcar #'make-slot-descriptor slots<span class="paren">)</span>
-                 :docstring <span class="paren">(</span>second <span class="paren">(</span>assoc :documentation options<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span></span></code
-  ></pre
+<div class="computational-element-link computational-element-link-code-info-collector"
+  ><p
+    ><a href="api/code-info-collector_005FCOMMON-LISP_003A_003ADEFCLASS.html" name="code-info-collector_005FCOMMON-LISP_003A_003ADEFCLASS"
+      >Code Info Collector DEFCLASS</a
+    > </p
+  ></div
 >
 
 <h5
@@ -293,24 +266,20 @@ docstring.</p
   ></div
 >
 
-<pre
-  ><code class="code"
-    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defvar <span class="paren">(</span>name &amp;optional value documentation<span class="paren">)</span></span><span class"body">
-  <span class="paren">(</span>declare <span class="paren">(</span>ignore value<span class="paren">)</span><span class="paren">)</span>
-  <span class="paren">(</span>make-instance 'global-variable-descriptor
-                 :name name
-                 :docstring documentation<span class="paren">)</span><span class="paren">)</span></span></code
-  ></pre
+<div class="computational-element-link computational-element-link-code-info-collector"
+  ><p
+    ><a href="api/code-info-collector_005FCOMMON-LISP_003A_003ADEFVAR.html" name="code-info-collector_005FCOMMON-LISP_003A_003ADEFVAR"
+      >Code Info Collector DEFVAR</a
+    > </p
+  ></div
 >
 
-<pre
-  ><code class="code"
-    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defparameter <span class="paren">(</span>name &amp;optional value documentation<span class="paren">)</span></span><span class"body">
-  <span class="paren">(</span>declare <span class="paren">(</span>ignore value<span class="paren">)</span><span class="paren">)</span>
-  <span class="paren">(</span>make-instance 'global-variable-descriptor
-                 :name name
-                 :docstring documentation<span class="paren">)</span><span class="paren">)</span></span></code
-  ></pre
+<div class="computational-element-link computational-element-link-code-info-collector"
+  ><p
+    ><a href="api/code-info-collector_005FCOMMON-LISP_003A_003ADEFPARAMETER.html" name="code-info-collector_005FCOMMON-LISP_003A_003ADEFPARAMETER"
+      >Code Info Collector DEFPARAMETER</a
+    > </p
+  ></div
 >
 
 <h5
@@ -336,17 +305,12 @@ docstring.</p
   ></div
 >
 
-<pre
-  ><code class="code"
-    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defgeneric <span class="paren">(</span>name arg-list &amp;rest options<span class="paren">)</span></span><span class"body">
-  <span class="paren">(</span>multiple-value-bind <span class="paren">(</span>lambda-list env<span class="paren">)</span>
-      <span class="paren">(</span>arnesi::walk-lambda-list arg-list nil nil :allow-specializers nil<span class="paren">)</span>
-    <span class="paren">(</span>declare <span class="paren">(</span>ignore env<span class="paren">)</span><span class="paren">)</span>
-    <span class="paren">(</span>make-instance 'defgeneric-descriptor
-                   :name name
-                   :lambda-list lambda-list
-                   :docstring <span class="paren">(</span>second <span class="paren">(</span>assoc :documentation options<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span></span></code
-  ></pre
+<div class="computational-element-link computational-element-link-code-info-collector"
+  ><p
+    ><a href="api/code-info-collector_005FCOMMON-LISP_003A_003ADEFGENERIC.html" name="code-info-collector_005FCOMMON-LISP_003A_003ADEFGENERIC"
+      >Code Info Collector DEFGENERIC</a
+    > </p
+  ></div
 >
 
 <div class="computational-element-link computational-element-link-class"
@@ -357,32 +321,12 @@ docstring.</p
   ></div
 >
 
-<pre
-  ><code class="code"
-    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defmethod <span class="paren">(</span>name &amp;rest args<span class="paren">)</span></span><span class"body">
-  <span class="paren">(</span>let <span class="paren">(</span><span class="paren">(</span>qualifier nil<span class="paren">)</span>
-        arguments
-        body<span class="paren">)</span>
-    <span class="paren">(</span>when <span class="paren">(</span>symbolp <span class="paren">(</span>first args<span class="paren">)</span><span class="paren">)</span>
-      <span class="paren">(</span>setf qualifier <span class="paren">(</span>pop args<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span>
-    <span class="paren">(</span>setf arguments <span class="paren">(</span>pop args<span class="paren">)</span>
-          body args<span class="paren">)</span>
-    <span class="paren">(</span>multiple-value-bind <span class="paren">(</span>lambda-list env<span class="paren">)</span>
-        <span class="paren">(</span>arnesi::walk-lambda-list arguments nil nil :allow-specializers t<span class="paren">)</span>
-      <span class="paren">(</span>multiple-value-bind <span class="paren">(</span>body docstring declarations<span class="paren">)</span>
-          <span class="paren">(</span>handler-bind <span class="paren">(</span><span class="paren">(</span>arnesi::return-from-unknown-block
-                           <span class="paren">(</span>lambda <span class="paren">(</span>c<span class="paren">)</span>
-                             <span class="paren">(</span>declare <span class="paren">(</span>ignore c<span class="paren">)</span><span class="paren">)</span>
-                             <span class="paren">(</span>invoke-restart 'arnesi::add-block<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span>
-            <span class="paren">(</span>arnesi::walk-implict-progn nil body env :docstring t :declare t<span class="paren">)</span><span class="paren">)</span>
-        <span class="paren">(</span>declare <span class="paren">(</span>ignore declarations<span class="paren">)</span><span class="paren">)</span>
-        <span class="paren">(</span>make-instance 'defmethod-descriptor
-                       :name name
-                       :qualifier qualifier
-                       :lambda-list lambda-list
-                       :body body
-                       :docstring docstring<span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span><span class="paren">)</span></span></code
-  ></pre
+<div class="computational-element-link computational-element-link-code-info-collector"
+  ><p
+    ><a href="api/code-info-collector_005FCOMMON-LISP_003A_003ADEFMETHOD.html" name="code-info-collector_005FCOMMON-LISP_003A_003ADEFMETHOD"
+      >Code Info Collector DEFMETHOD</a
+    > </p
+  ></div
 >
 
 <h5
@@ -394,7 +338,7 @@ docstring.</p
   >prev</a
 > | <a class="nav-link" href="Extra_0020Code_0020Analysis.html#Info_0020collectors"
   >up</a
-> | <a href="The_0020HTML_0020Generator.html"
+> | <a href="Extra_0020Code_0020Analysis.html#Example_0020of_0020a_0020custom_0020code_0020part_0020definition"
   >next</a
 > | <a href="index.html"
     >toc</a
@@ -408,14 +352,57 @@ docstring.</p
   ></div
 >
 
+<div class="computational-element-link computational-element-link-code-info-collector"
+  ><p
+    ><a href="api/code-info-collector_005FCOMMON-LISP_003A_003ADEFCONSTANT.html" name="code-info-collector_005FCOMMON-LISP_003A_003ADEFCONSTANT"
+      >Code Info Collector DEFCONSTANT</a
+    > </p
+  ></div
+>
+
+<h3
+  ><a name="Example_0020of_0020a_0020custom_0020code_0020part_0020definition"
+  >Example of a custom code part definition</a
+>&nbsp;</h3
+><div class="nav-links"
+  ><a class="nav-link" href="Extra_0020Code_0020Analysis.html#Constants_0020info_0020collector"
+  >prev</a
+> | <a class="nav-link" href="Extra_0020Code_0020Analysis.html"
+  >up</a
+> | <a href="The_0020HTML_0020Generator.html"
+  >next</a
+> | <a href="index.html"
+    >toc</a
+  ></div
+>
+<p> This is an example of how to define a custom code-part
+
 <pre
   ><code class="code"
-    ><span class="first-line"><span class="paren">(</span>defcode-info-collector cl:defconstant <span class="paren">(</span>name value &amp;optional docstring<span class="paren">)</span></span><span class"body">
-  <span class="paren">(</span>declare <span class="paren">(</span>ignore value<span class="paren">)</span><span class="paren">)</span>
-  <span class="paren">(</span>make-instance 'defconstant-descriptor
-                 :name name :docstring docstring<span class="paren">)</span><span class="paren">)</span></span></code
+    ><span class="first-line"><span class="paren">(</span>in-package :qbook<span class="paren">)</span></span><span class"body"></span></code
   ></pre
 >
+
+<p> Define a custom descriptor
+
+<div class="computational-element-link computational-element-link-class"
+  ><p
+    ><a href="api/class_005FIT.BESE.QBOOK_003A_003AINFO-COLLECTOR-DESCRIPTOR.html" name="class_005FIT.BESE.QBOOK_003A_003AINFO-COLLECTOR-DESCRIPTOR"
+      >Class INFO-COLLECTOR-DESCRIPTOR</a
+    > </p
+  ></div
+>
+
+<p> Define an code info collector that instantiate the custom descriptor
+
+<div class="computational-element-link computational-element-link-code-info-collector"
+  ><p
+    ><a href="api/code-info-collector_005FIT.BESE.QBOOK_003A_003ADEFCODE-INFO-COLLECTOR.html" name="code-info-collector_005FIT.BESE.QBOOK_003A_003ADEFCODE-INFO-COLLECTOR"
+      >Code Info Collector DEFCODE-INFO-COLLECTOR</a
+    > </p
+  ></div
+>
+
 
 </div
       ></div

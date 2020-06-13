@@ -1,0 +1,40 @@
+<html
+  ><head
+    ><title
+      >Function DEFCLASS</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /><link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/styles/default.min.css" rel="stylesheet"
+/></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Function: DEFCLASS</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defcode-info-collector cl:defclass (name supers slots &amp;rest options)
+  (make-instance 'defclass-descriptor
+                 :name name
+                 :supers supers
+                 :slots (mapcar #'make-slot-descriptor slots)
+                 :docstring (second (assoc :documentation options))))</code
+            ></pre
+          ><a href="../Extra_0020Code_0020Analysis.html#function_005FCOMMON-LISP_003A_003ADEFCLASS"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/highlight.min.js"
+  ></script
+><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/languages/lisp.min.js"
+  ></script
+><script
+  >hljs.initHighlightingOnLoad();</script
+></body
+  ></html
+>
