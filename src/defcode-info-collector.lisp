@@ -30,4 +30,4 @@
                      :body body
                      :docstring docstring))))
 
-;; Possibly implement custom HTML and Latex generation.
+;;;; Finally, possibly implement custom HTML and Latex generation, specializing WRITE-CODE-DESCRIPTOR generic function.

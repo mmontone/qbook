@@ -1,0 +1,44 @@
+<html
+  ><head
+    ><title
+      >Method (WRITE-CODE-DESCRIPTOR T T HTML-GENERATOR)</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /><link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/styles/default.min.css" rel="stylesheet"
+/></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Method: (WRITE-CODE-DESCRIPTOR T T HTML-GENERATOR)</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defmethod write-code-descriptor ((descriptor t) part (generator html-generator))
+  (let ((text (text part)))
+    (setf text (yaclml::escape-as-html text))
+    (setf text (regex-replace-all &quot;(\\(|\\))&quot;
+                                  text
+                                  &quot;&lt;span class=\&quot;paren\&quot;&gt;\\1&lt;/span&gt;&quot;))
+    (setf text (regex-replace &quot;^.*&quot;
+                              text
+                              (strcat &quot;&lt;span class=\&quot;first-line\&quot;&gt;\\&amp;&lt;/span&gt;&lt;span class\&quot;body\&quot;&gt;&quot;)))
+    (&lt;:pre (&lt;:code :class &quot;code&quot; (&lt;:as-is text) (&lt;:as-is &quot;&lt;/span&gt;&quot;)))))</code
+            ></pre
+          ><a href="../The_0020HTML_0020Generator.html#method_005FIT.BESE.QBOOK_003A_003A_0028WRITE-CODE-DESCRIPTOR_0020T_0020T_0020HTML-GENERATOR_0029"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/highlight.min.js"
+  ></script
+><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/languages/lisp.min.js"
+  ></script
+><script
+  >hljs.initHighlightingOnLoad();</script
+></body
+  ></html
+>

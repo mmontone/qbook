@@ -167,7 +167,7 @@
     (terpri *latex-stream*)
     (write-line "\\vskip 0.1in" *latex-stream*))
 
-  (write-latex-code-descriptor (descriptor part) generator)
+  (write-code-descriptor (descriptor part) part generator)
 
   (write-source (text part) generator)
   (terpri *latex-stream*)
@@ -189,12 +189,9 @@
                                    (safe-latex-id (princ-to-string (name (descriptor part))))))
     (call-next-method)))
 
-(defgeneric write-latex-code-descriptor (descriptor generator))
+(defmethod write-code-descriptor ((descriptor t) part (generator latex-generator)))
 
-(defmethod write-latex-code-descriptor ((descriptor t) generator)
-  )
-
-(defmethod write-latex-code-descriptor ((descriptor defclass-descriptor) generator)
+(defmethod write-code-descriptor ((descriptor defclass-descriptor) part (generator latex-generator))
   (flet ((write-class-link (class)
            (format *latex-stream*
                    "\\hyperref[class:~a]{~a}"

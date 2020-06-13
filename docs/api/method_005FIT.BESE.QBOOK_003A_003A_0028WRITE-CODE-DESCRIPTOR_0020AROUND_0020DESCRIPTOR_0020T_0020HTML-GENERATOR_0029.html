@@ -1,0 +1,61 @@
+<html
+  ><head
+    ><title
+      >Method (WRITE-CODE-DESCRIPTOR AROUND DESCRIPTOR T HTML-GENERATOR)</title
+    ><meta content="text/html; charset=utf-8" http-equiv="Content-Type"
+    /><link href="../style.css" rel="stylesheet"
+    /><link title="Print" href="../print.css" rel="alternate stylesheet"
+    /><link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/styles/default.min.css" rel="stylesheet"
+/></head
+  ><body
+    ><div class="qbook"
+      ><div class="computational-element"
+        ><h1
+          >Method: (WRITE-CODE-DESCRIPTOR AROUND DESCRIPTOR T HTML-GENERATOR)</h1
+        ><div class="contents"
+          ><h2
+            >Source</h2
+          ><pre
+            ><code class="code"
+              >(defmethod write-code-descriptor :around ((descriptor descriptor) part (generator html-generator))
+  (&lt;:div :class (strcat &quot;computational-element-link &quot;
+                        &quot;computational-element-link-&quot; (label-prefix descriptor))
+         (&lt;:p (&lt;:a :name (make-anchor-name descriptor)
+                   :href (make-anchor-link descriptor)
+                   (&lt;:as-html (pretty-label-prefix descriptor))
+                   &quot; &quot;
+                   (&lt;:as-html (html-name descriptor)))
+              &quot; &quot;
+              (when-bind first-sentence (docstring-first-sentence descriptor)
+                (&lt;:as-html first-sentence))))
+  (&lt;qbook-page :title (strcat (pretty-label-prefix descriptor) &quot; &quot; (html-name descriptor))
+               :file-name (make-anchor-link descriptor)
+               :stylesheet &quot;../style.css&quot;
+               :printsheet &quot;../print.css&quot;
+               (&lt;:div :class &quot;computational-element&quot;
+                      (&lt;:h1 (&lt;:as-html (pretty-label-prefix descriptor)) &quot;: &quot; (&lt;:as-html (html-name descriptor)))
+                      (&lt;:div :class &quot;contents&quot;
+                             (when (docstring descriptor)
+                               (&lt;:h2 &quot;Documentation&quot;)
+                               (&lt;:blockquote
+                                (&lt;:as-html (docstring descriptor))))
+                             (call-next-method)
+                             (&lt;:h2 &quot;Source&quot;)
+                             (&lt;:pre (&lt;:code :class &quot;code&quot; (&lt;:as-html (text part))))
+                             (&lt;:a :href (strcat &quot;../&quot; (output-file part) &quot;#&quot; (make-anchor-name (descriptor part)))
+                                  &quot;Source Context&quot;)))))</code
+            ></pre
+          ><a href="../The_0020HTML_0020Generator.html#method_005FIT.BESE.QBOOK_003A_003A_0028WRITE-CODE-DESCRIPTOR_0020AROUND_0020DESCRIPTOR_0020T_0020HTML-GENERATOR_0029"
+            >Source Context</a
+          ></div
+        ></div
+      ></div
+    ><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/highlight.min.js"
+  ></script
+><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.3/build/languages/lisp.min.js"
+  ></script
+><script
+  >hljs.initHighlightingOnLoad();</script
+></body
+  ></html
+>

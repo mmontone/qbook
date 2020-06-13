@@ -217,12 +217,13 @@
      (setf state nil)
      (write-string "</p>" *yaclml-stream*)
      (terpri *yaclml-stream*)))
-  (write-code-descriptor (descriptor part) part)
+  (write-code-descriptor (descriptor part) part *generator*)
   nil)
 
-(defgeneric write-code-descriptor (descriptor part))
+(defgeneric write-code-descriptor (descriptor part generator)
+  (:documentation "Writes the documentation of PART using DESCRIPTOR for the current GENERATOR"))
 
-(defmethod write-code-descriptor ((descriptor t) part)
+(defmethod write-code-descriptor ((descriptor t) part (generator html-generator))
   (let ((text (text part)))
     (setf text (yaclml::escape-as-html text))
     (setf text (regex-replace-all "(\\(|\\))"
@@ -233,7 +234,7 @@
                               (strcat "<span class=\"first-line\">\\&</span><span class\"body\">")))
     (<:pre (<:code :class "code" (<:as-is text) (<:as-is "</span>")))))
 
-(defmethod write-code-descriptor :around ((descriptor descriptor) part)
+(defmethod write-code-descriptor :around ((descriptor descriptor) part (generator html-generator))
   (<:div :class (strcat "computational-element-link "
                         "computational-element-link-" (label-prefix descriptor))
          (<:p (<:a :name (make-anchor-name descriptor)
@@ -261,11 +262,11 @@
                              (<:a :href (strcat "../" (output-file part) "#" (make-anchor-name (descriptor part)))
                                   "Source Context")))))
 
-(defmethod write-code-descriptor ((descriptor descriptor) part)
+(defmethod write-code-descriptor ((descriptor descriptor) part (generator html-generator))
   (declare (ignore part))
   nil)
 
-(defmethod write-code-descriptor ((descriptor defclass-descriptor) part)
+(defmethod write-code-descriptor ((descriptor defclass-descriptor) part (generator html-generator))
   (declare (ignore part))
   (when (slots descriptor)
     (<:h2 "Slots")
