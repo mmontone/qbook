@@ -9,6 +9,11 @@
 (in-package :it.bese.qbook.system)
 
 (defsystem :qbook
+  :description "qbook generates HTML (or LaTeX) formatted code listings of Common Lisp source files. This is inspired by Luke Gorrie's pbook.el."
+  :homepage "https://mmontone.github.io/qbook"
+  :long-description #.(uiop:read-file-string
+     (uiop:subpathname *load-pathname* "README.md"))
+  :author "Edward Marco Baringer"
   :components ((:static-file "qbook.asd")
                (:module :src
                 :components
